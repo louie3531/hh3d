@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xem Phim - Đấu Phá Thương Khung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav
+      class="backdrop-blur bg-gray-900/80 fixed w-full top-0 z-20 shadow-2xl border-b border-gray-700"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500"
+        >
+          JangHH3D
+        </a>
+        <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+          <li>
+            <a href="index.html" class="hover:text-yellow-400 transition"
+              >Trang chủ</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:text-yellow-400 transition">Thể Loại</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-yellow-400 transition">Phim Lẻ</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Video Player Section -->
+    <section class="container mx-auto pt-24 px-4">
+      <h1 class="text-4xl font-extrabold mb-4">Đấu Phá Thương Khung</h1>
+      <div class="aspect-w-16 aspect-h-9 mb-8">
+        <iframe
+          class="w-full h-full rounded-lg shadow-lg"
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="Đấu Phá Thương Khung"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="text-gray-400 mb-4">
+        <span class="font-bold text-yellow-400">Nội dung:</span> Tiểu Viêm, một
+        thiếu niên thiên tài, đã mất đi khả năng tu luyện. Tuy nhiên, nhờ sự
+        giúp đỡ của một linh hồn cổ xưa, cậu bắt đầu hành trình trở thành cường
+        giả mạnh nhất.
+      </p>
+    </section>
+
+    <!-- Related Movies -->
+    <section class="container mx-auto mt-12 px-4">
+      <h2 class="text-3xl font-extrabold mb-8">Phim Liên Quan</h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
+      >
+        <!-- Related Movie Card -->
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-tien-nghich.html">
+            <img
+              src="https://hoathinh3d.site/wp-content/uploads/2023/09/tien-nghich-3-300x450.jpg"
+              alt="Tiên Nghịch"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
+              <p class="text-gray-400 text-sm">Xian Ni</p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-muc-than-ky.html">
+            <img
+              src="https://hoathinh3d.site/wp-content/uploads/2024/10/muc-than-ky-300x450.png"
+              alt="Mục Thần Ký"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
+              <p class="text-gray-400 text-sm">Mu Shen Ji</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>

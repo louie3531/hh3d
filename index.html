@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoạt Hình 3D</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav
+      class="backdrop-blur bg-gray-900/80 fixed w-full top-0 z-20 shadow-2xl border-b border-gray-700"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <a
+            href="#"
+            class="hover:scale-105 transition-transform flex items-center"
+          >
+            <span
+              class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 mr-6"
+              >JangHH3D</span
+            >
+          </a>
+          <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">Trang chủ</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">Thể Loại</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">Phim Lẻ</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Đang Chiếu</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Lịch Chiếu</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Hoàn Thành</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center space-x-2">
+          <input
+            type="text"
+            id="searchInput"
+            class="bg-gray-800/80 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden transition-all duration-300 shadow"
+            placeholder="Tìm kiếm..."
+          />
+          <button
+            id="searchBtn"
+            class="text-2xl hover:text-yellow-400 transition"
+          >
+            🔍
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Đang Thịnh Hành -->
+    <section class="container mx-auto pt-24">
+      <h2
+        class="text-3xl md:text-4xl font-extrabold mb-8 flex items-center gap-2"
+      >
+        <span class="text-yellow-400 text-4xl">🔥</span> ĐANG THỊNH HÀNH
+      </h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
+      >
+        <!-- Card phim -->
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-dau-pha-thuong-khung.html">
+            <img
+              src="https://yanhh3d.vip/storage/movies/dau-pha-thuong-khung-phan-5-6-1737297719.jpg"
+              alt="Đấu Phá Thương Khung"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <span
+                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+                >1</span
+              >
+              <h3 class="text-lg font-semibold truncate">
+                Đấu Phá Thương Khung
+              </h3>
+              <p class="text-gray-400 text-sm">Fights Break Sphere 5</p>
+            </div>
+          </a>
+        </div>
+        <!-- Lặp lại các card phim khác tương tự, chỉ thay đổi nội dung -->
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-tien-nghich.html">
+            <img
+              src="https://yanhh3d.vip/storage/movies/tien-nghich-1737888520.jpg"
+              alt="Tiên Nghịch"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <span
+                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+                >2</span
+              >
+              <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
+              <p class="text-gray-400 text-sm">Xian Ni</p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-muc-than-ky.html">
+            <img
+              src="https://yanhh3d.vip/storage/movies/muc-than-ky-1739903372.jpg"
+              alt="Mục Thần Ký"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <span
+                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+                >3</span
+              >
+              <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
+              <p class="text-gray-400 text-sm">Mu Shen Ji</p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-pham-nhan-tu-tien.html">
+            <img
+              src="https://yanhh3d.vip/storage/movies/pham-nhan-tu-tien-full-1742880727.jpg"
+              alt="Phàm Nhân Tu Tiên"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <span
+                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+                >4</span
+              >
+              <h3 class="text-lg font-semibold truncate">Phàm Nhân Tu Tiên</h3>
+              <p class="text-gray-400 text-sm">Fanren Xiu Xian S53</p>
+            </div>
+          </a>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <a href="movie-detail-thuong-nguyen-do.html">
+            <img
+              src="https://yanhh3d.vip/storage/movies/2023_27_07_13_01_15-1685598268.jpg"
+              alt="Thương Nguyên Đồ"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <span
+                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+                >5</span
+              >
+              <h3 class="text-lg font-semibold truncate">Thương Nguyên Đồ</h3>
+              <p class="text-gray-400 text-sm">Cang Yuan Tu</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mới Cập Nhật -->
+    <section class="container mx-auto my-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Mới Cập Nhật</h2>
+      <div class="flex flex-wrap gap-3 mb-8">
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="mon"
+        >
+          Mon
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="tue"
+        >
+          Tue
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="wed"
+        >
+          Wed
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="thu"
+        >
+          Thu
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="fri"
+        >
+          Fri
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="sat"
+        >
+          Sat
+        </button>
+        <button
+          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
+          data-day="sun"
+        >
+          Sun
+        </button>
+      </div>
+      <div
+        id="newEpisodes"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
+      >
+        <!-- Card phim mới cập nhật -->
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <img
+            src="https://hoathinh3d.site/wp-content/uploads/2023/09/tien-nghich-3-300x450.jpg"
+            alt="Tiên Nghịch"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <span
+              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+              >Tập 89</span
+            >
+            <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
+            <p class="text-gray-400 text-sm">Xian Ni</p>
+          </div>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <img
+            src="https://hoathinh3d.site/wp-content/uploads/2024/10/muc-than-ky-300x450.png"
+            alt="Mục Thần Ký"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <span
+              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+              >Tập 31</span
+            >
+            <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
+            <p class="text-gray-400 text-sm">Mu Shen Ji</p>
+          </div>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <img
+            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2024/01/su-huynh-cua-ta-qua-manh-1.jpg"
+            alt="Sư Huynh Của Ta Quá Mạnh"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <span
+              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+              >Tập 19</span
+            >
+            <h3 class="text-lg font-semibold truncate">
+              Sư Huynh Của Ta Quá Mạnh
+            </h3>
+            <p class="text-gray-400 text-sm">My Senior Brother Is Too Strong</p>
+          </div>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <img
+            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2024/01/thang-cap-manh-nhat-1.jpg"
+            alt="Thăng Cấp Mạnh Nhất"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <span
+              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+              >Tập 27</span
+            >
+            <h3 class="text-lg font-semibold truncate">Thăng Cấp Mạnh Nhất</h3>
+            <p class="text-gray-400 text-sm">The Mightiest Level Up</p>
+          </div>
+        </div>
+        <div
+          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
+        >
+          <img
+            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2023/12/do-thi-co-tien-y-1.jpg"
+            alt="Đô Thị Cổ Tiên Y"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <span
+              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
+              >Tập 71</span
+            >
+            <h3 class="text-lg font-semibold truncate">Đô Thị Cổ Tiên Y</h3>
+            <p class="text-gray-400 text-sm">Immortal Doctor In Modern City</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/scripts.js"></script>
+  </body>
+</html>
