@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách phim - HoatHinh3D</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">HoatHinh<span>3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html" class="active">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+              </div>
+            </li>
+            <li><a href="#">Xếp Hạng</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section small-hero">
+        <div class="hero-slider">
+          <div class="hero-slide current">
+            <div class="hero-content">
+              <h2>Danh Sách Phim</h2>
+              <p>
+                Tất cả các phim hoạt hình Trung Quốc (donghua) được cập nhật tại
+                HoatHinh3D
+              </p>
+            </div>
+            <div class="hero-overlay"></div>
+            <img
+              src="https://yanhh3d.vip/storage/settings/donghua-bg3.webp"
+              alt="HoatHinh3D"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <div class="container">
+          <div class="filters-container">
+            <div class="filter-row">
+              <div class="filter-group">
+                <label for="genre-filter">Thể Loại</label>
+                <select id="genre-filter">
+                  <option value="all">Tất cả thể loại</option>
+                  <option value="tien-hiep">Tiên Hiệp</option>
+                  <option value="huyen-huyen">Huyền Huyễn</option>
+                  <option value="vo-thuat">Võ Thuật</option>
+                  <option value="co-trang">Cổ Trang</option>
+                  <option value="phieu-luu">Phiêu Lưu</option>
+                  <option value="hanh-dong">Hành Động</option>
+                  <option value="vien-tuong">Viễn Tưởng</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="sort-option">Sắp xếp theo</label>
+                <select id="sort-option">
+                  <option value="latest">Mới nhất</option>
+                  <option value="rating">Đánh giá cao</option>
+                  <option value="name">Theo tên A-Z</option>
+                  <option value="year">Năm sản xuất</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="status-filter">Trạng thái</label>
+                <select id="status-filter">
+                  <option value="all">Tất cả</option>
+                  <option value="completed">Đã hoàn thành</option>
+                  <option value="ongoing">Đang cập nhật</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="movies-listing-section">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-film"></i> Danh Sách Phim</h2>
+            <div class="movie-count"><span id="movie-count">0</span> phim</div>
+          </div>
+          <div class="movie-grid" id="movies-container">
+            <!-- Movies will be loaded here -->
+            <div class="empty-message">
+              <i class="fas fa-spinner fa-spin"></i>
+              <p>Đang tải danh sách phim...</p>
+            </div>
+          </div>
+          <div class="pagination">
+            <button id="prev-page" class="btn" disabled>
+              <i class="fas fa-chevron-left"></i> Trang trước
+            </button>
+            <div class="page-info">
+              Trang <span class="current-page">1</span> /
+              <span id="total-pages">1</span>
+            </div>
+            <button id="next-page" class="btn" disabled>
+              Trang sau <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinh<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinh3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("active");
+          });
+        }
+
+        // Update movie count
+        const movieCountElement = document.getElementById("movie-count");
+        if (movieCountElement && typeof movieData !== "undefined") {
+          const movieCount = Object.keys(movieData).length;
+          movieCountElement.textContent = movieCount;
+        }
+
+        // Additional filter for status
+        const statusFilter = document.getElementById("status-filter");
+        if (statusFilter) {
+          statusFilter.addEventListener("change", function () {
+            const moviesContainer = document.getElementById("movies-container");
+            if (!moviesContainer) return;
+
+            // Get all movies
+            let movies = Object.values(movieData);
+
+            // Apply genre filter if selected
+            const genreFilter = document.getElementById("genre-filter");
+            if (genreFilter && genreFilter.value !== "all") {
+              const selectedGenre = genreFilter.value;
+              movies = movies.filter((movie) =>
+                movie.genre.some(
+                  (genre) =>
+                    genre.toLowerCase().replace(/\s+/g, "-") === selectedGenre
+                )
+              );
+            }
+
+            // Apply status filter
+            if (this.value !== "all") {
+              const status =
+                this.value === "completed" ? "Hoàn thành" : "Đang cập nhật";
+              movies = movies.filter((movie) => movie.status === status);
+            }
+
+            // Apply sorting
+            const sortOption = document.getElementById("sort-option");
+            if (sortOption) {
+              switch (sortOption.value) {
+                case "latest":
+                  movies.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                  break;
+                case "name":
+                  movies.sort((a, b) => a.title.localeCompare(b.title));
+                  break;
+                case "rating":
+                  movies.sort(
+                    (a, b) => parseFloat(b.rating) - parseFloat(a.rating)
+                  );
+                  break;
+                case "year":
+                  movies.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                  break;
+              }
+            }
+
+            // Update movie count
+            if (movieCountElement) {
+              movieCountElement.textContent = movies.length;
+            }
+
+            // Display movies
+            let moviesHTML = "";
+            if (movies.length > 0) {
+              movies.forEach((movie) => {
+                moviesHTML += createMovieCard(movie);
+              });
+            } else {
+              moviesHTML = `
+                <div class="empty-message">
+                  <i class="fas fa-film"></i>
+                  <p>Không tìm thấy phim phù hợp với bộ lọc.</p>
+                </div>
+              `;
+            }
+
+            moviesContainer.innerHTML = moviesHTML;
+          });
+        }
+
+        // Load movies page content
+        loadMoviesPage();
+      });
+    </script>
+  </body>
+</html>

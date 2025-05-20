@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kết quả tìm kiếm - HoatHinh3D</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">HoatHinh<span>3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+                <a href="#">Viễn Tưởng</a>
+              </div>
+            </li>
+            <li><a href="#">Xếp Hạng</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." id="search-input" />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="search-results-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>
+              <i class="fas fa-search"></i>
+              <span id="search-term">Kết quả tìm kiếm</span>
+            </h2>
+            <div class="search-stats">
+              Tìm thấy <span id="results-count">0</span> kết quả
+            </div>
+          </div>
+          <div class="movie-grid" id="search-results">
+            <!-- Search results will be displayed here -->
+            <div class="empty-message">
+              <i class="fas fa-spinner fa-spin"></i>
+              <p>Đang tìm kiếm...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinh<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinh3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("active");
+          });
+        }
+
+        // Get search query from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get("q");
+
+        // Set search input value
+        const searchInput = document.getElementById("search-input");
+        if (searchInput && searchQuery) {
+          searchInput.value = searchQuery;
+        }
+
+        // Display search term
+        const searchTermElement = document.getElementById("search-term");
+        if (searchTermElement && searchQuery) {
+          searchTermElement.textContent = `Kết quả tìm kiếm: "${searchQuery}"`;
+        }
+
+        // Perform search
+        if (searchQuery) {
+          const searchResults = searchMovies(searchQuery);
+          const resultsContainer = document.getElementById("search-results");
+          const resultsCountElement = document.getElementById("results-count");
+
+          if (resultsContainer) {
+            if (searchResults.length > 0) {
+              let resultsHTML = "";
+
+              searchResults.forEach((movie) => {
+                resultsHTML += createMovieCard(movie);
+              });
+
+              resultsContainer.innerHTML = resultsHTML;
+
+              if (resultsCountElement) {
+                resultsCountElement.textContent = searchResults.length;
+              }
+            } else {
+              resultsContainer.innerHTML = `
+                <div class="empty-message">
+                  <i class="fas fa-search"></i>
+                  <p>Không tìm thấy kết quả nào cho "${searchQuery}". Vui lòng thử từ khóa khác.</p>
+                </div>
+              `;
+
+              if (resultsCountElement) {
+                resultsCountElement.textContent = "0";
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

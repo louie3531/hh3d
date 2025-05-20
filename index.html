@@ -3,328 +3,262 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hoạt Hình 3D</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>HoatHinh3D - Xem phim hoạt hình Trung Quốc</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body
-    class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white min-h-screen"
-  >
-    <!-- Navbar -->
-    <nav
-      class="backdrop-blur bg-gray-900/80 fixed w-full top-0 z-20 shadow-2xl border-b border-gray-700"
-    >
-      <div
-        class="container mx-auto px-4 py-3 flex justify-between items-center"
-      >
-        <div class="flex items-center">
-          <a
-            href="#"
-            class="hover:scale-105 transition-transform flex items-center"
-          >
-            <span
-              class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 mr-6"
-              >JangHH3D</span
-            >
-          </a>
-          <ul class="hidden md:flex space-x-8 font-semibold text-lg">
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">Jang<span>HH3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
             <li>
-              <a href="#" class="hover:text-yellow-400 transition">Trang chủ</a>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+                <a href="#">Viễn Tưởng</a>
+              </div>
             </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition">Thể Loại</a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition">Phim Lẻ</a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition"
-                >Đang Chiếu</a
-              >
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition"
-                >Lịch Chiếu</a
-              >
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition"
-                >Hoàn Thành</a
-              >
-            </li>
+            <li><a href="#">Xếp Hạng</a></li>
           </ul>
-        </div>
-        <div class="flex items-center space-x-2">
-          <input
-            type="text"
-            id="searchInput"
-            class="bg-gray-800/80 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 hidden transition-all duration-300 shadow"
-            placeholder="Tìm kiếm..."
-          />
-          <button
-            id="searchBtn"
-            class="text-2xl hover:text-yellow-400 transition"
-          >
-            🔍
-          </button>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
 
-    <!-- Đang Thịnh Hành -->
-    <section class="container mx-auto pt-24">
-      <h2
-        class="text-3xl md:text-4xl font-extrabold mb-8 flex items-center gap-2"
-      >
-        <span class="text-yellow-400 text-4xl">🔥</span> ĐANG THỊNH HÀNH
-      </h2>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
-      >
-        <!-- Card phim -->
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <a href="movie-detail-dau-pha-thuong-khung.html">
-            <img
-              src="https://yanhh3d.vip/storage/movies/dau-pha-thuong-khung-phan-5-6-1737297719.jpg"
-              alt="Đấu Phá Thương Khung"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4">
-              <span
-                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-                >1</span
-              >
-              <h3 class="text-lg font-semibold truncate">
-                Đấu Phá Thương Khung
-              </h3>
-              <p class="text-gray-400 text-sm">Fights Break Sphere 5</p>
+    <main>
+      <section class="hero-section">
+        <div class="hero-slider">
+          <div class="hero-slide current">
+            <div class="hero-content">
+              <div class="badge-container">
+                <span class="badge">Mới cập nhật</span>
+                <span class="badge">Đề xuất</span>
+              </div>
+              <h2>Xem phim hoạt hình Trung Quốc HD</h2>
+              <p>
+                Trang web xem phim hoạt hình Trung Quốc (donghua) với chất lượng
+                cao và cập nhật nhanh nhất. Không quảng cáo, tốc độ nhanh.
+              </p>
+              <div class="hero-buttons">
+                <a href="#trending-movies" class="btn watch-btn"
+                  ><i class="fas fa-play"></i> Khám phá ngay</a
+                >
+                <a href="#recent-update" class="btn info-btn"
+                  ><i class="fas fa-info-circle"></i> Mới cập nhật</a
+                >
+              </div>
             </div>
-          </a>
-        </div>
-        <!-- Lặp lại các card phim khác tương tự, chỉ thay đổi nội dung -->
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <a href="movie-detail-tien-nghich.html">
+            <div class="hero-overlay"></div>
             <img
-              src="https://yanhh3d.vip/storage/movies/tien-nghich-1737888520.jpg"
-              alt="Tiên Nghịch"
-              class="w-full h-48 object-cover"
+              src="https://scontent-sin11-1.xx.fbcdn.net/v/t39.30808-6/475999914_122199077198187414_5524210716934572320_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGojHqcHJ-pth5FpoIpY9TCgKeYQWxxcZ2Ap5hBbHFxndRK-q47FFNSN9RqYznCjI8364qd4w5OK1_Ks8X_pBy_&_nc_ohc=Udl-g2SJ1bIQ7kNvwEcJlNe&_nc_oc=AdnN-1PPbvD8r2abhVWvpk87J1MI33xe_txI4B8zGNSGnfg9R3wzS1nbWlQJVtN1EdhQTBLtKxp0TUE54iZwAxSQ&_nc_zt=23&_nc_ht=scontent-sin11-1.xx&_nc_gid=KXnVez649y_J8VADq4YxbA&oh=00_AfINjCLyO5wlD6os7lHxtyFMvxo6j5QYIFXOYXvgwE0Eaw&oe=6831320A"
+              alt="HoatHinh3D"
             />
-            <div class="p-4">
-              <span
-                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-                >2</span
-              >
-              <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
-              <p class="text-gray-400 text-sm">Xian Ni</p>
-            </div>
-          </a>
+          </div>
         </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <a href="movie-detail-muc-than-ky.html">
-            <img
-              src="https://yanhh3d.vip/storage/movies/muc-than-ky-1739903372.jpg"
-              alt="Mục Thần Ký"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4">
-              <span
-                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-                >3</span
-              >
-              <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
-              <p class="text-gray-400 text-sm">Mu Shen Ji</p>
-            </div>
-          </a>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <a href="movie-detail-pham-nhan-tu-tien.html">
-            <img
-              src="https://yanhh3d.vip/storage/movies/pham-nhan-tu-tien-full-1742880727.jpg"
-              alt="Phàm Nhân Tu Tiên"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4">
-              <span
-                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-                >4</span
-              >
-              <h3 class="text-lg font-semibold truncate">Phàm Nhân Tu Tiên</h3>
-              <p class="text-gray-400 text-sm">Fanren Xiu Xian S53</p>
-            </div>
-          </a>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <a href="movie-detail-thuong-nguyen-do.html">
-            <img
-              src="https://yanhh3d.vip/storage/movies/2023_27_07_13_01_15-1685598268.jpg"
-              alt="Thương Nguyên Đồ"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-4">
-              <span
-                class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-                >5</span
-              >
-              <h3 class="text-lg font-semibold truncate">Thương Nguyên Đồ</h3>
-              <p class="text-gray-400 text-sm">Cang Yuan Tu</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Mới Cập Nhật -->
-    <section class="container mx-auto my-12">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-8">Mới Cập Nhật</h2>
-      <div class="flex flex-wrap gap-3 mb-8">
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="mon"
-        >
-          Mon
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="tue"
-        >
-          Tue
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="wed"
-        >
-          Wed
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="thu"
-        >
-          Thu
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="fri"
-        >
-          Fri
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="sat"
-        >
-          Sat
-        </button>
-        <button
-          class="day-filter px-4 py-2 bg-gray-700 border border-gray-600 rounded-full hover:bg-yellow-400 hover:text-black transition font-semibold shadow"
-          data-day="sun"
-        >
-          Sun
-        </button>
-      </div>
-      <div
-        id="newEpisodes"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
-      >
-        <!-- Card phim mới cập nhật -->
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://hoathinh3d.site/wp-content/uploads/2023/09/tien-nghich-3-300x450.jpg"
-            alt="Tiên Nghịch"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <span
-              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-              >Tập 89</span
-            >
-            <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
-            <p class="text-gray-400 text-sm">Xian Ni</p>
+      <section class="quick-filters">
+        <div class="container">
+          <div class="filters-wrapper">
+            <a href="#" class="filter-item active">
+              <i class="fas fa-fire"></i>
+              <span>Thịnh hành</span>
+            </a>
           </div>
         </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://hoathinh3d.site/wp-content/uploads/2024/10/muc-than-ky-300x450.png"
-            alt="Mục Thần Ký"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <span
-              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-              >Tập 31</span
-            >
-            <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
-            <p class="text-gray-400 text-sm">Mu Shen Ji</p>
-          </div>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2024/01/su-huynh-cua-ta-qua-manh-1.jpg"
-            alt="Sư Huynh Của Ta Quá Mạnh"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <span
-              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-              >Tập 19</span
-            >
-            <h3 class="text-lg font-semibold truncate">
-              Sư Huynh Của Ta Quá Mạnh
-            </h3>
-            <p class="text-gray-400 text-sm">My Senior Brother Is Too Strong</p>
-          </div>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2024/01/thang-cap-manh-nhat-1.jpg"
-            alt="Thăng Cấp Mạnh Nhất"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <span
-              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-              >Tập 27</span
-            >
-            <h3 class="text-lg font-semibold truncate">Thăng Cấp Mạnh Nhất</h3>
-            <p class="text-gray-400 text-sm">The Mightiest Level Up</p>
-          </div>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://i0.wp.com/hoathinh3d.site/wp-content/uploads/2023/12/do-thi-co-tien-y-1.jpg"
-            alt="Đô Thị Cổ Tiên Y"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <span
-              class="inline-block bg-yellow-400 text-black font-bold rounded-full px-3 py-1 text-xs mb-2 shadow"
-              >Tập 71</span
-            >
-            <h3 class="text-lg font-semibold truncate">Đô Thị Cổ Tiên Y</h3>
-            <p class="text-gray-400 text-sm">Immortal Doctor In Modern City</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <script src="assets/js/scripts.js"></script>
+      <section class="trending-section" id="trending-movies">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-fire"></i> Phim Đề Xuất</h2>
+            <a href="movies.html" class="view-all"
+              >Xem Tất Cả <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="movie-grid" id="trending-movies-grid">
+            <div class="empty-message">
+              <i class="fas fa-film"></i>
+              <p>Chưa có phim nào. Vui lòng thêm phim mới.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-section">
+        <div class="container">
+        </div>
+      </section>
+      </section>
+
+      <section class="latest-movies-section" id="recent-update">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-clock"></i> Phim Mới Cập Nhật</h2>
+            <a href="movies.html" class="view-all"
+              >Xem Tất Cả <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="movie-grid" id="latest-movies-grid">
+            <div class="empty-message">
+              <i class="fas fa-film"></i>
+              <p>Chưa có phim nào. Vui lòng thêm phim mới.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="categories-section">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-list"></i> Thể Loại Phổ Biến</h2>
+            <a href="#" class="view-all"
+              >Tất Cả Thể Loại <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="categories-grid">
+            <a href="#" class="category-item">
+              <div class="category-icon"><i class="fas fa-dragon"></i></div>
+              <h3>Tiên Hiệp</h3>
+              <span class="count">0 phim</span>
+            </a>
+            <a href="#" class="category-item">
+              <div class="category-icon">
+                <i class="fas fa-fist-raised"></i>
+              </div>
+              <h3>Võ Thuật</h3>
+              <span class="count">0 phim</span>
+            </a>
+            <a href="#" class="category-item">
+              <div class="category-icon"><i class="fas fa-hat-wizard"></i></div>
+              <h3>Huyền Huyễn</h3>
+              <span class="count">0 phim</span>
+            </a>
+            <a href="#" class="category-item">
+              <div class="category-icon"><i class="fas fa-mountain"></i></div>
+              <h3>Cổ Trang</h3>
+              <span class="count">0 phim</span>
+            </a>
+            <a href="#" class="category-item">
+              <div class="category-icon"><i class="fas fa-heart"></i></div>
+              <h3>Tình Cảm</h3>
+              <span class="count">0 phim</span>
+            </a>
+            <a href="#" class="category-item">
+              <div class="category-icon"><i class="fas fa-rocket"></i></div>
+              <h3>Phiêu Lưu</h3>
+              <span class="count">0 phim</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinh<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinh3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("active");
+          });
+        }
+
+        // Load page content
+        loadPageSpecificContent();
+      });
+    </script>
   </body>
 </html>

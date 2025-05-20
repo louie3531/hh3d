@@ -3,131 +3,530 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chi Tiết Phim - Đấu Phá Thương Khung</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Chi tiết phim - HoatHinh3D</title>
+    <!-- Preconnect to Dailymotion to improve loading speed -->
+    <link rel="preconnect" href="https://geo.dailymotion.com" />
+    <link rel="preconnect" href="https://www.dailymotion.com" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/movie-detail.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body
-    class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white min-h-screen"
-  >
-    <!-- Navbar -->
-    <nav
-      class="backdrop-blur bg-gray-900/80 fixed w-full top-0 z-20 shadow-2xl border-b border-gray-700"
-    >
-      <div
-        class="container mx-auto px-4 py-3 flex justify-between items-center"
-      >
-        <a
-          href="index.html"
-          class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500"
-        >
-          JangHH3D
-        </a>
-        <ul class="hidden md:flex space-x-8 font-semibold text-lg">
-          <li>
-            <a href="index.html" class="hover:text-yellow-400 transition"
-              >Trang chủ</a
-            >
-          </li>
-          <li>
-            <a href="#" class="hover:text-yellow-400 transition">Thể Loại</a>
-          </li>
-          <li>
-            <a href="#" class="hover:text-yellow-400 transition">Phim Lẻ</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- Movie Details -->
-    <section class="container mx-auto pt-24 px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Poster -->
-        <div class="col-span-1">
-          <img
-            src="https://yanhh3d.vip/storage/movies/dau-pha-thuong-khung-phan-5-6-1737297719.jpg"
-            alt="Đấu Phá Thương Khung"
-            class="rounded-lg shadow-lg"
-          />
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">HoatHinH<span>3D</span></a>
         </div>
-        <!-- Movie Info -->
-        <div class="col-span-2">
-          <h1 class="text-4xl font-extrabold mb-4">Đấu Phá Thương Khung</h1>
-          <p class="text-gray-400 mb-4">
-            <span class="font-bold text-yellow-400">Thể loại:</span> Hành động,
-            Phiêu lưu, Giả tưởng
-          </p>
-          <p class="text-gray-400 mb-4">
-            <span class="font-bold text-yellow-400">Số tập:</span> 12
-          </p>
-          <p class="text-gray-400 mb-4">
-            <span class="font-bold text-yellow-400">Năm phát hành:</span> 2024
-          </p>
-          <p class="text-gray-400 mb-4">
-            <span class="font-bold text-yellow-400">Nội dung:</span> Tiểu Viêm,
-            một thiếu niên thiên tài, đã mất đi khả năng tu luyện. Tuy nhiên,
-            nhờ sự giúp đỡ của một linh hồn cổ xưa, cậu bắt đầu hành trình trở
-            thành cường giả mạnh nhất.
-          </p>
-          <button
-            onclick="window.location.href='movie-play.html'"
-            class="bg-yellow-400 text-black px-6 py-2 rounded-lg font-bold hover:bg-yellow-500 transition"
-          >
-            Xem Ngay
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Related Movies -->
-    <section class="container mx-auto mt-12 px-4">
-      <h2 class="text-3xl font-extrabold mb-8">Phim Liên Quan</h2>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
-      >
-        <!-- Related Movie Card -->
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://hoathinh3d.site/wp-content/uploads/2023/09/tien-nghich-3-300x450.jpg"
-            alt="Tiên Nghịch"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold truncate">Tiên Nghịch</h3>
-            <p class="text-gray-400 text-sm">Xian Ni</p>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+                <a href="#">Viễn Tưởng</a>
+              </div>
+            </li>
+            <li><a href="#">Xếp Hạng</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://hoathinh3d.site/wp-content/uploads/2024/10/muc-than-ky-300x450.png"
-            alt="Mục Thần Ký"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold truncate">Mục Thần Ký</h3>
-            <p class="text-gray-400 text-sm">Mu Shen Ji</p>
-          </div>
-        </div>
-        <div
-          class="bg-gray-800/90 rounded-2xl overflow-hidden shadow-xl hover:shadow-yellow-400/40 transform hover:-translate-y-2 hover:scale-105 transition-all border border-gray-700"
-        >
-          <img
-            src="https://hoathinh3d.site/wp-content/uploads/2022/11/pham-nhan-tu-tien-phan-4-300x450.jpg"
-            alt="Phàm Nhân Tu Tiên"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-semibold truncate">Phàm Nhân Tu Tiên</h3>
-            <p class="text-gray-400 text-sm">Fanren Xiu Xian S53</p>
+          <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
           </div>
         </div>
       </div>
-    </section>
+    </header>
 
-    <script src="assets/js/scripts.js"></script>
+    <main>
+      <section class="movie-hero" id="movie-backdrop">
+        <div class="movie-hero-overlay"></div>
+        <div class="container">
+          <div class="movie-info">
+            <div class="movie-poster">
+              <img src="" alt="" id="movie-poster" />
+              <div class="movie-rating">
+                <i class="fas fa-star"></i>
+                <span id="movie-rating"></span>
+              </div>
+            </div>
+            <div class="movie-details">
+              <h1 id="movie-title"></h1>
+              <h2 id="movie-original-title"></h2>
+              <div class="movie-meta">
+                <span class="year" id="movie-year"></span>
+                <span class="divider">|</span>
+                <span class="episodes" id="movie-episodes"></span>
+                <span class="divider">|</span>
+                <span class="status" id="movie-status"></span>
+              </div>
+              <div class="genre-list" id="movie-genres"></div>
+
+              <div class="description">
+                <h3>Nội dung phim</h3>
+                <p id="movie-description"></p>
+              </div>
+              <div class="action-buttons">
+                <a href="#episodes" class="btn primary-btn"
+                  ><i class="fas fa-play"></i> Xem phim</a
+                >
+                <a href="#" class="btn bookmark-btn"
+                  ><i class="fas fa-bookmark"></i> Lưu phim</a
+                >
+                <a href="#" class="btn share-btn"
+                  ><i class="fas fa-share-alt"></i> Chia sẻ</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="episodes-section" id="episodes">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-list"></i> Danh sách tập</h2>
+            <div class="server-selector">
+              <span>Máy chủ:</span>
+              <select id="server-select">
+                <option value="default">Máy chủ #1</option>
+                <option value="backup">Máy chủ #2</option>
+              </select>
+            </div>
+          </div>
+          <div class="video-player-container" id="video-player-container">
+            <div class="video-container">
+              <iframe
+                id="video-iframe"
+                src=""
+                frameborder="0"
+                allowfullscreen
+                allow="autoplay"
+              ></iframe>
+            </div>
+            <div class="episode-title-bar">
+              <h3 id="current-episode-title">Đang tải...</h3>
+              <div class="episode-navigation">
+                <button id="prev-episode" disabled>
+                  <i class="fas fa-step-backward"></i> Tập trước
+                </button>
+                <button id="next-episode" disabled>
+                  Tập sau <i class="fas fa-step-forward"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="episodes-grid" id="episodes-grid"></div>
+        </div>
+      </section>
+
+      <section class="related-section">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-thumbs-up"></i> Phim đề xuất</h2>
+            <a href="movies.html" class="view-all"
+              >Xem thêm <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="related-movies-scroll" id="related-movies">
+            <!-- Nội dung sẽ được JavaScript thêm vào -->
+            <div class="empty-message">
+              <i class="fas fa-film"></i>
+              <p>Chưa có phim đề xuất. Hãy thêm nhiều phim hơn!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinH<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinH3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("active");
+          });
+        }
+
+        // Lấy ID phim từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get("id");
+
+        if (!movieId || !movieData[movieId]) {
+          // Hiển thị thông báo lỗi nếu không tìm thấy phim
+          document.body.innerHTML = `
+            <div class="error-container">
+              <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>Không tìm thấy phim</h2>
+                <p>Phim bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+                <a href="index.html" class="btn primary-btn">Về trang chủ</a>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const movie = movieData[movieId];
+
+        // Cập nhật thông tin phim
+        document.title = `${movie.title} - HoatHinH3D`;
+        document.getElementById("movie-title").textContent = movie.title;
+        document.getElementById("movie-original-title").textContent =
+          movie.originalTitle;
+        document.getElementById("movie-year").textContent = movie.year;
+        document.getElementById("movie-episodes").textContent =
+          movie.type === "movie" ? "Phim lẻ" : `${movie.episodes} tập`;
+        document.getElementById("movie-status").textContent = movie.status;
+        document.getElementById("movie-rating").textContent = movie.rating;
+        document.getElementById("movie-description").textContent =
+          movie.description;
+        document.getElementById("movie-poster").src = movie.poster;
+        document.getElementById("movie-poster").alt = movie.title;
+        document.getElementById(
+          "movie-backdrop"
+        ).style.backgroundImage = `url(${movie.backdrop})`;
+
+        // Hiển thị thể loại
+        const genresContainer = document.getElementById("movie-genres");
+        movie.genre.forEach((genre) => {
+          const genreTag = document.createElement("span");
+          genreTag.className = "genre";
+          genreTag.textContent = genre;
+          genresContainer.appendChild(genreTag);
+        });
+
+        // Hiển thị danh sách tập
+        const episodesGrid = document.getElementById("episodes-grid");
+        let episodesHTML = "";
+
+        // Kiểm tra xem phim có dữ liệu video không
+        if (videoData[movieId]) {
+          const episodes = videoData[movieId];
+
+          // Tìm tập phim đã xem gần đây từ localStorage
+          let firstEpisodeId = Object.keys(episodes)[0];
+          try {
+            const lastWatchedEp = localStorage.getItem(
+              "lastWatchedEpisode_" + movieId
+            );
+            if (lastWatchedEp && episodes[lastWatchedEp]) {
+              firstEpisodeId = lastWatchedEp;
+            }
+          } catch (e) {
+            console.log("Local storage not available");
+          }
+
+          // Hiển thị danh sách tập
+          for (const episodeId in episodes) {
+            const episode = episodes[episodeId];
+            episodesHTML += `
+              <div class="episode-item" data-episode="${episodeId}">
+                <span class="episode-number">${episode.title}</span>
+              </div>
+            `;
+          }
+
+          episodesGrid.innerHTML = episodesHTML;
+
+          // Xử lý click chọn tập phim
+          const episodeItems = document.querySelectorAll(".episode-item");
+          const videoIframe = document.getElementById("video-iframe");
+          const currentEpisodeTitle = document.getElementById(
+            "current-episode-title"
+          );
+          const prevEpisodeBtn = document.getElementById("prev-episode");
+          const nextEpisodeBtn = document.getElementById("next-episode");
+
+          // Hàm để tải trước video cho tập kế tiếp
+          function preloadNextEpisode(currentEpisodeId) {
+            const episodeKeys = Object.keys(episodes);
+            const currentIndex = episodeKeys.indexOf(currentEpisodeId);
+
+            if (currentIndex < episodeKeys.length - 1) {
+              const nextEpisodeId = episodeKeys[currentIndex + 1];
+              const nextEpisode = episodes[nextEpisodeId];
+
+              if (nextEpisode) {
+                // Tạo link preconnect động
+                const linkEl = document.createElement("link");
+                linkEl.rel = "preconnect";
+                linkEl.href = nextEpisode.videoUrl;
+                document.head.appendChild(linkEl);
+
+                // Xóa sau 10 giây để không ảnh hưởng hiệu suất
+                setTimeout(() => {
+                  document.head.removeChild(linkEl);
+                }, 10000);
+              }
+            }
+          }
+
+          // Hàm để load tập phim
+          function loadEpisode(episodeId) {
+            const episode = episodes[episodeId];
+            if (episode) {
+              // Hiển thị loading indicator
+              const videoContainer = document.querySelector(".video-container");
+              videoContainer.innerHTML = `
+                <div class="video-loading">
+                  <div class="spinner"></div>
+                  <p>Đang tải video...</p>
+                </div>
+              `;
+
+              // Tải video bất đồng bộ với timeout
+              setTimeout(() => {
+                // Tạo div responsive container với video đã tối ưu
+                videoContainer.innerHTML = `
+                  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                    <iframe
+                      id="video-iframe"
+                      src="${episode.videoUrl}&ui-highlight=FF5E00&ui-logo=0&sharing-enable=0&start=0&ui-start-screen-info=0&quality=360"
+                      style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;"
+                      allowfullscreen
+                      title="Dailymotion Video Player"
+                      loading="lazy"
+                      allow="autoplay; web-share">
+                    </iframe>
+                  </div>
+                `;
+
+                // Lưu episodeId đã xem gần đây vào localStorage
+                try {
+                  localStorage.setItem(
+                    "lastWatchedEpisode_" + movieId,
+                    episodeId
+                  );
+                } catch (e) {
+                  console.log("Local storage not available");
+                }
+
+                // Preload tập kế tiếp
+                preloadNextEpisode(episodeId);
+              }, 300);
+
+              currentEpisodeTitle.textContent = `${movie.title} - ${episode.title}`;
+
+              // Update active class
+              episodeItems.forEach((item) => {
+                if (item.getAttribute("data-episode") === episodeId) {
+                  item.classList.add("active");
+                } else {
+                  item.classList.remove("active");
+                }
+              });
+
+              // Update navigation buttons
+              const episodeKeys = Object.keys(episodes);
+              const currentIndex = episodeKeys.indexOf(episodeId);
+
+              prevEpisodeBtn.disabled = currentIndex <= 0;
+              nextEpisodeBtn.disabled = currentIndex >= episodeKeys.length - 1;
+
+              // Set navigation button actions
+              if (!prevEpisodeBtn.disabled) {
+                prevEpisodeBtn.onclick = function () {
+                  loadEpisode(episodeKeys[currentIndex - 1]);
+                };
+              }
+
+              if (!nextEpisodeBtn.disabled) {
+                nextEpisodeBtn.onclick = function () {
+                  loadEpisode(episodeKeys[currentIndex + 1]);
+                };
+              }
+
+              // Scroll lên player và focus
+              document.getElementById("video-player-container").scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+          }
+
+          // Xử lý sự kiện click cho các tập phim
+          episodeItems.forEach((item) => {
+            item.addEventListener("click", function () {
+              const episodeId = this.getAttribute("data-episode");
+              loadEpisode(episodeId);
+            });
+          });
+
+          // Load tập đầu tiên mặc định
+          loadEpisode(firstEpisodeId);
+          episodeItems[0].classList.add("active");
+        } else {
+          // Nếu không có dữ liệu video
+          episodesGrid.innerHTML = `
+            <div class="empty-message">
+              <i class="fas fa-exclamation-circle"></i>
+              <p>Chưa có dữ liệu tập phim. Vui lòng thêm dữ liệu trong file video-data.js</p>
+            </div>
+          `;
+          document.getElementById("video-iframe").src = "";
+          document.getElementById("current-episode-title").textContent =
+            "Chưa có tập phim";
+        }
+
+        // Load phim liên quan
+        const relatedMoviesContainer =
+          document.getElementById("related-movies");
+        let relatedMovies = [];
+
+        // Tìm các phim có thể loại tương tự
+        for (const id in movieData) {
+          if (id !== movieId) {
+            const relatedMovie = movieData[id];
+            // Kiểm tra xem có thể loại trùng nhau không
+            const hasCommonGenre = relatedMovie.genre.some((genre) =>
+              movie.genre.includes(genre)
+            );
+
+            if (hasCommonGenre) {
+              relatedMovies.push(relatedMovie);
+            }
+          }
+        }
+
+        // Hiển thị tối đa 8 phim liên quan với giao diện mới
+        if (relatedMovies.length > 0) {
+          // Xóa thông báo trống nếu có
+          relatedMoviesContainer.innerHTML = "";
+
+          // Lấy 8 phim liên quan ngẫu nhiên
+          relatedMovies = relatedMovies
+            .sort(() => 0.5 - Math.random()) // Sắp xếp ngẫu nhiên
+            .slice(0, 8);
+
+          // Tạo card cho mỗi phim
+          relatedMovies.forEach((movie) => {
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
+
+            movieCard.innerHTML = `
+              <a href="movie-detail.html?id=${movie.id}">
+                <div class="movie-poster">
+                  <img src="${movie.poster}" alt="${
+              movie.title
+            }" loading="lazy" />
+                  <div class="rating">
+                    <i class="fas fa-star"></i> ${movie.rating}
+                  </div>
+                  <div class="movie-overlay">
+                    <button class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="movie-info">
+                  <h3 class="movie-title">${movie.title}</h3>
+                  <div class="movie-category">
+                    ${movie.genre.slice(0, 2).join(" • ")}
+                  </div>
+                </div>
+              </a>
+            `;
+
+            relatedMoviesContainer.appendChild(movieCard);
+          });
+        }
+
+        // Server selector
+        const serverSelect = document.getElementById("server-select");
+        if (serverSelect) {
+          serverSelect.addEventListener("change", function () {
+            const currentEpisodeItem = document.querySelector(
+              ".episode-item.active"
+            );
+            if (currentEpisodeItem) {
+              const episodeId = currentEpisodeItem.getAttribute("data-episode");
+              // Sử dụng hàm loadEpisode để tải lại video với server mới
+              loadEpisode(episodeId);
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
