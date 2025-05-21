@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Quản Trị - HoatHinH3D</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .admin-container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .admin-header {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .admin-title {
+        color: #e50914;
+        font-size: 24px;
+        margin: 0;
+      }
+
+      .tab-container {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #333;
+      }
+
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        color: #aaa;
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+
+      .tab.active {
+        color: #e50914;
+        border-bottom: 3px solid #e50914;
+      }
+
+      .tab:hover {
+        color: #fff;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .form-section {
+        background-color: #222;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .form-title {
+        margin-top: 0;
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ddd;
+        font-size: 14px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        background-color: #333;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 14px;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #e50914;
+        outline: none;
+      }
+
+      button {
+        background-color: #e50914;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #f40612;
+      }
+
+      button:disabled {
+        background-color: #5c5c5c;
+        cursor: not-allowed;
+      }
+
+      .btn-secondary {
+        background-color: #333;
+      }
+
+      .btn-secondary:hover {
+        background-color: #444;
+      }
+
+      .success-message {
+        background-color: rgba(39, 174, 96, 0.2);
+        border-left: 4px solid #27ae60;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        color: #2ecc71;
+        border-radius: 4px;
+        display: none;
+      }
+
+      .error-message {
+        background-color: rgba(231, 76, 60, 0.2);
+        border-left: 4px solid #e74c3c;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        color: #e74c3c;
+        border-radius: 4px;
+        display: none;
+      }
+
+      .episode-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+      }
+
+      .episode-row input {
+        flex: 1;
+      }
+
+      .remove-episode {
+        color: #e74c3c;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .add-episode-btn {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        background-color: #333;
+      }
+
+      .add-episode-btn:hover {
+        background-color: #444;
+      }
+
+      .episodes-container {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+
+      .movie-select {
+        margin-bottom: 20px;
+      }
+
+      .logout-btn {
+        background-color: transparent;
+        border: 1px solid #e50914;
+        color: #e50914;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .logout-btn:hover {
+        background-color: rgba(229, 9, 20, 0.1);
+      }
+
+      /* Responsive styling */
+      @media (max-width: 768px) {
+        .admin-container {
+          padding: 15px;
+          margin: 10px;
+        }
+
+        .tab {
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+
+        .episode-row {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">HoatHinH<span>3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="admin-container">
+        <div class="admin-header">
+          <h1 class="admin-title">
+            <i class="fas fa-cog"></i> Quản Trị HoatHinH3D
+          </h1>
+          <a href="index.html" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Quay lại trang chủ
+          </a>
+        </div>
+
+        <div class="tab-container">
+          <button class="tab active" data-tab="add-episodes">
+            Thêm Tập Phim
+          </button>
+          <button class="tab" data-tab="add-movie">Thêm Phim Mới</button>
+          <button class="tab" data-tab="manage-movies">Quản Lý Phim</button>
+        </div>
+
+        <div id="success-message" class="success-message">
+          <i class="fas fa-check-circle"></i> Thao tác thành công!
+        </div>
+
+        <div id="error-message" class="error-message">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="error-text">Đã xảy ra lỗi. Vui lòng thử lại.</span>
+        </div>
+
+        <!-- Thêm tập phim -->
+        <div id="add-episodes" class="tab-content active">
+          <div class="form-section">
+            <h2 class="form-title">Thêm Tập Phim Mới</h2>
+
+            <div class="form-group movie-select">
+              <label for="series-select">Chọn phim:</label>
+              <select id="series-select">
+                <option value="">-- Chọn phim --</option>
+                <!-- Danh sách phim sẽ được tạo bằng JavaScript -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Thêm các tập phim:</label>
+              <div id="episodes-container" class="episodes-container">
+                <!-- Mẫu hàng tập phim -->
+                <div class="episode-row">
+                  <input
+                    type="text"
+                    class="episode-title"
+                    placeholder="Tên tập (VD: Tập 1)"
+                    style="
+                      width: 30%;
+                      padding: 12px;
+                      margin-bottom: 10px;
+                      font-size: 16px;
+                      border: 1px solid #ccc;
+                      border-radius: 4px;
+                      font-weight: 500;
+                    "
+                  />
+                  <textarea
+                    class="episode-url"
+                    placeholder="URL nhúng hoặc mã iframe đầy đủ (VD: https://geo.dailymotion.com/player.html?video=x9eede4 hoặc <iframe>...</iframe>)"
+                    rows="3"
+                    style="resize: vertical"
+                  ></textarea>
+                  <i class="fas fa-times remove-episode"></i>
+                </div>
+              </div>
+
+              <button id="add-episode-row" class="add-episode-btn">
+                <i class="fas fa-plus"></i> Thêm tập
+              </button>
+            </div>
+
+            <button id="save-episodes" class="btn-primary">
+              <i class="fas fa-save"></i> Lưu Tập Phim
+            </button>
+          </div>
+        </div>
+
+        <!-- Thêm phim mới -->
+        <div id="add-movie" class="tab-content">
+          <div class="form-section">
+            <h2 class="form-title">Thêm Phim Mới</h2>
+
+            <div class="form-group">
+              <label for="movie-id"
+                >ID phim (không dấu, dùng dấu gạch nối):</label
+              >
+              <input
+                type="text"
+                id="movie-id"
+                placeholder="VD: dau-pha-thuong-khung"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-title">Tên phim:</label>
+              <input
+                type="text"
+                id="movie-title"
+                placeholder="VD: Đấu Phá Thương Khung"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-original-title"
+                >Tên phim gốc (tiếng Trung):</label
+              >
+              <input
+                type="text"
+                id="movie-original-title"
+                placeholder="VD: 斗破苍穹"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-description">Mô tả phim:</label>
+              <textarea
+                id="movie-description"
+                rows="4"
+                placeholder="Nhập mô tả phim..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="movie-poster">URL ảnh poster:</label>
+              <input
+                type="text"
+                id="movie-poster"
+                placeholder="VD: https://example.com/images/poster.jpg"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-backdrop">URL ảnh nền (backdrop):</label>
+              <input
+                type="text"
+                id="movie-backdrop"
+                placeholder="VD: https://example.com/images/backdrop.jpg"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-year">Năm phát hành:</label>
+              <input type="text" id="movie-year" placeholder="VD: 2023" />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-episodes">Số tập:</label>
+              <input
+                type="number"
+                id="movie-episodes"
+                placeholder="VD: 100"
+                min="1"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-status">Trạng thái:</label>
+              <select id="movie-status">
+                <option value="Đang cập nhật">Đang cập nhật</option>
+                <option value="Hoàn thành">Hoàn thành</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="movie-rating">Đánh giá (0-10):</label>
+              <input
+                type="text"
+                id="movie-rating"
+                placeholder="VD: 8.5"
+                min="0"
+                max="10"
+                step="0.1"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="movie-genres"
+                >Thể loại (phân cách bằng dấu phẩy):</label
+              >
+              <input
+                type="text"
+                id="movie-genres"
+                placeholder="VD: Tiên Hiệp, Huyền Huyễn, Võ Thuật"
+              />
+            </div>
+
+            <button id="save-movie" class="btn-primary">
+              <i class="fas fa-save"></i> Lưu Phim Mới
+            </button>
+          </div>
+        </div>
+
+        <!-- Quản lý phim -->
+        <div id="manage-movies" class="tab-content">
+          <div class="form-section">
+            <h2 class="form-title">Quản Lý Phim</h2>
+
+            <!-- Danh sách phim -->
+            <div class="form-group">
+              <label for="movie-list">Chọn phim để quản lý:</label>
+              <select id="movie-list" class="movie-select">
+                <option value="">-- Chọn phim --</option>
+                <!-- Danh sách phim sẽ được thêm bởi JavaScript -->
+              </select>
+              <div class="action-buttons" style="margin-top: 15px">
+                <button id="edit-movie-btn" class="btn-secondary" disabled>
+                  <i class="fas fa-edit"></i> Sửa phim
+                </button>
+                <button
+                  id="delete-movie-btn"
+                  class="btn-secondary"
+                  style="background-color: #e74c3c"
+                  disabled
+                >
+                  <i class="fas fa-trash"></i> Xóa phim
+                </button>
+              </div>
+            </div>
+
+            <!-- Form sửa phim -->
+            <div
+              id="edit-movie-form"
+              style="
+                display: none;
+                margin-top: 20px;
+                border-top: 1px solid #444;
+                padding-top: 20px;
+              "
+            >
+              <h3 style="margin-bottom: 15px">Sửa thông tin phim</h3>
+
+              <div class="form-group">
+                <label for="edit-movie-title">Tên phim:</label>
+                <input
+                  type="text"
+                  id="edit-movie-title"
+                  placeholder="Tên phim"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-original-title">Tên phim gốc:</label>
+                <input
+                  type="text"
+                  id="edit-movie-original-title"
+                  placeholder="Tên phim gốc (tiếng Trung)"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-description">Mô tả:</label>
+                <textarea
+                  id="edit-movie-description"
+                  rows="4"
+                  placeholder="Mô tả phim"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-poster">URL Poster:</label>
+                <input
+                  type="text"
+                  id="edit-movie-poster"
+                  placeholder="URL ảnh poster"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-backdrop">URL Backdrop:</label>
+                <input
+                  type="text"
+                  id="edit-movie-backdrop"
+                  placeholder="URL ảnh nền"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-year">Năm phát hành:</label>
+                <input
+                  type="text"
+                  id="edit-movie-year"
+                  placeholder="Năm phát hành"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-status">Trạng thái:</label>
+                <select id="edit-movie-status">
+                  <option value="Đang cập nhật">Đang cập nhật</option>
+                  <option value="Hoàn thành">Hoàn thành</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-rating">Đánh giá:</label>
+                <input
+                  type="text"
+                  id="edit-movie-rating"
+                  placeholder="Đánh giá (0-10)"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-movie-genres">Thể loại:</label>
+                <input
+                  type="text"
+                  id="edit-movie-genres"
+                  placeholder="Thể loại (phân cách bằng dấu phẩy)"
+                />
+              </div>
+
+              <button id="save-edit-movie-btn" class="btn-primary">
+                <i class="fas fa-save"></i> Lưu thay đổi
+              </button>
+              <button id="cancel-edit-movie-btn" class="btn-secondary">
+                <i class="fas fa-times"></i> Hủy
+              </button>
+            </div>
+
+            <!-- Quản lý tập phim -->
+            <div
+              id="manage-episodes-section"
+              style="
+                display: none;
+                margin-top: 30px;
+                border-top: 1px solid #444;
+                padding-top: 20px;
+              "
+            >
+              <h3 style="margin-bottom: 15px">Quản lý tập phim</h3>
+
+              <div
+                id="episodes-list"
+                class="episodes-list"
+                style="max-height: 400px; overflow-y: auto; margin-bottom: 20px"
+              >
+                <!-- Danh sách tập phim sẽ được thêm bởi JavaScript -->
+                <div
+                  class="empty-message"
+                  style="text-align: center; padding: 20px; color: #aaa"
+                >
+                  <i
+                    class="fas fa-film"
+                    style="font-size: 24px; margin-bottom: 10px"
+                  ></i>
+                  <p>
+                    Chưa có tập phim nào. Hãy chọn một phim để xem danh sách
+                    tập.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinH<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinH3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

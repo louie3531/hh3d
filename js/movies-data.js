@@ -14,7 +14,8 @@ const movieData = {
     rating: "9.3",
     type: "series",
     poster: "https://yanhh3d.vip/storage/movies/tien-nghich-1737888520.jpg",
-    backdrop: "https://i.imgur.com/ZXmRb8e.jpg",
+    backdrop:
+      "https://scontent-sin11-1.xx.fbcdn.net/v/t39.30808-6/499227779_122219728628187414_692354975597694047_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHQOblryPhgXmj8KK48Wpldg1Up8hH0oBeDVSnyEfSgF7A8g1Of4Ev5JisE_sd_9WyBrGjRIluwphJ0kau5rRwd&_nc_ohc=s0luWXB9SGkQ7kNvwGpX3Dd&_nc_oc=Adldg_PpzALlyEZqv3OZ0Q7enEQNvbuR4GAbkzXhX4g1rfR2Zv3JnWjvA88YQbP-oemK3TdiQQjKEVxRgdijvaJa&_nc_zt=23&_nc_ht=scontent-sin11-1.xx&_nc_gid=LPZmT8EqSSQBi0Z4MaRV8g&oh=00_AfIK_sQO7DUP-0T-aWE0t8tZ3_0lhjeHBLSCFaUdvvqGmQ&oe=68326AD4",
   },
 
   // Đấu Phá Thương Khung
@@ -26,8 +27,8 @@ const movieData = {
     description:
       "Đấu Phá Thương Khung kể về câu chuyện một thiên tài tu luyện Tiêu Viêm vì một lý do nào đó bị mất đi tu vi của mình, từ một thiên chi kiêu tử trở thành một kẻ bị mọi người coi thường. Tiêu Viêm quyết tâm lấy lại những gì thuộc về mình, đúng lúc đó trong chiếc nhẫn trên tay cậu có một linh hồn Dược Lão xuất hiện, từ đây cuộc sống của cậu hoàn toàn thay đổi.",
     genre: ["Huyền Huyễn", "Võ Thuật", "Phiêu Lưu"],
-    episodes: 52,
-    status: "Hoàn thành",
+    episodes: 147,
+    status: "Đang cập nhật",
     rating: "9.0",
     type: "series",
     poster:
@@ -79,8 +80,8 @@ const movieData = {
     description:
       "Phàm Nhân Tu Tiên kể về hành trình của Hàn Lập, một thanh niên bình thường nhưng may mắn được học võ công và lĩnh hội bí kíp tu tiên. Dù bản thân không phải là thiên tài, nhưng với sự chăm chỉ và kiên trì, cùng với cơ duyên, Hàn Lập dần dần bước vào con đường tu tiên và trở nên mạnh mẽ.",
     genre: ["Tiên Hiệp", "Võ Thuật", "Huyền Huyễn"],
-    episodes: 48,
-    status: "Hoàn thành",
+    episodes: 143,
+    status: "Đang cập nhật",
     rating: "9.2",
     type: "series",
     poster:
@@ -114,13 +115,14 @@ const movieData = {
     description:
       "Thôn Phệ Tinh Không là câu chuyện về một thế giới tương lai, nơi nhân loại phải đối mặt với sự xuất hiện của các quái vật đột biến. Lạc Phong, một chàng trai bình thường bỗng có được cơ duyên đặc biệt, trở thành một trong những chiến binh mạnh mẽ, bảo vệ nhân loại và khám phá những bí ẩn về vũ trụ.",
     genre: ["Huyền Huyễn", "Viễn Tưởng", "Võ Thuật"],
-    episodes: 52,
+    episodes: 172,
     status: "Đang cập nhật",
     rating: "8.9",
     type: "series",
     poster:
       "https://yanhh3d.vip/storage/movies/thon-phe-tinh-khong-1737366995.jpg",
-    backdrop: "https://i.imgur.com/ZXmRb8e.jpg",
+    backdrop:
+      "https://scontent-sin2-3.xx.fbcdn.net/v/t39.30808-6/474136276_1152777956504908_4965294675724759599_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yxPeNepEWs8Q7kNvwGuIFZJ&_nc_oc=AdmZLfmLE3Dp98suDzXQBK4kTYLZAf6vS8SZnhVqPuZZJkEJV1pmQJFRCK-L01F7xlBWjwmmiWQw7Yi_67WO2uHj&_nc_zt=23&_nc_ht=scontent-sin2-3.xx&_nc_gid=rotkkamXpDuboVZiYn_UIA&oh=00_AfLouRvvErTeRCnxQ7WkGHn6usDKaAFs73gkTSh_lhzcGA&oe=68326A8F",
   },
 
   // Kiếm Lai

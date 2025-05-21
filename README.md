@@ -1,144 +1,99 @@
-# HoatHinh3D - Trang web xem phim hoạt hình Trung Quốc
+# HoatHinH3D - Quản lý Video Đơn Giản
 
-Đây là mã nguồn cho trang web HoatHinh3D - nơi xem phim hoạt hình Trung Quốc (donghua) chất lượng cao. Trang web được thiết kế với giao diện hiện đại, thân thiện với người dùng và dễ dàng mở rộng.
+Hệ thống quản lý phim hoạt hình 3D đơn giản - Hỗ trợ thêm video bằng mã nhúng và tự động cập nhật vào trang web chính.
 
-## Tính năng
+## Tính năng chính
 
-- Thiết kế đáp ứng, tương thích với các thiết bị di động
-- Danh sách phim với bộ lọc và chức năng tìm kiếm
-- Trang chi tiết phim với thông tin và danh sách tập
-- Trình phát video được tích hợp
-- Các tập phim có thể tự động chuyển tiếp
-- Đề xuất phim liên quan
+1. **Thêm video bằng mã nhúng**: Dễ dàng thêm phim bằng cách dán mã nhúng (iframe) hoặc URL video từ các nền tảng phổ biến như Dailymotion, YouTube, Facebook.
+2. **Tự động chuẩn hóa mã nhúng**: Tự động chuẩn hóa các URL thành mã nhúng iframe hoàn chỉnh, đảm bảo phát video mượt mà.
+3. **Quản lý series phim**: Phân loại video theo series phim, dễ dàng thêm series mới.
+4. **Xuất dữ liệu JS**: Tự động xuất file JavaScript cập nhật cho trang web chính.
+5. **Lưu lịch sử thêm video**: Theo dõi video đã thêm gần đây, dễ dàng kiểm tra.
 
-## Cấu trúc thư mục
+## Hướng dẫn sử dụng
 
-```
-├── index.html              # Trang chủ
-├── movie-detail.html       # Trang chi tiết phim
-├── movies.html             # Trang danh sách phim
-├── search.html             # Trang kết quả tìm kiếm
-├── css/
-│   ├── style.css           # Stylesheet chính
-│   └── movie-detail.css    # Stylesheet cho trang chi tiết phim
-├── js/
-│   ├── movies-data.js      # Dữ liệu phim
-│   ├── video-data.js       # Dữ liệu tập phim
-│   └── script.js           # Mã JavaScript chính
-└── README.md               # Tài liệu hướng dẫn
-```
+### 1. Thêm video mới
 
-## Hướng dẫn thêm phim mới
+1. Mở trang **admin.html**
+2. Chọn series phim từ danh sách hoặc thêm series mới
+3. Nhập số tập của video
+4. Dán mã nhúng (iframe) hoặc URL video từ Dailymotion, YouTube, Facebook,...
+5. Nhấn "Xem trước" để kiểm tra video
+6. Nhấn "Lưu phim" để thêm video vào cơ sở dữ liệu
 
-### Bước 1: Thêm dữ liệu phim vào movies-data.js
+### 2. Cập nhật trang web chính
 
-Mở file `js/movies-data.js` và thêm một đối tượng phim mới vào biến `movieData`. Bạn có thể sao chép mẫu có sẵn và điều chỉnh thông tin:
+1. Sau khi thêm video, nhấn "Xuất File JS"
+2. Tải xuống file video-data.js đã được cập nhật
+3. Thay thế file video-data.js hiện tại trên máy chủ web
+4. Trang web chính sẽ hiển thị video mới đã thêm
 
-```javascript
-"ten-phim-khong-dau": {
-  id: "ten-phim-khong-dau", // ID phải trùng với key, không dấu, không khoảng trắng
-  title: "Tên Phim",        // Tên phim hiển thị bằng tiếng Việt
-  originalTitle: "Original Name", // Tên gốc của phim (tiếng Trung, tiếng Anh...)
-  year: "2023",             // Năm phát hành
-  description: "Mô tả chi tiết về nội dung phim...", // Mô tả phim
-  genre: ["Thể loại 1", "Thể loại 2"], // Danh sách thể loại
-  episodes: 12,             // Số tập
-  status: "Đang cập nhật",  // Trạng thái: "Đang cập nhật" hoặc "Hoàn thành"
-  rating: "9.0",            // Đánh giá (thang điểm 10)
-  type: "series",           // Loại: "series" hoặc "movie"
-  poster: "URL-hinh-poster", // URL hình ảnh poster (tỷ lệ 2:3)
-  backdrop: "URL-hinh-nen"   // URL hình ảnh nền (tỷ lệ 16:9)
-}
-```
+## Hỗ trợ các nền tảng video
 
-Lưu ý:
+Hệ thống hỗ trợ các nền tảng video phổ biến:
 
-- `id` phải là duy nhất và không chứa dấu, khoảng trắng hoặc ký tự đặc biệt
-- URL poster nên có tỷ lệ 2:3 (ví dụ: 300x450 pixels)
-- URL backdrop nên có tỷ lệ 16:9 (ví dụ: 1920x1080 pixels)
-- Bạn có thể sử dụng [imgur.com](https://imgur.com/) để lưu trữ hình ảnh
+- **Dailymotion**: Hỗ trợ URL dạng dailymotion.com/video/x... hoặc mã nhúng iframe
+- **YouTube**: Hỗ trợ URL dạng youtube.com/watch?v=... hoặc youtu.be/... hoặc mã nhúng iframe
+- **Facebook**: Hỗ trợ URL video Facebook hoặc mã nhúng iframe
+- **Các nền tảng khác**: Hỗ trợ bất kỳ mã nhúng iframe nào
 
-### Bước 2: Thêm dữ liệu video vào video-data.js
+## Cách thêm series mới
 
-Mở file `js/video-data.js` và thêm thông tin các tập phim tương ứng với ID phim đã tạo:
+1. Trong trang admin, chọn "+ Thêm series mới" từ menu thả xuống
+2. Nhập tên series mới (hệ thống sẽ tự động chuyển đổi thành dạng URL: không dấu, thay khoảng trắng bằng dấu gạch ngang)
+3. Điền thông tin video như bình thường và lưu
+
+## Lưu ý quan trọng
+
+- Đảm bảo mã nhúng video hoạt động chính xác trước khi lưu
+- Sử dụng "Xem trước" để kiểm tra trước khi lưu
+- Luôn xuất và cập nhật file video-data.js sau khi thêm video
+- Nên sử dụng máy chủ web (như Live Server, XAMPP) thay vì mở file trực tiếp để tránh lỗi CORS
+
+## Cấu trúc dữ liệu
+
+Dữ liệu video được lưu trong cấu trúc sau trong file `video-data.js`:
 
 ```javascript
-"ten-phim-khong-dau": {
-  "ep1": {
-    title: "Tập 1",
-    videoUrl: "https://www.example.com/embed/video1"
+const videoData = {
+  "ten-series": {
+    ep1: {
+      title: "Tập 1",
+      videoUrl: "URL của video",
+    },
+    ep2: {
+      title: "Tập 2",
+      videoUrl: "URL của video",
+    },
+    // Thêm các tập khác...
   },
-  "ep2": {
-    title: "Tập 2",
-    videoUrl: "https://www.example.com/embed/video2"
-  },
-  // Thêm các tập khác...
-}
+  // Thêm các series khác...
+};
 ```
 
-Lưu ý:
+## Sao lưu dữ liệu
 
-- Key của đối tượng phải trùng với `id` phim đã thêm trong `movies-data.js`
-- `videoUrl` là đường dẫn nhúng (embed URL) của video từ các nền tảng như Dailymotion, YouTube, hoặc các trang khác
-- Đối với Dailymotion, định dạng URL nhúng là: `https://www.dailymotion.com/embed/video/VIDEO_ID`
+Hệ thống tự động lưu dữ liệu vào localStorage của trình duyệt, giúp phục hồi thông tin khi cần. Tuy nhiên, nên thường xuyên xuất file video-data.js và lưu trữ an toàn.
 
-### Bước 3: Kiểm tra
+## Yêu cầu hệ thống
 
-Sau khi thêm dữ liệu, hãy truy cập trang web và kiểm tra:
+- Trình duyệt hiện đại (Chrome, Firefox, Edge, Safari)
+- Kết nối internet để xem trước video
+- Máy chủ web (để tránh lỗi CORS khi tải dữ liệu)
 
-1. Phim mới có xuất hiện trong danh sách phim không
-2. Trang chi tiết phim hiển thị đúng thông tin không
-3. Các tập phim có thể phát được không
+## Câu hỏi thường gặp
 
-## Tùy chỉnh giao diện
+### Video không hiển thị khi xem trước?
 
-### Thay đổi màu sắc chủ đạo
+- Kiểm tra mã nhúng hoặc URL có chính xác không
+- Đảm bảo định dạng URL phù hợp với nền tảng (Dailymotion, YouTube, v.v.)
+- Một số video có thể bị hạn chế nhúng, hãy thử video khác
 
-Để thay đổi màu sắc chủ đạo của trang web, mở file `css/style.css` và chỉnh sửa các biến CSS trong phần `:root`:
+### Làm thế nào để chỉnh sửa video đã thêm?
 
-```css
-:root {
-  --primary-color: #ff6b00; /* Màu chủ đạo */
-  --primary-hover: #ff8c38; /* Màu khi hover */
-  /* Các biến màu khác... */
-}
-```
+- Thêm lại video với cùng series và số tập sẽ ghi đè dữ liệu cũ
 
-### Thay đổi logo và tiêu đề
+### Trang web không hiển thị video mới sau khi cập nhật?
 
-Để thay đổi logo và tiêu đề trang web, chỉnh sửa phần sau trong các file HTML:
-
-```html
-<div class="logo">
-  <a href="index.html">HoatHinh<span>3D</span></a>
-</div>
-```
-
-### Thêm thể loại phim mới
-
-Để thêm thể loại phim mới, hãy cập nhật danh sách trong dropdown menu ở tất cả các file HTML:
-
-```html
-<div class="dropdown-menu">
-  <a href="#">Thể Loại Mới</a>
-  <!-- Các thể loại khác -->
-</div>
-```
-
-Đồng thời cập nhật danh sách trong bộ lọc ở file `movies.html`:
-
-```html
-<select id="genre-filter">
-  <option value="all">Tất cả thể loại</option>
-  <option value="the-loai-moi">Thể Loại Mới</option>
-  <!-- Các thể loại khác -->
-</select>
-```
-
-## Hỗ trợ và đóng góp
-
-Nếu bạn gặp vấn đề hoặc có đề xuất cải tiến, vui lòng tạo issue hoặc liên hệ với chúng tôi qua email.
-
-## Giấy phép
-
-Dự án này được phân phối dưới Giấy phép MIT. Xem file `LICENSE` để biết thêm chi tiết.
+- Đảm bảo đã cập nhật đúng file video-data.js trên máy chủ
+- Xóa cache trình duyệt và tải lại trang

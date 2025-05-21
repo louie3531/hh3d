@@ -50,6 +50,9 @@
             </button>
           </div>
           <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <a href="admin.html" class="login-btn" style="margin-right: 10px"
+            >Quản trị</a
+          >
           <div class="menu-btn">
             <i class="fas fa-bars"></i>
           </div>
@@ -133,6 +136,36 @@
 
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
+    <script>
+      // Load data from localStorage immediately
+      (function loadLocalStorageData() {
+        try {
+          console.log("Loading data from localStorage in search.html");
+          const savedMovieData = localStorage.getItem("movieData");
+          const savedVideoData = localStorage.getItem("videoData");
+
+          if (savedMovieData) {
+            const parsedData = JSON.parse(savedMovieData);
+            Object.assign(movieData, parsedData);
+            console.log(
+              "Loaded movieData from localStorage with keys:",
+              Object.keys(parsedData)
+            );
+          }
+
+          if (savedVideoData) {
+            const parsedData = JSON.parse(savedVideoData);
+            Object.assign(videoData, parsedData);
+            console.log(
+              "Loaded videoData from localStorage with keys:",
+              Object.keys(parsedData)
+            );
+          }
+        } catch (e) {
+          console.error("Error loading data from localStorage:", e);
+        }
+      })();
+    </script>
     <script src="js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {

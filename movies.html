@@ -49,6 +49,9 @@
             </button>
           </div>
           <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <a href="admin.html" class="login-btn" style="margin-right: 10px"
+            >Quản trị</a
+          >
           <div class="menu-btn">
             <i class="fas fa-bars"></i>
           </div>
@@ -197,6 +200,65 @@
 
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
+    <script>
+      // Làm trống đối tượng movieData và videoData để đảm bảo đọc từ localStorage
+      (function resetAndLoadData() {
+        console.log("Resetting and loading fresh data in movies.html");
+
+        // Sao lưu cấu trúc gốc
+        window.originalMovieData = JSON.parse(JSON.stringify(movieData));
+        window.originalVideoData = JSON.parse(JSON.stringify(videoData));
+
+        try {
+          // Xóa hoàn toàn dữ liệu hiện tại
+          Object.keys(movieData).forEach((key) => delete movieData[key]);
+          Object.keys(videoData).forEach((key) => delete videoData[key]);
+
+          // Đọc dữ liệu mới nhất từ localStorage
+          const savedMovieData = localStorage.getItem("movieData");
+          const savedVideoData = localStorage.getItem("videoData");
+
+          if (savedMovieData) {
+            const parsedMovieData = JSON.parse(savedMovieData);
+            Object.assign(movieData, parsedMovieData);
+            console.log(
+              "Loaded fresh movieData from localStorage with",
+              Object.keys(parsedMovieData).length,
+              "movies"
+            );
+          } else {
+            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
+            Object.assign(movieData, window.originalMovieData);
+            console.log("No movieData in localStorage, using original data");
+          }
+
+          if (savedVideoData) {
+            const parsedVideoData = JSON.parse(savedVideoData);
+            Object.assign(videoData, parsedVideoData);
+            console.log(
+              "Loaded fresh videoData from localStorage with",
+              Object.keys(parsedVideoData).length,
+              "series"
+            );
+          } else {
+            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
+            Object.assign(videoData, window.originalVideoData);
+            console.log("No videoData in localStorage, using original data");
+          }
+
+          // Debug log to verify data was loaded properly
+          console.log(
+            "Data loading complete. Available movies:",
+            Object.keys(movieData).join(", ")
+          );
+        } catch (e) {
+          console.error("Error during data loading:", e);
+          // Trong trường hợp lỗi, khôi phục dữ liệu gốc
+          Object.assign(movieData, window.originalMovieData);
+          Object.assign(videoData, window.originalVideoData);
+        }
+      })();
+    </script>
     <script src="js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {

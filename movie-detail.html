@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chi tiết phim - HoatHinh3D</title>
+    <title>Chi tiết phim - HoatHinH3D</title>
     <!-- Preconnect to Dailymotion to improve loading speed -->
     <link rel="preconnect" href="https://geo.dailymotion.com" />
     <link rel="preconnect" href="https://www.dailymotion.com" />
@@ -54,6 +54,9 @@
             </button>
           </div>
           <a href="login.html" class="login-btn">Đăng Nhập</a>
+          <a href="admin.html" class="login-btn" style="margin-right: 10px"
+            >Quản trị</a
+          >
           <div class="menu-btn">
             <i class="fas fa-bars"></i>
           </div>
@@ -109,13 +112,6 @@
         <div class="container">
           <div class="section-header">
             <h2><i class="fas fa-list"></i> Danh sách tập</h2>
-            <div class="server-selector">
-              <span>Máy chủ:</span>
-              <select id="server-select">
-                <option value="default">Máy chủ #1</option>
-                <option value="backup">Máy chủ #2</option>
-              </select>
-            </div>
           </div>
           <div class="video-player-container" id="video-player-container">
             <div class="video-container">
@@ -215,7 +211,67 @@
 
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
+    <script>
+      // Làm trống đối tượng movieData và videoData để đảm bảo đọc từ localStorage
+      (function resetAndLoadData() {
+        console.log("Resetting and loading fresh data in movie-detail.html");
+
+        // Sao lưu cấu trúc gốc
+        window.originalMovieData = JSON.parse(JSON.stringify(movieData));
+        window.originalVideoData = JSON.parse(JSON.stringify(videoData));
+
+        try {
+          // Xóa hoàn toàn dữ liệu hiện tại
+          Object.keys(movieData).forEach((key) => delete movieData[key]);
+          Object.keys(videoData).forEach((key) => delete videoData[key]);
+
+          // Đọc dữ liệu mới nhất từ localStorage
+          const savedMovieData = localStorage.getItem("movieData");
+          const savedVideoData = localStorage.getItem("videoData");
+
+          if (savedMovieData) {
+            const parsedMovieData = JSON.parse(savedMovieData);
+            Object.assign(movieData, parsedMovieData);
+            console.log(
+              "Loaded fresh movieData from localStorage with",
+              Object.keys(parsedMovieData).length,
+              "movies"
+            );
+          } else {
+            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
+            Object.assign(movieData, window.originalMovieData);
+            console.log("No movieData in localStorage, using original data");
+          }
+
+          if (savedVideoData) {
+            const parsedVideoData = JSON.parse(savedVideoData);
+            Object.assign(videoData, parsedVideoData);
+            console.log(
+              "Loaded fresh videoData from localStorage with",
+              Object.keys(parsedVideoData).length,
+              "series"
+            );
+          } else {
+            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
+            Object.assign(videoData, window.originalVideoData);
+            console.log("No videoData in localStorage, using original data");
+          }
+
+          // Debug log to verify data was loaded properly
+          console.log(
+            "Data loading complete. Available movies:",
+            Object.keys(movieData).join(", ")
+          );
+        } catch (e) {
+          console.error("Error during data loading:", e);
+          // Trong trường hợp lỗi, khôi phục dữ liệu gốc
+          Object.assign(movieData, window.originalMovieData);
+          Object.assign(videoData, window.originalVideoData);
+        }
+      })();
+    </script>
     <script src="js/script.js"></script>
+    <script src="js/embed-manager.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Mobile menu toggle
@@ -327,22 +383,50 @@
               const nextEpisodeId = episodeKeys[currentIndex + 1];
               const nextEpisode = episodes[nextEpisodeId];
 
-              if (nextEpisode) {
+              if (nextEpisode && nextEpisode.videoUrl) {
                 // Tạo link preconnect động
                 const linkEl = document.createElement("link");
                 linkEl.rel = "preconnect";
-                linkEl.href = nextEpisode.videoUrl;
-                document.head.appendChild(linkEl);
 
-                // Xóa sau 10 giây để không ảnh hưởng hiệu suất
-                setTimeout(() => {
-                  document.head.removeChild(linkEl);
-                }, 10000);
+                // Trích xuất domain từ URL hoặc mã nhúng
+                let domain = "";
+                if (nextEpisode.videoUrl) {
+                  try {
+                    const url = new URL(nextEpisode.videoUrl);
+                    domain = url.origin;
+                  } catch (e) {
+                    // Nếu URL không hợp lệ, thử trích xuất từ embedCode
+                    if (nextEpisode.embedCode) {
+                      const match =
+                        nextEpisode.embedCode.match(/src=["']([^"']+)["']/);
+                      if (match && match[1]) {
+                        try {
+                          const url = new URL(match[1]);
+                          domain = url.origin;
+                        } catch (err) {
+                          console.log(
+                            "Không thể trích xuất domain từ mã nhúng"
+                          );
+                        }
+                      }
+                    }
+                  }
+                }
+
+                if (domain) {
+                  linkEl.href = domain;
+                  document.head.appendChild(linkEl);
+
+                  // Xóa sau 10 giây để không ảnh hưởng hiệu suất
+                  setTimeout(() => {
+                    document.head.removeChild(linkEl);
+                  }, 10000);
+                }
               }
             }
           }
 
-          // Hàm để load tập phim
+          // Hàm để load tập phim trực tiếp từ URL
           function loadEpisode(episodeId) {
             const episode = episodes[episodeId];
             if (episode) {
@@ -355,22 +439,40 @@
                 </div>
               `;
 
-              // Tải video bất đồng bộ với timeout
               setTimeout(() => {
-                // Tạo div responsive container với video đã tối ưu
-                videoContainer.innerHTML = `
-                  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-                    <iframe
-                      id="video-iframe"
-                      src="${episode.videoUrl}&ui-highlight=FF5E00&ui-logo=0&sharing-enable=0&start=0&ui-start-screen-info=0&quality=360"
-                      style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;"
-                      allowfullscreen
-                      title="Dailymotion Video Player"
-                      loading="lazy"
-                      allow="autoplay; web-share">
-                    </iframe>
-                  </div>
-                `;
+                // Kiểm tra xem đã có mã nhúng hay chưa
+                if (episode.embedCode) {
+                  // Sử dụng mã nhúng có sẵn
+                  videoContainer.innerHTML = `
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                      ${episode.embedCode}
+                    </div>
+                  `;
+                } else if (episode.videoUrl) {
+                  // Tự tạo iframe từ URL
+                  videoContainer.innerHTML = `
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                      <iframe
+                        id="video-iframe"
+                        src="${episode.videoUrl}"
+                        style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;"
+                        allowfullscreen
+                        title="Video Player"
+                        loading="lazy"
+                        allow="autoplay; web-share">
+                      </iframe>
+                    </div>
+                  `;
+                } else {
+                  // Hiển thị thông báo lỗi nếu không có URL hoặc mã nhúng
+                  videoContainer.innerHTML = `
+                    <div class="video-error-message">
+                      <i class="fas fa-exclamation-triangle"></i>
+                      <p>Không tìm thấy video. Vui lòng kiểm tra URL hoặc mã nhúng.</p>
+                    </div>
+                  `;
+                  return;
+                }
 
                 // Lưu episodeId đã xem gần đây vào localStorage
                 try {
