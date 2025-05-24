@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang cá nhân - HoatHinH3D</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">Jang<span>HH3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+                <a href="#">Viễn Tưởng</a>
+              </div>
+            </li>
+            <li><a href="#">Xếp Hạng</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="#" class="login-btn" id="login-button">Đăng Nhập</a>
+          <div id="admin-button-container" style="display: none">
+            <a
+              href="admin.html"
+              target="_blank"
+              class="login-btn"
+              style="margin-right: 10px"
+              >Quản trị</a
+            >
+          </div>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="profile-container">
+        <div class="profile-header">
+          <div class="profile-picture-container">
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5MzgzOCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjcwIiByPSI0MCIgZmlsbD0iI2VlZSIvPjxwYXRoIGQ9Ik00MCwxOTBjMC01NSwzMC01MCw2MC02NXM2MCwxMCw2MCw2NVoiIGZpbGw9IiNlZWUiLz48L3N2Zz4="
+              alt="Avatar"
+              class="profile-picture"
+              id="profile-picture"
+            />
+            <div class="profile-picture-overlay" id="change-avatar-btn">
+              <i class="fas fa-camera"></i>
+            </div>
+          </div>
+          <div class="profile-info">
+            <h1 id="display-name">Tên người dùng</h1>
+            <p id="username">@tên_đăng_nhập</p>
+            <div class="user-stats">
+              <div class="stat-item">
+                <i class="fas fa-film"></i>
+                <span id="watched-count">0 phim đã xem</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <span id="favorites-count">0 phim yêu thích</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-tabs">
+          <div class="profile-tab active" data-tab="profile-info">
+            Thông tin tài khoản
+          </div>
+          <div class="profile-tab" data-tab="change-password">Đổi mật khẩu</div>
+          <div class="profile-tab" data-tab="history">Lịch sử xem</div>
+          <div class="profile-tab" data-tab="favorites">Phim yêu thích</div>
+        </div>
+
+        <div class="tab-content active" id="profile-info">
+          <div class="success-message" id="profile-success">
+            Cập nhật thông tin thành công!
+          </div>
+          <form class="profile-form" id="profile-form">
+            <div class="form-group">
+              <label for="edit-display-name">Tên hiển thị</label>
+              <input
+                type="text"
+                id="edit-display-name"
+                placeholder="Nhập tên hiển thị"
+              />
+              <div class="error-message" id="display-name-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="edit-email">Email</label>
+              <input type="email" id="edit-email" placeholder="Nhập email" />
+              <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancel-profile">
+                Hủy
+              </button>
+              <button type="submit" class="btn-save">Lưu thay đổi</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-content" id="change-password">
+          <div class="success-message" id="password-success">
+            Đổi mật khẩu thành công!
+          </div>
+          <form class="profile-form" id="password-form">
+            <div class="form-group">
+              <label for="current-password">Mật khẩu hiện tại</label>
+              <input
+                type="password"
+                id="current-password"
+                placeholder="Nhập mật khẩu hiện tại"
+              />
+              <div class="error-message" id="current-password-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="new-password">Mật khẩu mới</label>
+              <input
+                type="password"
+                id="new-password"
+                placeholder="Nhập mật khẩu mới"
+              />
+              <div class="error-message" id="new-password-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Xác nhận mật khẩu mới</label>
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Nhập lại mật khẩu mới"
+              />
+              <div class="error-message" id="confirm-password-error"></div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn-cancel" id="cancel-password">
+                Hủy
+              </button>
+              <button type="submit" class="btn-save">Đổi mật khẩu</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-content" id="history">
+          <h2>Lịch sử xem phim</h2>
+          <div class="media-grid" id="history-grid">
+            <!-- Lịch sử xem sẽ được thêm vào đây bằng JavaScript -->
+          </div>
+        </div>
+
+        <div class="tab-content" id="favorites">
+          <h2>Phim yêu thích</h2>
+          <div class="media-grid" id="favorites-grid">
+            <!-- Phim yêu thích sẽ được thêm vào đây bằng JavaScript -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal đổi ảnh đại diện -->
+    <div class="upload-modal" id="upload-modal">
+      <div class="upload-modal-content">
+        <span class="close-modal" id="close-upload-modal">&times;</span>
+        <h2>Đổi ảnh đại diện</h2>
+        <div class="upload-preview-container">
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzM5MzgzOCIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjcwIiByPSI0MCIgZmlsbD0iI2VlZSIvPjxwYXRoIGQ9Ik00MCwxOTBjMC01NSwzMC01MCw2MC02NXM2MCwxMCw2MCw2NVoiIGZpbGw9IiNlZWUiLz48L3N2Zz4="
+            alt="Preview"
+            class="upload-preview"
+            id="upload-preview"
+          />
+        </div>
+        <div class="file-input-container">
+          <label for="avatar-upload" class="file-input-label">
+            <i class="fas fa-upload"></i> Chọn ảnh
+          </label>
+          <input
+            type="file"
+            id="avatar-upload"
+            class="file-input"
+            accept="image/*"
+          />
+        </div>
+        <div class="error-message" id="upload-error"></div>
+        <div class="form-actions">
+          <button class="btn-cancel" id="cancel-upload">Hủy</button>
+          <button class="btn-save" id="save-avatar" disabled>
+            Lưu ảnh đại diện
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinH<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinH3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/users.js"></script>
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/user-preferences.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/profile.js"></script>
+  </body>
+</html>

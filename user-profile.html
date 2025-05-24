@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hồ sơ người dùng - HoatHinh3D</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/user-preferences.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .user-profile-header {
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: var(--border-radius);
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .user-avatar {
+        width: 100px;
+        height: 100px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+      }
+
+      .user-info {
+        flex: 1;
+      }
+
+      .user-info h1 {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .user-info p {
+        color: var(--text-secondary);
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">Jang<span>HH3D</span></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="movies.html">Phim Mới</a></li>
+            <li><a href="movies.html">Phim Bộ</a></li>
+            <li>
+              <a href="#" class="dropdown-toggle"
+                >Thể Loại <i class="fas fa-chevron-down"></i
+              ></a>
+              <div class="dropdown-menu">
+                <a href="#">Hành Động</a>
+                <a href="#">Phiêu Lưu</a>
+                <a href="#">Võ Thuật</a>
+                <a href="#">Tiên Hiệp</a>
+                <a href="#">Huyền Huyễn</a>
+                <a href="#">Cổ Trang</a>
+                <a href="#">Viễn Tưởng</a>
+              </div>
+            </li>
+            <li><a href="#">Xếp Hạng</a></li>
+          </ul>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm phim..." />
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="#" class="login-btn" id="login-button">Đăng Nhập</a>
+          <div id="user-info" style="display: none">
+            <div class="user-dropdown">
+              <span id="user-display-name" class="user-name"></span>
+              <i class="fas fa-chevron-down"></i>
+              <div class="user-dropdown-menu">
+                <a href="profile.html"
+                  ><i class="fas fa-user"></i> Trang cá nhân</a
+                >
+                <a href="profile.html#history"
+                  ><i class="fas fa-history"></i> Lịch sử xem</a
+                >
+                <a href="profile.html#favorites"
+                  ><i class="fas fa-heart"></i> Phim yêu thích</a
+                >
+              </div>
+            </div>
+            <button id="logout-btn" class="login-btn">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </button>
+          </div>
+          <div id="admin-button-container" style="display: none">
+            <a
+              href="admin.html"
+              target="_blank"
+              class="login-btn"
+              style="margin-right: 10px"
+            >
+              Quản trị</a
+            >
+          </div>
+          <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="user-profile-header">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-info">
+            <h1 id="profile-display-name">Tên người dùng</h1>
+            <p id="profile-email">email@example.com</p>
+            <p>Thành viên từ: <span id="profile-join-date">01/01/2023</span></p>
+          </div>
+        </div>
+
+        <div class="user-tabs">
+          <div class="user-tab active" data-tab="history">
+            <i class="fas fa-history"></i> Lịch sử xem
+          </div>
+          <div class="user-tab" data-tab="favorites">
+            <i class="fas fa-heart"></i> Phim yêu thích
+          </div>
+        </div>
+
+        <!-- Lịch sử xem -->
+        <div id="history-tab" class="user-tab-content active">
+          <div class="user-section-header">
+            <h2><i class="fas fa-history"></i> Lịch sử xem</h2>
+            <div class="user-section-actions">
+              <button class="section-action-btn danger" id="clear-history-btn">
+                <i class="fas fa-trash-alt"></i> Xóa lịch sử
+              </button>
+            </div>
+          </div>
+
+          <div id="history-movies" class="history-movies">
+            <!-- Nội dung sẽ được JavaScript điền vào -->
+            <div class="empty-message empty-history" style="display: none">
+              <i class="fas fa-film"></i>
+              <p>Bạn chưa xem phim nào.</p>
+              <a href="movies.html" class="return-to-movies"
+                >Khám phá phim mới</a
+              >
+            </div>
+          </div>
+
+          <button
+            id="load-more-history"
+            class="load-more-btn"
+            style="display: none"
+          >
+            Xem thêm
+          </button>
+        </div>
+
+        <!-- Phim yêu thích -->
+        <div id="favorites-tab" class="user-tab-content">
+          <div class="user-section-header">
+            <h2><i class="fas fa-heart"></i> Phim yêu thích</h2>
+          </div>
+
+          <div id="favorite-movies" class="favorite-movies">
+            <!-- Nội dung sẽ được JavaScript điền vào -->
+            <div class="empty-message empty-favorites" style="display: none">
+              <i class="fas fa-heart-broken"></i>
+              <p>Bạn chưa thêm phim nào vào danh sách yêu thích.</p>
+              <a href="movies.html" class="return-to-movies"
+                >Khám phá phim mới</a
+              >
+            </div>
+          </div>
+
+          <button
+            id="load-more-favorites"
+            class="load-more-btn"
+            style="display: none"
+          >
+            Xem thêm
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html">HoatHinh<span>3D</span></a>
+            <p>
+              Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
+              nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Liên Kết</h3>
+            <ul>
+              <li><a href="index.html">Trang Chủ</a></li>
+              <li><a href="movies.html">Phim Mới</a></li>
+              <li><a href="#">Thể Loại</a></li>
+              <li><a href="#">Liên Hệ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thể Loại</h3>
+            <ul>
+              <li><a href="#">Tiên Hiệp</a></li>
+              <li><a href="#">Võ Thuật</a></li>
+              <li><a href="#">Huyền Huyễn</a></li>
+              <li><a href="#">Cổ Trang</a></li>
+              <li><a href="#">Viễn Tưởng</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Thông Tin</h3>
+            <ul>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 HoatHinh3D. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/users.js"></script>
+    <script src="js/user-preferences.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Kiểm tra đăng nhập
+        if (!window.checkLoginSession || !window.checkLoginSession()) {
+          // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Lấy thông tin người dùng
+        const currentUser = window.getCurrentUser();
+        const userId = currentUser.username;
+
+        // Cập nhật thông tin người dùng trên trang
+        document.getElementById("profile-display-name").textContent =
+          currentUser.displayName;
+        document.getElementById("user-display-name").textContent =
+          currentUser.displayName;
+        document.getElementById("profile-email").textContent =
+          currentUser.email || "Không có email";
+
+        // Hiển thị ngày tham gia (giả lập)
+        const joinDate = new Date().toLocaleDateString("vi-VN");
+        document.getElementById("profile-join-date").textContent = joinDate;
+
+        // Hiển thị thông tin người dùng và ẩn nút đăng nhập
+        document.getElementById("login-button").style.display = "none";
+        document.getElementById("user-info").style.display = "flex";
+
+        // Hiển thị nút admin nếu người dùng có quyền admin
+        if (window.isAdmin && window.isAdmin()) {
+          document.getElementById("admin-button-container").style.display =
+            "inline-block";
+        }
+
+        // Xử lý nút đăng xuất
+        document
+          .getElementById("logout-btn")
+          .addEventListener("click", function () {
+            window.logoutUser();
+          });
+
+        // Thêm sự kiện click cho dropdown menu người dùng
+        const userDropdown = document.querySelector(".user-dropdown");
+        if (userDropdown) {
+          userDropdown.addEventListener("click", function (e) {
+            // Nếu người dùng click vào dropdown toggle
+            if (!e.target.closest(".user-dropdown-menu")) {
+              const menu = this.querySelector(".user-dropdown-menu");
+              // Toggle class 'active' để hiển thị/ẩn menu
+              menu.classList.toggle("show");
+
+              // Đóng menu khi click ra ngoài
+              document.addEventListener("click", function closeMenu(evt) {
+                if (!userDropdown.contains(evt.target)) {
+                  menu.classList.remove("show");
+                  document.removeEventListener("click", closeMenu);
+                }
+              });
+            }
+          });
+        }
+
+        // Tải lịch sử xem
+        loadHistoryTab();
+
+        // Tải danh sách phim yêu thích
+        loadFavoritesTab();
+
+        // Xử lý chuyển tab
+        const tabs = document.querySelectorAll(".user-tab");
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Loại bỏ active từ tất cả các tab
+            tabs.forEach((t) => t.classList.remove("active"));
+
+            // Ẩn tất cả nội dung tab
+            document
+              .querySelectorAll(".user-tab-content")
+              .forEach((content) => {
+                content.classList.remove("active");
+              });
+
+            // Thêm active cho tab được chọn
+            this.classList.add("active");
+
+            // Hiển thị nội dung tab tương ứng
+            const tabName = this.getAttribute("data-tab");
+            document.getElementById(tabName + "-tab").classList.add("active");
+
+            // Cập nhật URL với mã tab
+            window.location.hash = tabName;
+          });
+        });
+
+        // Kiểm tra hash trong URL để hiển thị tab tương ứng
+        if (window.location.hash) {
+          const tabName = window.location.hash.substring(1);
+          const tab = document.querySelector(
+            `.user-tab[data-tab="${tabName}"]`
+          );
+          if (tab) {
+            tab.click();
+          }
+        }
+      });
+
+      // Tải lịch sử xem
+      function loadHistoryTab() {
+        if (!window.checkLoginSession || !window.checkLoginSession()) return;
+
+        const currentUser = window.getCurrentUser();
+        const userId = currentUser.username;
+        const historyContainer = document.getElementById("history-movies");
+        const emptyHistory = document.querySelector(".empty-history");
+        const loadMoreBtn = document.getElementById("load-more-history");
+
+        // Số lượng phim hiển thị ban đầu và mỗi lần tải thêm
+        const initialCount = 12;
+        const loadMoreCount = 6;
+        let displayedCount = 0;
+
+        // Tải lịch sử xem
+        const userHistory = window.getHistory ? window.getHistory(userId) : [];
+
+        if (!userHistory || userHistory.length === 0) {
+          // Hiển thị thông báo nếu không có lịch sử
+          emptyHistory.style.display = "flex";
+          loadMoreBtn.style.display = "none";
+          return;
+        }
+
+        // Ẩn thông báo trống
+        emptyHistory.style.display = "none";
+
+        // Hiển thị các phim trong lịch sử
+        displayHistoryItems(userHistory.slice(0, initialCount));
+        displayedCount = initialCount;
+
+        // Hiển thị nút tải thêm nếu cần
+        if (userHistory.length > initialCount) {
+          loadMoreBtn.style.display = "block";
+
+          // Xử lý sự kiện click nút tải thêm
+          loadMoreBtn.addEventListener("click", function () {
+            // Tải thêm phim
+            const nextItems = userHistory.slice(
+              displayedCount,
+              displayedCount + loadMoreCount
+            );
+            displayHistoryItems(nextItems);
+            displayedCount += loadMoreCount;
+
+            // Ẩn nút nếu đã tải hết
+            if (displayedCount >= userHistory.length) {
+              loadMoreBtn.style.display = "none";
+            }
+          });
+        } else {
+          loadMoreBtn.style.display = "none";
+        }
+
+        // Xử lý nút xóa lịch sử
+        document
+          .getElementById("clear-history-btn")
+          .addEventListener("click", function () {
+            if (confirm("Bạn có chắc chắn muốn xóa toàn bộ lịch sử xem?")) {
+              if (window.clearHistory && window.clearHistory(userId)) {
+                historyContainer.innerHTML = "";
+                emptyHistory.style.display = "flex";
+                loadMoreBtn.style.display = "none";
+              }
+            }
+          });
+
+        // Hàm hiển thị các mục lịch sử
+        function displayHistoryItems(items) {
+          let html = "";
+
+          items.forEach((item) => {
+            const timestampFormatted = new Date(
+              item.lastWatched
+            ).toLocaleDateString("vi-VN");
+            html += `
+              <div class="history-item movie-card">
+                <button class="remove-btn" data-movie-id="${item.id}">
+                  <i class="fas fa-times"></i>
+                </button>
+                <a href="movie-detail.html?id=${item.id}">
+                  <div class="movie-poster">
+                    <img src="${item.poster}" alt="${item.title}">
+                    <div class="movie-overlay">
+                      <button class="play-btn">
+                        <i class="fas fa-play"></i>
+                      </button>
+                    </div>
+                    <div class="last-watched">Xem: ${timestampFormatted}</div>
+                  </div>
+                  <div class="movie-info">
+                    <h3 class="movie-title">${item.title}</h3>
+                    <div class="movie-meta">
+                      <span>${item.year}</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            `;
+          });
+
+          // Thêm HTML vào container
+          if (
+            historyContainer.innerHTML === "" ||
+            historyContainer.innerHTML === emptyHistory.outerHTML
+          ) {
+            historyContainer.innerHTML = html;
+          } else {
+            historyContainer.insertAdjacentHTML("beforeend", html);
+          }
+
+          // Xử lý sự kiện xóa một mục
+          const removeButtons =
+            historyContainer.querySelectorAll(".remove-btn");
+          removeButtons.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              const movieId = this.getAttribute("data-movie-id");
+              if (
+                window.removeFromHistory &&
+                window.removeFromHistory(userId, movieId)
+              ) {
+                // Nếu xóa thành công, cập nhật giao diện
+                this.closest(".history-item").remove();
+
+                // Nếu không còn mục nào, hiển thị thông báo trống
+                if (historyContainer.children.length === 0) {
+                  emptyHistory.style.display = "flex";
+                  loadMoreBtn.style.display = "none";
+                }
+              }
+            });
+          });
+        }
+      }
+
+      // Tải danh sách phim yêu thích
+      function loadFavoritesTab() {
+        if (!window.checkLoginSession || !window.checkLoginSession()) return;
+
+        const currentUser = window.getCurrentUser();
+        const userId = currentUser.username;
+        const favoritesContainer = document.getElementById("favorite-movies");
+        const emptyFavorites = document.querySelector(".empty-favorites");
+        const loadMoreBtn = document.getElementById("load-more-favorites");
+
+        // Số lượng phim hiển thị ban đầu và mỗi lần tải thêm
+        const initialCount = 12;
+        const loadMoreCount = 6;
+        let displayedCount = 0;
+
+        // Tải danh sách phim yêu thích
+        const userFavorites = window.getFavorites
+          ? window.getFavorites(userId)
+          : [];
+
+        if (!userFavorites || userFavorites.length === 0) {
+          // Hiển thị thông báo nếu không có phim yêu thích
+          emptyFavorites.style.display = "flex";
+          loadMoreBtn.style.display = "none";
+          return;
+        }
+
+        // Ẩn thông báo trống
+        emptyFavorites.style.display = "none";
+
+        // Hiển thị các phim yêu thích
+        displayFavoriteItems(userFavorites.slice(0, initialCount));
+        displayedCount = initialCount;
+
+        // Hiển thị nút tải thêm nếu cần
+        if (userFavorites.length > initialCount) {
+          loadMoreBtn.style.display = "block";
+
+          // Xử lý sự kiện click nút tải thêm
+          loadMoreBtn.addEventListener("click", function () {
+            // Tải thêm phim
+            const nextItems = userFavorites.slice(
+              displayedCount,
+              displayedCount + loadMoreCount
+            );
+            displayFavoriteItems(nextItems);
+            displayedCount += loadMoreCount;
+
+            // Ẩn nút nếu đã tải hết
+            if (displayedCount >= userFavorites.length) {
+              loadMoreBtn.style.display = "none";
+            }
+          });
+        } else {
+          loadMoreBtn.style.display = "none";
+        }
+
+        // Hàm hiển thị các mục yêu thích
+        function displayFavoriteItems(items) {
+          let html = "";
+
+          items.forEach((item) => {
+            const addedAtFormatted = new Date(item.addedAt).toLocaleDateString(
+              "vi-VN"
+            );
+            html += `
+              <div class="favorite-item movie-card">
+                <button class="remove-btn" data-movie-id="${item.id}">
+                  <i class="fas fa-times"></i>
+                </button>
+                <a href="movie-detail.html?id=${item.id}">
+                  <div class="movie-poster">
+                    <img src="${item.poster}" alt="${item.title}">
+                    <div class="movie-overlay">
+                      <button class="play-btn">
+                        <i class="fas fa-play"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="movie-info">
+                    <h3 class="movie-title">${item.title}</h3>
+                    <div class="movie-meta">
+                      <span>${item.year}</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            `;
+          });
+
+          // Thêm HTML vào container
+          if (
+            favoritesContainer.innerHTML === "" ||
+            favoritesContainer.innerHTML === emptyFavorites.outerHTML
+          ) {
+            favoritesContainer.innerHTML = html;
+          } else {
+            favoritesContainer.insertAdjacentHTML("beforeend", html);
+          }
+
+          // Xử lý sự kiện xóa một mục
+          const removeButtons =
+            favoritesContainer.querySelectorAll(".remove-btn");
+          removeButtons.forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.preventDefault();
+              const movieId = this.getAttribute("data-movie-id");
+              if (window.toggleFavorite) {
+                window.toggleFavorite(userId, movieId, {}); // Gọi toggle để xóa
+
+                // Cập nhật giao diện
+                this.closest(".favorite-item").remove();
+
+                // Nếu không còn mục nào, hiển thị thông báo trống
+                if (favoritesContainer.children.length === 0) {
+                  emptyFavorites.style.display = "flex";
+                  loadMoreBtn.style.display = "none";
+                }
+              }
+            });
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

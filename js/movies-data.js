@@ -162,7 +162,34 @@ const movieData = {
   // Thêm phim mới ở đây, nhớ thêm dấu phẩy sau mỗi đối tượng phim
 };
 
+// Tải dữ liệu phim từ localStorage nếu có
+try {
+  const savedMovieData = localStorage.getItem("movieData");
+  if (savedMovieData) {
+    // Ghi đè dữ liệu cứng bằng dữ liệu từ localStorage
+    Object.assign(movieData, JSON.parse(savedMovieData));
+    console.log("Đã tải dữ liệu phim từ localStorage");
+  }
+} catch (e) {
+  console.error("Lỗi khi tải dữ liệu phim từ localStorage:", e);
+}
+
+/**
+ * Lưu dữ liệu phim vào localStorage
+ * @returns {boolean} Kết quả lưu
+ */
+function saveMovieData() {
+  try {
+    localStorage.setItem("movieData", JSON.stringify(movieData));
+    console.log("Đã lưu dữ liệu phim vào localStorage");
+    return true;
+  } catch (e) {
+    console.error("Lỗi khi lưu dữ liệu phim:", e);
+    return false;
+  }
+}
+
 // Nếu bạn muốn xuất dữ liệu phim trong môi trường module
 if (typeof module !== "undefined") {
-  module.exports = { movieData };
+  module.exports = { movieData, saveMovieData };
 }

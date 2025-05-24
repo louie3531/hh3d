@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - HoatHinh3D</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #e50914;
+        --secondary-color: #b81d24;
+        --dark-color: #221f1f;
+        --light-color: #f5f5f1;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #141414;
+        color: var(--light-color);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .logo h1 {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      .login-form {
+        background-color: rgba(0, 0, 0, 0.75);
+        padding: 2rem;
+        border-radius: 4px;
+      }
+
+      .form-title {
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 4px;
+        background-color: #333;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .form-control:focus {
+        outline: none;
+        background-color: #454545;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: var(--secondary-color);
+      }
+
+      .alert {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        display: none;
+      }
+
+      .alert-danger {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+        border: 1px solid #dc3545;
+      }
+
+      .back-to-home {
+        margin-top: 1.5rem;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .back-to-home a {
+        color: var(--light-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .back-to-home a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <h1>MovieStream</h1>
+      </div>
+
+      <div class="login-form">
+        <h2 class="form-title">Đăng nhập</h2>
+
+        <div id="login-error" class="alert alert-danger">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="error-message"
+            >Tên đăng nhập hoặc mật khẩu không đúng.</span
+          >
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username">Tên đăng nhập</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="Nhập tên đăng nhập"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mật khẩu</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="Nhập mật khẩu"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn">Đăng nhập</button>
+        </form>
+      </div>
+
+      <div class="back-to-home">
+        <a href="index.html"
+          ><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a
+        >
+        <a href="register.html">Chưa có tài khoản? Đăng ký</a>
+      </div>
+    </div>
+
+    <script src="js/movies-data.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/users.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Kiểm tra nếu đã đăng nhập thì chuyển hướng đến trang admin
+        if (checkLoginSession()) {
+          window.location.href = "admin.html";
+        }
+
+        const loginForm = document.getElementById("login-form");
+        const loginError = document.getElementById("login-error");
+
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          if (loginUser(username, password)) {
+            // Đăng nhập thành công
+            window.location.href = "admin.html";
+          } else {
+            // Đăng nhập thất bại
+            loginError.style.display = "block";
+            setTimeout(() => {
+              loginError.style.display = "none";
+            }, 3000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

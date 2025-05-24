@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chi tiết phim - HoatHinH3D</title>
+    <title>Chi tiết phim - HoatHinh3D</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
     <!-- Preconnect to Dailymotion to improve loading speed -->
     <link rel="preconnect" href="https://geo.dailymotion.com" />
     <link rel="preconnect" href="https://www.dailymotion.com" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/movie-detail.css" />
+    <link rel="stylesheet" href="css/user-preferences.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -17,12 +22,45 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* CSS cho phần hiển thị thông tin người dùng */
+      #user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .user-name {
+        color: #fff;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      #auth-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      @media (max-width: 576px) {
+        #auth-buttons {
+          gap: 5px;
+        }
+
+        .login-btn {
+          padding: 6px 12px;
+          font-size: 13px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
       <div class="container">
         <div class="logo">
-          <a href="index.html">HoatHinH<span>3D</span></a>
+          <a href="index.html">Jang<span>HH3D</span></a>
         </div>
         <nav>
           <ul>
@@ -53,10 +91,39 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <a href="login.html" class="login-btn">Đăng Nhập</a>
-          <a href="admin.html" class="login-btn" style="margin-right: 10px"
-            >Quản trị</a
-          >
+          <div id="auth-buttons">
+            <a href="#" class="login-btn" id="login-button">Đăng nhập</a>
+            <a href="#" class="login-btn" id="register-button">Đăng ký</a>
+          </div>
+          <div id="user-info" style="display: none">
+            <div class="user-dropdown">
+              <span id="user-display-name" class="user-name"></span>
+              <i class="fas fa-chevron-down"></i>
+              <div class="user-dropdown-menu">
+                <a href="profile.html"
+                  ><i class="fas fa-user"></i> Trang cá nhân</a
+                >
+                <a href="profile.html#history"
+                  ><i class="fas fa-history"></i> Lịch sử xem</a
+                >
+                <a href="profile.html#favorites"
+                  ><i class="fas fa-heart"></i> Phim yêu thích</a
+                >
+              </div>
+            </div>
+            <button id="logout-btn" class="login-btn">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </button>
+          </div>
+          <div id="admin-button-container" style="display: none">
+            <a
+              href="admin.html"
+              target="_blank"
+              class="login-btn"
+              style="margin-right: 10px"
+              >Quản trị</a
+            >
+          </div>
           <div class="menu-btn">
             <i class="fas fa-bars"></i>
           </div>
@@ -64,7 +131,117 @@
       </div>
     </header>
 
-    <main>
+    <!-- Modal Đăng Nhập -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Đăng nhập</h2>
+        <div class="login-with-google">
+          <button id="google-login-btn">
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              width="20"
+            />
+            Đăng nhập bằng Google
+          </button>
+        </div>
+        <div class="login-separator">
+          <span>hoặc</span>
+        </div>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Tên tài khoản</label>
+            <input
+              type="text"
+              id="login-username"
+              placeholder="Tên tài khoản"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Mật khẩu</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Mật khẩu"
+              required
+            />
+          </div>
+          <div class="form-group remember-me">
+            <input type="checkbox" id="remember-me" />
+            <label for="remember-me">Ghi nhớ</label>
+          </div>
+          <div
+            id="login-error"
+            class="error-message"
+            style="display: none"
+          ></div>
+          <button type="submit" id="login-submit-btn">Đăng nhập</button>
+        </form>
+        <p class="switch-form">
+          Chưa có tài khoản?
+          <a href="#" id="switch-to-register">Đăng ký ngay</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal Đăng Ký -->
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Đăng ký</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="register-username">Tên tài khoản</label>
+            <input
+              type="text"
+              id="register-username"
+              placeholder="Tên tài khoản"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Mật khẩu</label>
+            <input
+              type="password"
+              id="register-password"
+              placeholder="Mật khẩu"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-confirm-password">Xác nhận mật khẩu</label>
+            <input
+              type="password"
+              id="register-confirm-password"
+              placeholder="Xác nhận mật khẩu"
+              required
+            />
+          </div>
+          <div
+            id="register-error"
+            class="error-message"
+            style="display: none"
+          ></div>
+          <button type="submit" id="register-submit-btn">Đăng ký</button>
+        </form>
+        <p class="switch-form">
+          Đã có tài khoản? <a href="#" id="switch-to-login">Đăng nhập</a>
+        </p>
+      </div>
+    </div>
+
+    <main class="site-main">
       <section class="movie-hero" id="movie-backdrop">
         <div class="movie-hero-overlay"></div>
         <div class="container">
@@ -80,89 +257,142 @@
               <h1 id="movie-title"></h1>
               <h2 id="movie-original-title"></h2>
               <div class="movie-meta">
-                <span class="year" id="movie-year"></span>
-                <span class="divider">|</span>
-                <span class="episodes" id="movie-episodes"></span>
-                <span class="divider">|</span>
-                <span class="status" id="movie-status"></span>
+                <div class="meta-item year">
+                  <i class="far fa-calendar-alt"></i>
+                  <span id="movie-year"></span>
+                </div>
+                <div class="meta-item episodes">
+                  <i class="fas fa-film"></i>
+                  <span id="episode-count"></span>
+                </div>
+                <div class="meta-item status">
+                  <i class="fas fa-rss"></i>
+                  <span id="movie-status"></span>
+                </div>
               </div>
-              <div class="genre-list" id="movie-genres"></div>
-
+              <div class="genre-list" id="genre-list">
+                <!-- Thể loại sẽ được thêm vào đây -->
+              </div>
               <div class="description">
                 <h3>Nội dung phim</h3>
                 <p id="movie-description"></p>
               </div>
               <div class="action-buttons">
-                <a href="#episodes" class="btn primary-btn"
-                  ><i class="fas fa-play"></i> Xem phim</a
-                >
-                <a href="#" class="btn bookmark-btn"
-                  ><i class="fas fa-bookmark"></i> Lưu phim</a
-                >
-                <a href="#" class="btn share-btn"
-                  ><i class="fas fa-share-alt"></i> Chia sẻ</a
-                >
+                <a href="#watch" class="btn primary-btn watch-btn">
+                  <i class="fas fa-play"></i> Xem Phim
+                </a>
+                <button class="btn bookmark-btn" id="bookmark-btn">
+                  <i class="far fa-bookmark"></i> Lưu Phim
+                </button>
+                <button class="btn share-btn">
+                  <i class="fas fa-share-alt"></i> Chia Sẻ
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="episodes-section" id="episodes">
+      <section class="episodes-section" id="watch">
         <div class="container">
           <div class="section-header">
-            <h2><i class="fas fa-list"></i> Danh sách tập</h2>
+            <h2><i class="fas fa-play-circle"></i> Xem Phim</h2>
+            <div class="server-selector">
+              <span>Chọn server:</span>
+              <select id="server-selector">
+                <option value="server1">Server 1</option>
+                <option value="server2">Server 2</option>
+                <option value="server3">Server 3</option>
+              </select>
+            </div>
           </div>
-          <div class="video-player-container" id="video-player-container">
+
+          <div class="video-player-container">
             <div class="video-container">
-              <iframe
-                id="video-iframe"
-                src=""
-                frameborder="0"
-                allowfullscreen
-                allow="autoplay"
-              ></iframe>
+              <div id="player-wrapper">
+                <!-- Video player sẽ được thêm vào đây -->
+                <div class="video-loading" id="video-loading">
+                  <div class="spinner"></div>
+                  <p>Đang tải video...</p>
+                </div>
+                <div
+                  class="video-error-message"
+                  id="video-error"
+                  style="display: none"
+                >
+                  <i class="fas fa-exclamation-circle"></i>
+                  <p>
+                    Không thể tải video. Vui lòng thử lại sau hoặc chọn server
+                    khác.
+                  </p>
+                  <button id="retry-button">Thử lại</button>
+                </div>
+              </div>
             </div>
             <div class="episode-title-bar">
-              <h3 id="current-episode-title">Đang tải...</h3>
+              <h3 id="current-episode-title">Tập 1</h3>
               <div class="episode-navigation">
                 <button id="prev-episode" disabled>
                   <i class="fas fa-step-backward"></i> Tập trước
                 </button>
-                <button id="next-episode" disabled>
+                <button id="next-episode">
                   Tập sau <i class="fas fa-step-forward"></i>
                 </button>
               </div>
             </div>
           </div>
-          <div class="episodes-grid" id="episodes-grid"></div>
+
+          <div class="episode-selection">
+            <h3>Danh sách tập</h3>
+            <div class="episode-count-display">
+              <span id="episode-display-count"></span>
+            </div>
+            <div class="episodes-grid" id="episodes-grid">
+              <!-- Các tập phim sẽ được thêm vào đây -->
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="related-section">
         <div class="container">
           <div class="section-header">
-            <h2><i class="fas fa-thumbs-up"></i> Phim đề xuất</h2>
-            <a href="movies.html" class="view-all"
-              >Xem thêm <i class="fas fa-arrow-right"></i
-            ></a>
+            <h2><i class="fas fa-film"></i> Phim Tương Tự</h2>
           </div>
           <div class="related-movies-scroll" id="related-movies">
-            <!-- Nội dung sẽ được JavaScript thêm vào -->
-            <div class="empty-message">
-              <i class="fas fa-film"></i>
-              <p>Chưa có phim đề xuất. Hãy thêm nhiều phim hơn!</p>
-            </div>
+            <!-- Phim tương tự sẽ được thêm vào đây -->
+          </div>
+        </div>
+      </section>
+
+      <section class="comments-section">
+        <div class="container">
+          <div class="section-header">
+            <h2><i class="fas fa-comments"></i> Bình Luận</h2>
+          </div>
+          <div class="comment-form">
+            <textarea
+              id="comment-input"
+              placeholder="Thêm bình luận của bạn..."
+            ></textarea>
+            <button class="btn comment-btn" id="submit-comment">
+              Gửi Bình Luận
+            </button>
+          </div>
+          <div class="comments-list" id="comments-list">
+            <!-- Bình luận sẽ được thêm vào đây -->
           </div>
         </div>
       </section>
     </main>
 
+    <div id="user-preferences-container"></div>
+
     <footer>
       <div class="container">
         <div class="footer-content">
           <div class="footer-logo">
-            <a href="index.html">HoatHinH<span>3D</span></a>
+            <a href="index.html">HoatHinh<span>3D</span></a>
             <p>
               Website xem phim hoạt hình Trung Quốc chất lượng cao, cập nhật
               nhanh nhất. Không quảng cáo, tốc độ cao và giao diện đẹp mắt.
@@ -204,74 +434,533 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 HoatHinH3D. All Rights Reserved.</p>
+          <p>&copy; 2024 HoatHinh3D. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
 
+    <div class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="js/users.js"></script>
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
     <script>
-      // Làm trống đối tượng movieData và videoData để đảm bảo đọc từ localStorage
-      (function resetAndLoadData() {
-        console.log("Resetting and loading fresh data in movie-detail.html");
+      // Back to Top functionality
+      function setupBackToTop() {
+        const backToTopButton = document.querySelector(".back-to-top");
 
-        // Sao lưu cấu trúc gốc
-        window.originalMovieData = JSON.parse(JSON.stringify(movieData));
-        window.originalVideoData = JSON.parse(JSON.stringify(videoData));
-
-        try {
-          // Xóa hoàn toàn dữ liệu hiện tại
-          Object.keys(movieData).forEach((key) => delete movieData[key]);
-          Object.keys(videoData).forEach((key) => delete videoData[key]);
-
-          // Đọc dữ liệu mới nhất từ localStorage
-          const savedMovieData = localStorage.getItem("movieData");
-          const savedVideoData = localStorage.getItem("videoData");
-
-          if (savedMovieData) {
-            const parsedMovieData = JSON.parse(savedMovieData);
-            Object.assign(movieData, parsedMovieData);
-            console.log(
-              "Loaded fresh movieData from localStorage with",
-              Object.keys(parsedMovieData).length,
-              "movies"
-            );
+        // Show button when user scrolls down
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add("visible");
           } else {
-            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
-            Object.assign(movieData, window.originalMovieData);
-            console.log("No movieData in localStorage, using original data");
+            backToTopButton.classList.remove("visible");
+          }
+        });
+
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      // Update authentication UI
+      function updateAuthUI() {
+        const currentUser = getCurrentUser();
+        const authButtons = document.getElementById("auth-buttons");
+        const userInfo = document.getElementById("user-info");
+        const adminButton = document.getElementById("admin-button-container");
+
+        if (currentUser) {
+          // User is logged in
+          if (authButtons) authButtons.style.display = "none";
+          if (userInfo) userInfo.style.display = "flex";
+
+          // Display username
+          if (document.getElementById("user-display-name")) {
+            document.getElementById("user-display-name").textContent =
+              currentUser.username;
           }
 
-          if (savedVideoData) {
-            const parsedVideoData = JSON.parse(savedVideoData);
-            Object.assign(videoData, parsedVideoData);
-            console.log(
-              "Loaded fresh videoData from localStorage with",
-              Object.keys(parsedVideoData).length,
-              "series"
-            );
-          } else {
-            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
-            Object.assign(videoData, window.originalVideoData);
-            console.log("No videoData in localStorage, using original data");
+          // Show admin button if admin
+          if (adminButton) {
+            if (currentUser.isAdmin) {
+              adminButton.style.display = "block";
+            } else {
+              adminButton.style.display = "none";
+            }
           }
 
-          // Debug log to verify data was loaded properly
-          console.log(
-            "Data loading complete. Available movies:",
-            Object.keys(movieData).join(", ")
-          );
-        } catch (e) {
-          console.error("Error during data loading:", e);
-          // Trong trường hợp lỗi, khôi phục dữ liệu gốc
-          Object.assign(movieData, window.originalMovieData);
-          Object.assign(videoData, window.originalVideoData);
+          // Setup logout event
+          if (document.getElementById("logout-btn")) {
+            document
+              .getElementById("logout-btn")
+              .addEventListener("click", function () {
+                logout();
+                updateAuthUI();
+              });
+          }
+        } else {
+          // User is not logged in
+          if (authButtons) authButtons.style.display = "flex";
+          if (userInfo) userInfo.style.display = "none";
+          if (adminButton) adminButton.style.display = "none";
         }
-      })();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        setupBackToTop();
+        updateAuthUI();
+
+        // Get movie ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get("id");
+
+        // Display movie details if ID exists
+        if (movieId && moviesData) {
+          // Find the movie by ID
+          const movie = moviesData.find((movie) => movie.id === movieId);
+
+          if (movie) {
+            // Set page title
+            document.title = `${movie.title} - HoatHinh3D`;
+
+            // Set backdrop image
+            const backdrop = document.getElementById("movie-backdrop");
+            if (backdrop) {
+              backdrop.style.backgroundImage = `url('${
+                movie.backdrop || movie.poster
+              }')`;
+            }
+
+            // Set poster image
+            const posterImg = document.getElementById("movie-poster");
+            if (posterImg) {
+              posterImg.src = movie.poster || "images/default-poster.jpg";
+              posterImg.alt = movie.title;
+            }
+
+            // Set movie details
+            document.getElementById("movie-title").textContent = movie.title;
+            document.getElementById("movie-original-title").textContent =
+              movie.originalTitle;
+            document.getElementById("movie-year").textContent = movie.year;
+            const episodesElement = document.getElementById("episode-count");
+            episodesElement.textContent =
+              movie.type === "movie" ? "Phim lẻ" : `${movie.episodes} tập`;
+            document.getElementById("movie-status").textContent =
+              movie.status === "completed" ? "Hoàn thành" : "Đang cập nhật";
+            document.getElementById("movie-rating").textContent =
+              movie.rating || "?";
+            document.getElementById("movie-description").textContent =
+              movie.description;
+
+            // Set status class
+            const statusElement = document.querySelector(".meta-item.status");
+            if (statusElement) {
+              if (movie.status === "completed") {
+                statusElement.classList.add("completed");
+              } else {
+                statusElement.classList.add("updating");
+              }
+            }
+
+            // Handle bookmark button
+            const favoriteBtn = document.getElementById("bookmark-btn");
+            let isFav = false;
+
+            // Check if movie is already bookmarked
+            if (favoriteBtn && getCurrentUser()) {
+              const user = getCurrentUser();
+              if (user.favorites && user.favorites.includes(movie.id)) {
+                isFav = true;
+                favoriteBtn.classList.add("active");
+              }
+            }
+
+            // Add bookmark functionality
+            if (favoriteBtn) {
+              favoriteBtn.addEventListener("click", function () {
+                if (!getCurrentUser()) {
+                  alert("Vui lòng đăng nhập để lưu phim");
+                  return;
+                }
+
+                const isAdded = toggleFavorite(movie.id);
+                if (isAdded) {
+                  favoriteBtn.classList.add("active");
+                } else {
+                  favoriteBtn.classList.remove("active");
+                }
+              });
+            }
+
+            // Display genres
+            const genresContainer = document.getElementById("genre-list");
+            movie.genre.forEach((genre) => {
+              const genreTag = document.createElement("span");
+              genreTag.className = "genre";
+              genreTag.textContent = genre;
+              genresContainer.appendChild(genreTag);
+            });
+
+            // Load episodes if it's a series
+            if (movie.type === "series") {
+              loadEpisodes(movie.id);
+            } else {
+              // For single movies, show direct play option
+              document.querySelector(".episode-selection").style.display =
+                "none";
+              document.getElementById("current-episode-title").textContent =
+                movie.title;
+              document.getElementById("next-episode").style.display = "none";
+              document.getElementById("prev-episode").style.display = "none";
+
+              // Load the movie video
+              if (videoData[movie.id]) {
+                loadVideoPlayer(movie.id, Object.keys(videoData[movie.id])[0]);
+              } else {
+                showVideoError();
+              }
+            }
+
+            // Load related movies
+            loadRelatedMovies(movie);
+          } else {
+            showError("Không tìm thấy phim");
+          }
+        } else {
+          showError("Không tìm thấy phim");
+        }
+
+        // Server selector
+        const serverSelect = document.getElementById("server-selector");
+        if (serverSelect) {
+          serverSelect.addEventListener("change", function () {
+            const selectedServer = this.value;
+            // Implement server switching logic here
+            console.log("Changed to server:", selectedServer);
+          });
+        }
+
+        // Handle mobile menu
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+        if (menuBtn && nav) {
+          menuBtn.addEventListener("click", function () {
+            nav.classList.toggle("active");
+          });
+        }
+      });
+
+      // Load episodes list
+      function loadEpisodes(movieId) {
+        const episodesGrid = document.getElementById("episodes-grid");
+        const episodes = videoData[movieId];
+
+        if (!episodes || Object.keys(episodes).length === 0) {
+          episodesGrid.innerHTML = `
+            <div class="empty-message">
+              <i class="fas fa-film"></i>
+              <p>Chưa có tập nào. Vui lòng quay lại sau.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Update episode count display
+        const episodeDisplay = document.getElementById("episode-display-count");
+        if (episodeDisplay) {
+          episodeDisplay.textContent = `${Object.keys(episodes).length} tập`;
+        }
+
+        // Sort episodes by order if available, otherwise by episode number
+        const sortedEpisodes = Object.entries(episodes).sort((a, b) => {
+          // If both have order property, use it
+          if (a[1].order !== undefined && b[1].order !== undefined) {
+            return a[1].order - b[1].order;
+          }
+
+          // Otherwise extract episode numbers from keys
+          const numA = a[0].match(/\d+/);
+          const numB = b[0].match(/\d+/);
+          if (numA && numB) {
+            return parseInt(numA[0]) - parseInt(numB[0]);
+          }
+          return 0;
+        });
+
+        // Clear episodes grid
+        episodesGrid.innerHTML = "";
+
+        // Add episodes to grid
+        sortedEpisodes.forEach(([epKey, episode], index) => {
+          const episodeItem = document.createElement("div");
+          episodeItem.className = "episode-item";
+          episodeItem.setAttribute("data-episode", epKey);
+
+          // Set first episode as active
+          if (index === 0) {
+            episodeItem.classList.add("active");
+            loadVideoPlayer(movieId, epKey);
+            updateEpisodeNavigation(sortedEpisodes, index);
+            document.getElementById("current-episode-title").textContent =
+              episode.title;
+          }
+
+          // Extract episode number from key
+          const epNumber = epKey.match(/\d+/);
+          episodeItem.innerHTML = `<span class="episode-number">${
+            epNumber ? epNumber[0] : index + 1
+          }</span>`;
+
+          // Episode click event
+          episodeItem.addEventListener("click", function () {
+            // Remove active class from all episodes
+            document.querySelectorAll(".episode-item").forEach((item) => {
+              item.classList.remove("active");
+            });
+
+            // Add active class to clicked episode
+            this.classList.add("active");
+
+            // Load video
+            loadVideoPlayer(movieId, epKey);
+
+            // Update episode title
+            document.getElementById("current-episode-title").textContent =
+              episode.title;
+
+            // Update navigation buttons
+            updateEpisodeNavigation(sortedEpisodes, index);
+
+            // Scroll to player
+            document
+              .getElementById("watch")
+              .scrollIntoView({ behavior: "smooth" });
+          });
+
+          episodesGrid.appendChild(episodeItem);
+        });
+
+        // Setup episode navigation buttons
+        setupEpisodeNavigation(movieId, sortedEpisodes);
+      }
+
+      // Load video player
+      function loadVideoPlayer(movieId, episodeKey) {
+        const playerWrapper = document.getElementById("player-wrapper");
+        const videoLoading = document.getElementById("video-loading");
+        const videoError = document.getElementById("video-error");
+
+        // Show loading spinner
+        videoLoading.style.display = "flex";
+        videoError.style.display = "none";
+
+        // Clear existing player
+        const existingIframe = playerWrapper.querySelector("iframe");
+        if (existingIframe) {
+          playerWrapper.removeChild(existingIframe);
+        }
+
+        // Create iframe for video
+        const episode = videoData[movieId][episodeKey];
+        if (episode && (episode.videoUrl || episode.embedCode)) {
+          // Use embed code if available, otherwise create from URL
+          if (episode.embedCode) {
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = episode.embedCode;
+            const iframe = tempDiv.querySelector("iframe");
+
+            if (iframe) {
+              // Hide loading spinner
+              setTimeout(() => {
+                videoLoading.style.display = "none";
+              }, 500);
+
+              iframe.style.width = "100%";
+              iframe.style.height = "100%";
+              iframe.style.border = "none";
+              playerWrapper.appendChild(iframe);
+            } else {
+              showVideoError();
+            }
+          } else if (episode.videoUrl) {
+            // Create iframe from URL
+            const iframe = document.createElement("iframe");
+            iframe.src = episode.videoUrl;
+            iframe.width = "100%";
+            iframe.height = "100%";
+            iframe.frameBorder = "0";
+            iframe.allowFullscreen = true;
+            iframe.allow = "autoplay; encrypted-media";
+
+            // Hide loading spinner when iframe loads
+            iframe.onload = function () {
+              videoLoading.style.display = "none";
+            };
+
+            iframe.onerror = function () {
+              showVideoError();
+            };
+
+            playerWrapper.appendChild(iframe);
+          } else {
+            showVideoError();
+          }
+        } else {
+          showVideoError();
+        }
+      }
+
+      // Show video error
+      function showVideoError() {
+        document.getElementById("video-loading").style.display = "none";
+        document.getElementById("video-error").style.display = "flex";
+
+        // Setup retry button
+        document
+          .getElementById("retry-button")
+          .addEventListener("click", function () {
+            const activeEpisode = document.querySelector(
+              ".episode-item.active"
+            );
+            if (activeEpisode) {
+              const movieId = new URLSearchParams(window.location.search).get(
+                "id"
+              );
+              const episodeKey = activeEpisode.getAttribute("data-episode");
+              loadVideoPlayer(movieId, episodeKey);
+            }
+          });
+      }
+
+      // Update episode navigation buttons
+      function updateEpisodeNavigation(episodes, currentIndex) {
+        const prevButton = document.getElementById("prev-episode");
+        const nextButton = document.getElementById("next-episode");
+
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === episodes.length - 1;
+      }
+
+      // Setup episode navigation buttons
+      function setupEpisodeNavigation(movieId, episodes) {
+        const prevButton = document.getElementById("prev-episode");
+        const nextButton = document.getElementById("next-episode");
+
+        prevButton.addEventListener("click", function () {
+          if (this.disabled) return;
+
+          const activeEpisode = document.querySelector(".episode-item.active");
+          const currentIndex = Array.from(
+            document.querySelectorAll(".episode-item")
+          ).indexOf(activeEpisode);
+
+          if (currentIndex > 0) {
+            const prevEpisode =
+              document.querySelectorAll(".episode-item")[currentIndex - 1];
+            prevEpisode.click();
+          }
+        });
+
+        nextButton.addEventListener("click", function () {
+          if (this.disabled) return;
+
+          const activeEpisode = document.querySelector(".episode-item.active");
+          const currentIndex = Array.from(
+            document.querySelectorAll(".episode-item")
+          ).indexOf(activeEpisode);
+          const totalEpisodes =
+            document.querySelectorAll(".episode-item").length;
+
+          if (currentIndex < totalEpisodes - 1) {
+            const nextEpisode =
+              document.querySelectorAll(".episode-item")[currentIndex + 1];
+            nextEpisode.click();
+          }
+        });
+      }
+
+      // Load related movies
+      function loadRelatedMovies(currentMovie) {
+        const relatedContainer = document.getElementById("related-movies");
+        if (!relatedContainer || !moviesData || moviesData.length === 0) return;
+
+        // Find movies with similar genres
+        const similarMovies = moviesData
+          .filter(
+            (movie) =>
+              movie.id !== currentMovie.id &&
+              movie.genre.some((genre) => currentMovie.genre.includes(genre))
+          )
+          .slice(0, 6);
+
+        if (similarMovies.length === 0) {
+          relatedContainer.innerHTML = `
+            <div class="empty-message">
+              <i class="fas fa-film"></i>
+              <p>Không tìm thấy phim tương tự.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Clear container
+        relatedContainer.innerHTML = "";
+
+        // Add similar movies
+        similarMovies.forEach((movie) => {
+          const movieCard = document.createElement("div");
+          movieCard.className = "movie-card";
+
+          movieCard.innerHTML = `
+            <div class="movie-poster">
+              <img src="${movie.poster || "images/default-poster.jpg"}" alt="${
+            movie.title
+          }">
+              <div class="movie-overlay">
+                <a href="movie-detail.html?id=${movie.id}" class="play-btn">
+                  <i class="fas fa-play"></i>
+                </a>
+              </div>
+            </div>
+            <div class="movie-info">
+              <h3 class="movie-title" title="${movie.title}">${movie.title}</h3>
+              <div class="movie-meta">
+                <span class="quality">${
+                  movie.type === "series" ? "Phim bộ" : "Phim lẻ"
+                }</span>
+                <span class="rating"><i class="fas fa-star"></i> ${
+                  movie.rating || "?"
+                }</span>
+              </div>
+            </div>
+          `;
+
+          relatedContainer.appendChild(movieCard);
+        });
+      }
+
+      // Show error message
+      function showError(message) {
+        document.body.innerHTML = `
+          <div class="error-container">
+            <div class="error-message">
+              <i class="fas fa-exclamation-circle"></i>
+              <h2>Lỗi</h2>
+              <p>${message}</p>
+              <a href="index.html" class="btn primary-btn">Về Trang Chủ</a>
+            </div>
+          </div>
+        `;
+      }
     </script>
-    <script src="js/script.js"></script>
-    <script src="js/embed-manager.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Mobile menu toggle
@@ -306,14 +995,22 @@
         const movie = movieData[movieId];
 
         // Cập nhật thông tin phim
-        document.title = `${movie.title} - HoatHinH3D`;
+        document.title = `${movie.title} - HoatHinh3D`;
         document.getElementById("movie-title").textContent = movie.title;
         document.getElementById("movie-original-title").textContent =
           movie.originalTitle;
         document.getElementById("movie-year").textContent = movie.year;
-        document.getElementById("movie-episodes").textContent =
+        const episodesElement = document.getElementById("episode-count");
+        episodesElement.textContent =
           movie.type === "movie" ? "Phim lẻ" : `${movie.episodes} tập`;
-        document.getElementById("movie-status").textContent = movie.status;
+        const statusElement = document.getElementById("movie-status");
+        statusElement.textContent = movie.status;
+        const statusContainer = statusElement.parentElement;
+        if (movie.status === "Hoàn thành") {
+          statusContainer.classList.add("completed");
+        } else {
+          statusContainer.classList.add("updating");
+        }
         document.getElementById("movie-rating").textContent = movie.rating;
         document.getElementById("movie-description").textContent =
           movie.description;
@@ -323,8 +1020,59 @@
           "movie-backdrop"
         ).style.backgroundImage = `url(${movie.backdrop})`;
 
-        // Hiển thị thể loại
-        const genresContainer = document.getElementById("movie-genres");
+        // Xử lý nút yêu thích
+        const favoriteBtn = document.getElementById("bookmark-btn");
+        let isFav = false;
+
+        // Kiểm tra trạng thái đăng nhập và lấy userId
+        let currentUserId = null;
+        if (window.checkLoginSession && window.checkLoginSession()) {
+          const currentUser = window.getCurrentUser();
+          currentUserId = currentUser.username;
+
+          // Kiểm tra xem phim có nằm trong danh sách yêu thích không
+          if (window.isFavorite && currentUserId) {
+            isFav = window.isFavorite(currentUserId, movieId);
+            if (isFav) {
+              favoriteBtn.classList.add("active");
+            }
+          }
+        }
+
+        // Xử lý sự kiện click nút yêu thích
+        favoriteBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Nếu chưa đăng nhập, hiển thị thông báo yêu cầu đăng nhập
+          if (!currentUserId) {
+            alert("Vui lòng đăng nhập để sử dụng tính năng này");
+            return;
+          }
+
+          // Lưu thông tin cơ bản của phim
+          const movieInfo = {
+            title: movie.title,
+            poster: movie.poster,
+            year: movie.year,
+          };
+
+          // Thêm/xóa phim khỏi danh sách yêu thích
+          const isAdded = window.toggleFavorite(
+            currentUserId,
+            movieId,
+            movieInfo
+          );
+
+          // Cập nhật giao diện
+          if (isAdded) {
+            favoriteBtn.classList.add("active");
+          } else {
+            favoriteBtn.classList.remove("active");
+          }
+        });
+
+        // Hiển thị danh sách thể loại
+        const genresContainer = document.getElementById("genre-list");
         movie.genre.forEach((genre) => {
           const genreTag = document.createElement("span");
           genreTag.className = "genre";
@@ -340,8 +1088,25 @@
         if (videoData[movieId]) {
           const episodes = videoData[movieId];
 
+          // Sắp xếp các tập phim theo thứ tự
+          const sortedEpisodes = Object.entries(episodes).sort((a, b) => {
+            // Nếu có thuộc tính order, sử dụng nó để sắp xếp
+            if (a[1].order !== undefined && b[1].order !== undefined) {
+              return a[1].order - b[1].order;
+            }
+
+            // Nếu không có order, sắp xếp theo số tập
+            const numA = a[0].match(/\d+/);
+            const numB = b[0].match(/\d+/);
+            if (numA && numB) {
+              return parseInt(numA[0]) - parseInt(numB[0]);
+            }
+            return a[0].localeCompare(b[0]);
+          });
+
           // Tìm tập phim đã xem gần đây từ localStorage
-          let firstEpisodeId = Object.keys(episodes)[0];
+          let firstEpisodeId =
+            sortedEpisodes.length > 0 ? sortedEpisodes[0][0] : null;
           try {
             const lastWatchedEp = localStorage.getItem(
               "lastWatchedEpisode_" + movieId
@@ -353,15 +1118,14 @@
             console.log("Local storage not available");
           }
 
-          // Hiển thị danh sách tập
-          for (const episodeId in episodes) {
-            const episode = episodes[episodeId];
+          // Hiển thị danh sách tập theo thứ tự đã sắp xếp
+          sortedEpisodes.forEach(([episodeId, episode]) => {
             episodesHTML += `
               <div class="episode-item" data-episode="${episodeId}">
                 <span class="episode-number">${episode.title}</span>
               </div>
             `;
-          }
+          });
 
           episodesGrid.innerHTML = episodesHTML;
 
@@ -376,12 +1140,14 @@
 
           // Hàm để tải trước video cho tập kế tiếp
           function preloadNextEpisode(currentEpisodeId) {
-            const episodeKeys = Object.keys(episodes);
-            const currentIndex = episodeKeys.indexOf(currentEpisodeId);
+            // Sử dụng mảng đã sắp xếp để xác định tập kế tiếp
+            const currentIndex = sortedEpisodes.findIndex(
+              ([id, _]) => id === currentEpisodeId
+            );
 
-            if (currentIndex < episodeKeys.length - 1) {
-              const nextEpisodeId = episodeKeys[currentIndex + 1];
-              const nextEpisode = episodes[nextEpisodeId];
+            if (currentIndex < sortedEpisodes.length - 1) {
+              const [nextEpisodeId, nextEpisode] =
+                sortedEpisodes[currentIndex + 1];
 
               if (nextEpisode && nextEpisode.videoUrl) {
                 // Tạo link preconnect động
@@ -484,6 +1250,20 @@
                   console.log("Local storage not available");
                 }
 
+                // Nếu người dùng đã đăng nhập, thêm vào lịch sử xem
+                if (currentUserId && window.addToHistory) {
+                  window.addToHistory(
+                    currentUserId,
+                    movieId,
+                    {
+                      title: movie.title,
+                      poster: movie.poster,
+                      year: movie.year,
+                    },
+                    episodeId
+                  );
+                }
+
                 // Preload tập kế tiếp
                 preloadNextEpisode(episodeId);
               }, 300);
@@ -499,23 +1279,25 @@
                 }
               });
 
-              // Update navigation buttons
-              const episodeKeys = Object.keys(episodes);
-              const currentIndex = episodeKeys.indexOf(episodeId);
+              // Update navigation buttons using sorted episodes array
+              const currentIndex = sortedEpisodes.findIndex(
+                ([id, _]) => id === episodeId
+              );
 
               prevEpisodeBtn.disabled = currentIndex <= 0;
-              nextEpisodeBtn.disabled = currentIndex >= episodeKeys.length - 1;
+              nextEpisodeBtn.disabled =
+                currentIndex >= sortedEpisodes.length - 1;
 
               // Set navigation button actions
               if (!prevEpisodeBtn.disabled) {
                 prevEpisodeBtn.onclick = function () {
-                  loadEpisode(episodeKeys[currentIndex - 1]);
+                  loadEpisode(sortedEpisodes[currentIndex - 1][0]);
                 };
               }
 
               if (!nextEpisodeBtn.disabled) {
                 nextEpisodeBtn.onclick = function () {
-                  loadEpisode(episodeKeys[currentIndex + 1]);
+                  loadEpisode(sortedEpisodes[currentIndex + 1][0]);
                 };
               }
 
@@ -615,7 +1397,7 @@
         }
 
         // Server selector
-        const serverSelect = document.getElementById("server-select");
+        const serverSelect = document.getElementById("server-selector");
         if (serverSelect) {
           serverSelect.addEventListener("change", function () {
             const currentEpisodeItem = document.querySelector(

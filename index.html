@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HoatHinh3D - Xem phim hoạt hình Trung Quốc</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/user-preferences.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -13,6 +18,57 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /* CSS cho phần hiển thị thông tin người dùng */
+      #user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .user-name {
+        color: #fff;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 5px 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      #auth-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .login-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #e50914;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .login-btn:hover {
+        background-color: #b81d24;
+      }
+
+      @media (max-width: 576px) {
+        #auth-buttons {
+          gap: 5px;
+        }
+
+        .login-btn {
+          padding: 6px 12px;
+          font-size: 13px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -49,8 +105,39 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <a href="login.html" class="login-btn">Đăng Nhập</a>
-          <a href="admin.html" class="login-btn" style="margin-right: 10px;">Quản trị</a>
+          <div id="auth-buttons">
+            <a href="#" class="login-btn" id="login-button">Đăng nhập</a>
+            <a href="#" class="login-btn" id="register-button">Đăng ký</a>
+          </div>
+          <div id="user-info" style="display: none">
+            <div class="user-dropdown">
+              <span id="user-display-name" class="user-name"></span>
+              <i class="fas fa-chevron-down"></i>
+              <div class="user-dropdown-menu">
+                <a href="profile.html"
+                  ><i class="fas fa-user"></i> Trang cá nhân</a
+                >
+                <a href="profile.html#history"
+                  ><i class="fas fa-history"></i> Lịch sử xem</a
+                >
+                <a href="profile.html#favorites"
+                  ><i class="fas fa-heart"></i> Phim yêu thích</a
+                >
+              </div>
+            </div>
+            <button id="logout-btn" class="login-btn">
+              <i class="fas fa-sign-out-alt"></i> Đăng xuất
+            </button>
+          </div>
+          <div id="admin-button-container" style="display: none">
+            <a
+              href="admin.html"
+              target="_blank"
+              class="login-btn"
+              style="margin-right: 10px"
+              >Quản trị</a
+            >
+          </div>
           <div class="menu-btn">
             <i class="fas fa-bars"></i>
           </div>
@@ -58,70 +145,150 @@
       </div>
     </header>
 
-    <main>
-      <section class="hero-section">
-        <div class="hero-slider">
-          <div class="hero-slide current">
-            <div class="hero-content">
-              <div class="badge-container">
-                <span class="badge">Mới cập nhật</span>
-                <span class="badge">Đề xuất</span>
-              </div>
-              <h2>Xem phim hoạt hình Trung Quốc HD</h2>
-              <p>
-                Trang web xem phim hoạt hình Trung Quốc (donghua) với chất lượng
-                cao và cập nhật nhanh nhất. Không quảng cáo, tốc độ nhanh.
-              </p>
-              <div class="hero-buttons">
-                <a href="#trending-movies" class="btn watch-btn"
-                  ><i class="fas fa-play"></i> Khám phá ngay</a
-                >
-                <a href="#recent-update" class="btn info-btn"
-                  ><i class="fas fa-info-circle"></i> Mới cập nhật</a
-                >
-              </div>
-            </div>
-            <div class="hero-overlay"></div>
+    <!-- Modal Đăng Nhập -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Đăng nhập</h2>
+        <div class="login-with-google">
+          <button id="google-login-btn">
             <img
-              src="https://scontent-sin11-1.xx.fbcdn.net/v/t39.30808-6/475999914_122199077198187414_5524210716934572320_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGojHqcHJ-pth5FpoIpY9TCgKeYQWxxcZ2Ap5hBbHFxndRK-q47FFNSN9RqYznCjI8364qd4w5OK1_Ks8X_pBy_&_nc_ohc=Udl-g2SJ1bIQ7kNvwEcJlNe&_nc_oc=AdnN-1PPbvD8r2abhVWvpk87J1MI33xe_txI4B8zGNSGnfg9R3wzS1nbWlQJVtN1EdhQTBLtKxp0TUE54iZwAxSQ&_nc_zt=23&_nc_ht=scontent-sin11-1.xx&_nc_gid=KXnVez649y_J8VADq4YxbA&oh=00_AfINjCLyO5wlD6os7lHxtyFMvxo6j5QYIFXOYXvgwE0Eaw&oe=6831320A"
-              alt="HoatHinh3D"
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              width="20"
+            />
+            Đăng nhập bằng Google
+          </button>
+        </div>
+        <div class="login-separator">
+          <span>hoặc</span>
+        </div>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Tên tài khoản</label>
+            <input
+              type="text"
+              id="login-username"
+              placeholder="Tên tài khoản"
+              required
             />
           </div>
-        </div>
-      </section>
-
-      <section class="quick-filters">
-        <div class="container">
-          <div class="filters-wrapper">
-            <a href="#" class="filter-item active">
-              <i class="fas fa-fire"></i>
-              <span>Thịnh hành</span>
-            </a>
+          <div class="form-group">
+            <label for="login-password">Mật khẩu</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Mật khẩu"
+              required
+            />
           </div>
-        </div>
-      </section>
+          <div class="form-group remember-me">
+            <input type="checkbox" id="remember-me" />
+            <label for="remember-me">Ghi nhớ</label>
+          </div>
+          <div
+            id="login-error"
+            class="error-message"
+            style="display: none"
+          ></div>
+          <button type="submit" id="login-submit-btn">Đăng nhập</button>
+        </form>
+        <p class="switch-form">
+          Chưa có tài khoản?
+          <a href="#" id="switch-to-register">Đăng ký ngay</a>
+        </p>
+      </div>
+    </div>
 
+    <!-- Modal Đăng Ký -->
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Đăng ký</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="register-username">Tên tài khoản</label>
+            <input
+              type="text"
+              id="register-username"
+              placeholder="Tên tài khoản"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Mật khẩu</label>
+            <input
+              type="password"
+              id="register-password"
+              placeholder="Mật khẩu"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-confirm-password">Xác nhận mật khẩu</label>
+            <input
+              type="password"
+              id="register-confirm-password"
+              placeholder="Xác nhận mật khẩu"
+              required
+            />
+          </div>
+          <div
+            id="register-error"
+            class="error-message"
+            style="display: none"
+          ></div>
+          <button type="submit" id="register-submit-btn">Đăng ký</button>
+        </form>
+        <p class="switch-form">
+          Đã có tài khoản? <a href="#" id="switch-to-login">Đăng nhập</a>
+        </p>
+      </div>
+    </div>
+
+    <main class="site-main">
       <section class="trending-section" id="trending-movies">
         <div class="container">
           <div class="section-header">
-            <h2><i class="fas fa-fire"></i> Phim Đề Xuất</h2>
+            <h2>
+              <i class="fas fa-fire-alt halim-trending-icon"></i> Đang thịnh
+              hành
+            </h2>
             <a href="movies.html" class="view-all"
               >Xem Tất Cả <i class="fas fa-arrow-right"></i
             ></a>
           </div>
-          <div class="movie-grid" id="trending-movies-grid">
-            <div class="empty-message">
+          <div class="trending-carousel" id="trending-movies-carousel">
+            <!-- Phim sẽ được thêm vào đây từ JavaScript -->
+            <div class="empty-message" id="trending-empty-message">
               <i class="fas fa-film"></i>
               <p>Chưa có phim nào. Vui lòng thêm phim mới.</p>
             </div>
+          </div>
+          <div class="carousel-controls">
+            <button id="trending-prev" class="carousel-control prev-btn">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="trending-next" class="carousel-control next-btn">
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </section>
 
       <section class="featured-section">
         <div class="container">
+          <!-- Nội dung phần featured sẽ được thêm vào đây từ JavaScript -->
         </div>
-      </section>
       </section>
 
       <section class="latest-movies-section" id="recent-update">
@@ -187,6 +354,8 @@
       </section>
     </main>
 
+    <div id="user-preferences-container"></div>
+
     <footer>
       <div class="container">
         <div class="footer-content">
@@ -244,55 +413,320 @@
 
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
+    <script src="js/users.js"></script>
     <script>
-      // Làm trống đối tượng movieData và videoData để đảm bảo đọc từ localStorage
-      (function resetAndLoadData() {
-        console.log("Resetting and loading fresh data in index.html");
-        
-        // Sao lưu cấu trúc gốc
-        window.originalMovieData = JSON.parse(JSON.stringify(movieData));
-        window.originalVideoData = JSON.parse(JSON.stringify(videoData));
+      // Thiết lập các modal đăng nhập và đăng ký
+      function setupAuthModals() {
+        // Lấy các modal
+        const loginModal = document.getElementById("login-modal");
+        const registerModal = document.getElementById("register-modal");
 
-        try {
-          // Xóa hoàn toàn dữ liệu hiện tại
-          Object.keys(movieData).forEach(key => delete movieData[key]);
-          Object.keys(videoData).forEach(key => delete videoData[key]);
-          
-          // Đọc dữ liệu mới nhất từ localStorage
-          const savedMovieData = localStorage.getItem("movieData");
-          const savedVideoData = localStorage.getItem("videoData");
+        // Lấy các nút đóng modal
+        const closeButtons = document.querySelectorAll(".close-modal");
 
-          if (savedMovieData) {
-            const parsedMovieData = JSON.parse(savedMovieData);
-            Object.assign(movieData, parsedMovieData);
-            console.log("Loaded fresh movieData from localStorage with", Object.keys(parsedMovieData).length, "movies");
-          } else {
-            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
-            Object.assign(movieData, window.originalMovieData);
-            console.log("No movieData in localStorage, using original data");
-          }
+        // Lấy các nút chuyển đổi giữa đăng nhập và đăng ký
+        const switchToRegister = document.getElementById("switch-to-register");
+        const switchToLogin = document.getElementById("switch-to-login");
 
-          if (savedVideoData) {
-            const parsedVideoData = JSON.parse(savedVideoData);
-            Object.assign(videoData, parsedVideoData);
-            console.log("Loaded fresh videoData from localStorage with", Object.keys(parsedVideoData).length, "series");
-          } else {
-            // Khôi phục dữ liệu gốc nếu không có dữ liệu trong localStorage
-            Object.assign(videoData, window.originalVideoData);
-            console.log("No videoData in localStorage, using original data");
-          }
-          
-          // Debug log to verify data was loaded properly
-          console.log("Data loading complete. Available movies:", Object.keys(movieData).join(", "));
-        } catch (e) {
-          console.error("Error during data loading:", e);
-          // Trong trường hợp lỗi, khôi phục dữ liệu gốc
-          Object.assign(movieData, window.originalMovieData);
-          Object.assign(videoData, window.originalVideoData);
+        // Lấy các nút mở modal
+        const loginButton = document.getElementById("login-button");
+        const registerButton = document.getElementById("register-button");
+
+        // Lấy các form
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+
+        // Hàm helpers để hiển thị và ẩn modal - đơn giản không có hiệu ứng
+        function showModal(modal) {
+          modal.style.display = "block";
+          modal.classList.add("active");
         }
-      })();
+
+        function hideModal(modal) {
+          modal.style.display = "none";
+          modal.classList.remove("active");
+        }
+
+        function hideAllModals() {
+          hideModal(loginModal);
+          hideModal(registerModal);
+        }
+
+        // Thiết lập sự kiện cho nút đăng nhập
+        loginButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          showModal(loginModal);
+        });
+
+        // Thiết lập sự kiện cho nút đăng ký
+        registerButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          showModal(registerModal);
+        });
+
+        // Xử lý đóng modal khi nhấn nút đóng
+        closeButtons.forEach(function (button) {
+          button.addEventListener("click", hideAllModals);
+        });
+
+        // Đóng modal khi click ra ngoài
+        window.addEventListener("click", function (e) {
+          if (e.target === loginModal) {
+            hideModal(loginModal);
+          } else if (e.target === registerModal) {
+            hideModal(registerModal);
+          }
+        });
+
+        // Chuyển đổi giữa form đăng nhập và đăng ký
+        switchToRegister.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideModal(loginModal);
+          showModal(registerModal);
+        });
+
+        switchToLogin.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideModal(registerModal);
+          showModal(loginModal);
+        });
+
+        // Xử lý form đăng nhập
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("login-username").value;
+          const password = document.getElementById("login-password").value;
+          const remember = document.getElementById("remember-me").checked;
+
+          const loginResult = login(username, password, remember);
+          if (loginResult.success) {
+            hideAllModals();
+            updateAuthUI();
+          } else {
+            const errorElem = document.getElementById("login-error");
+            errorElem.textContent = loginResult.message;
+            errorElem.style.display = "block";
+          }
+        });
+
+        // Xử lý form đăng ký
+        registerForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("register-username").value;
+          const email = document.getElementById("register-email").value;
+          const password = document.getElementById("register-password").value;
+          const confirmPassword = document.getElementById(
+            "register-confirm-password"
+          ).value;
+
+          // Kiểm tra mật khẩu khớp nhau
+          if (password !== confirmPassword) {
+            const errorElem = document.getElementById("register-error");
+            errorElem.textContent = "Mật khẩu xác nhận không khớp!";
+            errorElem.style.display = "block";
+            return;
+          }
+
+          const registerResult = register(username, email, password);
+          if (registerResult.success) {
+            hideAllModals();
+            login(username, password, false);
+            updateAuthUI();
+          } else {
+            const errorElem = document.getElementById("register-error");
+            errorElem.textContent = registerResult.message;
+            errorElem.style.display = "block";
+          }
+        });
+      }
+
+      // Xử lý nút Back To Top
+      function setupBackToTop() {
+        const backToTopButton = document.querySelector(".back-to-top");
+
+        // Hiển thị nút khi cuộn xuống đủ xa
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add("visible");
+          } else {
+            backToTopButton.classList.remove("visible");
+          }
+        });
+
+        // Cuộn lên đầu trang khi nhấn nút
+        backToTopButton.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      }
+
+      // Hàm cập nhật giao diện người dùng dựa trên trạng thái đăng nhập
+      function updateAuthUI() {
+        const currentUser = getCurrentUser();
+        const authButtons = document.getElementById("auth-buttons");
+        const userInfo = document.getElementById("user-info");
+        const adminButton = document.getElementById("admin-button-container");
+
+        if (currentUser) {
+          // Đã đăng nhập
+          authButtons.style.display = "none";
+          userInfo.style.display = "flex";
+
+          // Hiển thị tên người dùng
+          document.getElementById("user-display-name").textContent =
+            currentUser.username;
+
+          // Hiển thị nút Admin nếu là admin
+          if (currentUser.isAdmin) {
+            adminButton.style.display = "block";
+          } else {
+            adminButton.style.display = "none";
+          }
+
+          // Thiết lập sự kiện đăng xuất
+          document
+            .getElementById("logout-btn")
+            .addEventListener("click", function () {
+              logout();
+              updateAuthUI();
+            });
+        } else {
+          // Chưa đăng nhập
+          authButtons.style.display = "flex";
+          userInfo.style.display = "none";
+          adminButton.style.display = "none";
+        }
+      }
+
+      // Hiển thị phim thịnh hành
+      function setupTrendingCarousel() {
+        const trendingCarousel = document.getElementById(
+          "trending-movies-carousel"
+        );
+        const emptyMessage = document.getElementById("trending-empty-message");
+        const prevBtn = document.getElementById("trending-prev");
+        const nextBtn = document.getElementById("trending-next");
+
+        // Kiểm tra nếu có dữ liệu phim
+        if (moviesData && moviesData.length > 0) {
+          // Ẩn thông báo trống
+          emptyMessage.style.display = "none";
+
+          // Lấy 8 phim đầu tiên cho phần thịnh hành
+          const trendingMovies = moviesData.slice(0, 8);
+
+          // Thêm phim vào carousel
+          trendingMovies.forEach((movie) => {
+            const movieCard = createMovieCard(movie);
+            trendingCarousel.appendChild(movieCard);
+          });
+
+          // Thiết lập điều khiển carousel
+          let scrollPosition = 0;
+          const scrollAmount = 300;
+
+          // Xử lý nút prev
+          prevBtn.addEventListener("click", () => {
+            scrollPosition -= scrollAmount;
+            if (scrollPosition < 0) scrollPosition = 0;
+            trendingCarousel.scrollTo({
+              left: scrollPosition,
+              behavior: "smooth",
+            });
+          });
+
+          // Xử lý nút next
+          nextBtn.addEventListener("click", () => {
+            scrollPosition += scrollAmount;
+            const maxScroll =
+              trendingCarousel.scrollWidth - trendingCarousel.clientWidth;
+            if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+            trendingCarousel.scrollTo({
+              left: scrollPosition,
+              behavior: "smooth",
+            });
+          });
+        }
+      }
+
+      // Hiển thị phim mới cập nhật
+      function setupLatestMovies() {
+        const latestMoviesGrid = document.getElementById("latest-movies-grid");
+
+        // Kiểm tra nếu có dữ liệu phim
+        if (moviesData && moviesData.length > 0) {
+          // Xóa thông báo trống
+          latestMoviesGrid.innerHTML = "";
+
+          // Lấy 8 phim gần đây nhất
+          const latestMovies = [...moviesData]
+            .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+            .slice(0, 8);
+
+          // Thêm phim vào grid
+          latestMovies.forEach((movie) => {
+            const movieCard = createMovieCard(movie);
+            latestMoviesGrid.appendChild(movieCard);
+          });
+        }
+      }
+
+      // Tạo card phim
+      function createMovieCard(movie) {
+        const card = document.createElement("div");
+        card.className = "movie-card";
+
+        card.innerHTML = `
+          <div class="movie-poster">
+            <img src="${movie.poster || "images/default-poster.jpg"}" alt="${
+          movie.title
+        }">
+            <div class="movie-overlay">
+              <a href="movie-detail.html?id=${movie.id}" class="play-btn">
+                <i class="fas fa-play"></i>
+              </a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 title="${movie.title}">${movie.title}</h3>
+            <div class="movie-meta">
+              <span class="quality">${
+                movie.type === "series" ? "Phim bộ" : "Phim lẻ"
+              }</span>
+              <span class="rating"><i class="fas fa-star"></i> ${
+                movie.rating || "?"
+              }</span>
+            </div>
+          </div>
+        `;
+
+        // Thiết lập sự kiện click cho card
+        card.addEventListener("click", () => {
+          window.location.href = `movie-detail.html?id=${movie.id}`;
+        });
+
+        return card;
+      }
+
+      // Chạy khi trang được tải
+      document.addEventListener("DOMContentLoaded", function () {
+        setupAuthModals();
+        updateAuthUI();
+        setupBackToTop();
+        setupTrendingCarousel();
+        setupLatestMovies();
+
+        // Xử lý menu di động
+        const menuBtn = document.querySelector(".menu-btn");
+        const nav = document.querySelector("nav");
+
+        menuBtn.addEventListener("click", function () {
+          nav.classList.toggle("active");
+        });
+      });
     </script>
-    <script src="js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Mobile menu toggle
@@ -309,5 +743,7 @@
         loadPageSpecificContent();
       });
     </script>
+    <script src="js/user-preferences.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

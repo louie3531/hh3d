@@ -271,37 +271,102 @@ function saveEpisodes() {
 
   console.log("Saving episodes for movie:", seriesId);
 
+  // Xác định order cao nhất hiện có để thêm tập mới vào cuối
+  let maxOrder = -1;
+  Object.values(videoData[seriesId]).forEach((episode) => {
+    if (episode.order !== undefined && episode.order > maxOrder) {
+      maxOrder = episode.order;
+    }
+  });
+
   // Add episodes to videoData
-  episodes.forEach((episode) => {
+  episodes.forEach((episode, index) => {
     // Generate a key for the episode based on the title
     // Example: "Tập 10" becomes "ep10"
     let episodeKey = "ep" + (episode.title.match(/\d+/)?.[0] || Date.now());
 
-    // Add the episode to videoData
+    // Add the episode to videoData with next order value
     videoData[seriesId][episodeKey] = {
       title: episode.title,
       videoUrl: episode.url,
       embedCode: episode.embedCode,
+      order: maxOrder + index + 1, // Assign order starting after the current max
     };
 
-    console.log("Added episode:", episodeKey, episode.title);
+    console.log(
+      "Added episode:",
+      episodeKey,
+      episode.title,
+      "with order:",
+      maxOrder + index + 1
+    );
   });
 
   // Call the updateVideoData function if it exists
   if (typeof updateVideoData === "function") {
-    episodes.forEach((episode) => {
+    episodes.forEach((episode, index) => {
       let episodeKey = "ep" + (episode.title.match(/\d+/)?.[0] || Date.now());
       updateVideoData(
         seriesId,
         episodeKey,
         episode.title,
         episode.url,
-        episode.embedCode
+        episode.embedCode,
+        maxOrder + index + 1 // Pass order to updateVideoData if it supports it
       );
     });
   }
 
-  // Update localStorage to persist changes  try {    localStorage.setItem("videoData", JSON.stringify(videoData));    console.log("Saved videoData to localStorage");  } catch (e) {    console.error("Không thể lưu vào localStorage:", e);    showError("Không thể lưu dữ liệu: " + e.message);    return;  }  // Get movie title for success message  const movieTitle = movieData[seriesId].title;    // Update movie episode count in movieData  const totalEpisodes = Object.keys(videoData[seriesId]).length;  movieData[seriesId].episodes = totalEpisodes;  // Save updated movieData  try {    localStorage.setItem("movieData", JSON.stringify(movieData));    console.log("Updated movie episode count in movieData");        // Show detailed success message    const successMessage = document.getElementById("success-message");    successMessage.innerHTML = `      <i class="fas fa-check-circle"></i> Đã thêm ${episodes.length} tập phim vào "${movieTitle}".       Tổng số tập hiện tại: ${totalEpisodes}.       <a href="movie-detail.html?id=${seriesId}" target="_blank" style="color: #27ae60; text-decoration: underline;">        Xem phim ngay      </a>    `;        successMessage.style.display = "block";    setTimeout(() => {      successMessage.style.display = "none";    }, 5000);      } catch (e) {    console.error("Không thể cập nhật số tập trong movieData:", e);    showError("Lỗi khi cập nhật số tập: " + e.message);  }
+  // Update localStorage to persist changes
+  try {
+    // Sử dụng hàm saveVideoData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveVideoData === "function") {
+      saveVideoData();
+    } else {
+      localStorage.setItem("videoData", JSON.stringify(videoData));
+    }
+    console.log("Saved videoData to localStorage");
+  } catch (e) {
+    console.error("Không thể lưu vào localStorage:", e);
+    showError("Không thể lưu dữ liệu: " + e.message);
+    return;
+  }
+
+  // Get movie title for success message
+  const movieTitle = movieData[seriesId].title;
+
+  // Update movie episode count in movieData
+  const totalEpisodes = Object.keys(videoData[seriesId]).length;
+  movieData[seriesId].episodes = totalEpisodes;
+
+  // Save updated movieData
+  try {
+    // Sử dụng hàm saveMovieData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveMovieData === "function") {
+      saveMovieData();
+    } else {
+      localStorage.setItem("movieData", JSON.stringify(movieData));
+    }
+    console.log("Updated movie episode count in movieData");
+
+    // Show detailed success message
+    const successMessage = document.getElementById("success-message");
+    successMessage.innerHTML = `
+      <i class="fas fa-check-circle"></i> Đã thêm ${episodes.length} tập phim vào "${movieTitle}". 
+      Tổng số tập hiện tại: ${totalEpisodes}. 
+      <a href="movie-detail.html?id=${seriesId}" target="_blank" style="color: #27ae60; text-decoration: underline;">
+        Xem phim ngay
+      </a>
+    `;
+
+    successMessage.style.display = "block";
+    setTimeout(() => {
+      successMessage.style.display = "none";
+    }, 5000);
+  } catch (e) {
+    console.error("Không thể cập nhật số tập trong movieData:", e);
+    showError("Lỗi khi cập nhật số tập: " + e.message);
+  }
 
   // Clear episode inputs
   document.getElementById("episodes-container").innerHTML = `
@@ -381,8 +446,18 @@ function saveMovie() {
 
   // Update localStorage to persist changes
   try {
-    localStorage.setItem("movieData", JSON.stringify(movieData));
-    localStorage.setItem("videoData", JSON.stringify(videoData));
+    // Sử dụng hàm saveMovieData và saveVideoData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveMovieData === "function") {
+      saveMovieData();
+    } else {
+      localStorage.setItem("movieData", JSON.stringify(movieData));
+    }
+
+    if (typeof saveVideoData === "function") {
+      saveVideoData();
+    } else {
+      localStorage.setItem("videoData", JSON.stringify(videoData));
+    }
     console.log("Saved movieData and videoData to localStorage");
   } catch (e) {
     console.error("Không thể lưu vào localStorage:", e);
@@ -599,7 +674,12 @@ function saveEditedMovie(movieId) {
 
   // Lưu vào localStorage
   try {
-    localStorage.setItem("movieData", JSON.stringify(movieData));
+    // Sử dụng hàm saveMovieData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveMovieData === "function") {
+      saveMovieData();
+    } else {
+      localStorage.setItem("movieData", JSON.stringify(movieData));
+    }
     console.log("Saved edited movie to localStorage:", movieId);
 
     // Cập nhật tùy chọn trong select box
@@ -630,6 +710,9 @@ function saveEditedMovie(movieId) {
  * @param {string} movieId - ID của phim cần xóa
  */
 function deleteMovie(movieId) {
+  // Lưu tên phim trước khi xóa
+  const movieTitle = movieData[movieId].title;
+
   // Xóa phim khỏi movieData
   delete movieData[movieId];
 
@@ -640,8 +723,18 @@ function deleteMovie(movieId) {
 
   // Lưu vào localStorage
   try {
-    localStorage.setItem("movieData", JSON.stringify(movieData));
-    localStorage.setItem("videoData", JSON.stringify(videoData));
+    // Sử dụng hàm saveMovieData và saveVideoData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveMovieData === "function") {
+      saveMovieData();
+    } else {
+      localStorage.setItem("movieData", JSON.stringify(movieData));
+    }
+
+    if (typeof saveVideoData === "function") {
+      saveVideoData();
+    } else {
+      localStorage.setItem("videoData", JSON.stringify(videoData));
+    }
     console.log("Deleted movie from localStorage:", movieId);
 
     // Cập nhật danh sách phim trong các dropdown
@@ -659,7 +752,7 @@ function deleteMovie(movieId) {
     document.getElementById("delete-movie-btn").disabled = true;
 
     // Hiển thị thông báo thành công
-    showSuccess(null, null, `Đã xóa phim: ${movieData[movieId].title}`);
+    showSuccess(null, null, `Đã xóa phim: ${movieTitle}`);
   } catch (e) {
     console.error("Không thể lưu thay đổi vào localStorage:", e);
     showError("Lỗi: " + e.message);
@@ -695,9 +788,16 @@ function loadEpisodesList(movieId) {
         background-color: #333;
         border-radius: 4px;
         margin-bottom: 10px;
+        cursor: grab;
+        transition: transform 0.2s, box-shadow 0.2s;
       }
       .episode-item:hover {
         background-color: #444;
+      }
+      .episode-item.dragging {
+        opacity: 0.8;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        background-color: #555;
       }
       .episode-info {
         flex: 1;
@@ -711,6 +811,11 @@ function loadEpisodesList(movieId) {
         color: #aaa;
         word-break: break-all;
       }
+      .episode-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
       .delete-episode {
         color: #e74c3c;
         cursor: pointer;
@@ -720,11 +825,49 @@ function loadEpisodesList(movieId) {
       .delete-episode:hover {
         transform: scale(1.2);
       }
+      .drag-handle {
+        color: #aaa;
+        cursor: grab;
+        padding: 5px;
+      }
+      .drag-handle:hover {
+        color: #fff;
+      }
+      .reorder-instructions {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .reorder-instructions i {
+        color: #e50914;
+      }
+      .save-order-btn {
+        margin-top: 15px;
+        background-color: #27ae60;
+      }
+      .save-order-btn:hover {
+        background-color: #2ecc71;
+      }
     </style>
+    <div class="reorder-instructions">
+      <i class="fas fa-info-circle"></i>
+      <span>Kéo và thả các tập phim để thay đổi thứ tự. Nhấn "Lưu thứ tự" sau khi sắp xếp.</span>
+    </div>
   `;
 
   // Sắp xếp tập phim theo số tập
   const episodes = Object.entries(videoData[movieId]).sort((a, b) => {
+    // Nếu có thuộc tính order, sử dụng nó để sắp xếp
+    if (a[1].order !== undefined && b[1].order !== undefined) {
+      return a[1].order - b[1].order;
+    }
+
+    // Nếu không có order, sắp xếp theo số tập
     const numA = a[0].match(/\d+/);
     const numB = b[0].match(/\d+/);
     if (numA && numB) {
@@ -733,24 +876,128 @@ function loadEpisodesList(movieId) {
     return a[0].localeCompare(b[0]);
   });
 
-  episodes.forEach(([episodeKey, episode]) => {
+  episodes.forEach(([episodeKey, episode], index) => {
     const videoUrl = episode.videoUrl || "Không có URL";
     episodesHTML += `
-      <div class="episode-item" data-episode-key="${episodeKey}">
+      <div class="episode-item" data-episode-key="${episodeKey}" draggable="true">
         <div class="episode-info">
           <div class="episode-title">${episode.title}</div>
           <div class="episode-url">${
             videoUrl.length > 60 ? videoUrl.substring(0, 60) + "..." : videoUrl
           }</div>
         </div>
-        <div class="delete-episode" onclick="deleteEpisode('${movieId}', '${episodeKey}')">
-          <i class="fas fa-trash"></i>
+        <div class="episode-actions">
+          <div class="drag-handle" title="Kéo để thay đổi vị trí">
+            <i class="fas fa-grip-vertical"></i>
+          </div>
+          <div class="delete-episode" onclick="deleteEpisode('${movieId}', '${episodeKey}')" title="Xóa tập phim">
+            <i class="fas fa-trash"></i>
+          </div>
         </div>
       </div>
     `;
   });
 
+  // Thêm nút lưu thứ tự
+  episodesHTML += `
+    <button id="save-episodes-order" class="save-order-btn">
+      <i class="fas fa-save"></i> Lưu thứ tự
+    </button>
+  `;
+
   episodesList.innerHTML = episodesHTML;
+
+  // Thiết lập tính năng kéo thả
+  setupDragAndDrop(episodesList, movieId);
+
+  // Thiết lập sự kiện cho nút lưu thứ tự
+  document
+    .getElementById("save-episodes-order")
+    .addEventListener("click", function () {
+      saveEpisodesOrder(movieId);
+    });
+}
+
+/**
+ * Thiết lập tính năng kéo thả cho danh sách tập phim
+ * @param {HTMLElement} container - Container chứa danh sách tập phim
+ * @param {string} movieId - ID của phim
+ */
+function setupDragAndDrop(container, movieId) {
+  const episodeItems = container.querySelectorAll(".episode-item");
+  let draggedItem = null;
+
+  episodeItems.forEach((item) => {
+    // Sự kiện khi bắt đầu kéo
+    item.addEventListener("dragstart", function () {
+      draggedItem = this;
+      setTimeout(() => {
+        this.classList.add("dragging");
+      }, 0);
+    });
+
+    // Sự kiện khi kết thúc kéo
+    item.addEventListener("dragend", function () {
+      this.classList.remove("dragging");
+      draggedItem = null;
+    });
+
+    // Sự kiện khi kéo qua một phần tử khác
+    item.addEventListener("dragover", function (e) {
+      e.preventDefault();
+    });
+
+    // Sự kiện khi thả vào một vị trí mới
+    item.addEventListener("drop", function (e) {
+      e.preventDefault();
+      if (this !== draggedItem) {
+        // Xác định vị trí mới
+        const allItems = [...container.querySelectorAll(".episode-item")];
+        const draggedIndex = allItems.indexOf(draggedItem);
+        const targetIndex = allItems.indexOf(this);
+
+        // Thực hiện việc di chuyển DOM element
+        if (draggedIndex < targetIndex) {
+          this.parentNode.insertBefore(draggedItem, this.nextSibling);
+        } else {
+          this.parentNode.insertBefore(draggedItem, this);
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Lưu thứ tự mới của các tập phim
+ * @param {string} movieId - ID của phim
+ */
+function saveEpisodesOrder(movieId) {
+  const episodeItems = document.querySelectorAll(".episode-item");
+
+  // Lưu thứ tự mới vào videoData
+  episodeItems.forEach((item, index) => {
+    const episodeKey = item.getAttribute("data-episode-key");
+    if (videoData[movieId][episodeKey]) {
+      videoData[movieId][episodeKey].order = index;
+    }
+  });
+
+  // Lưu vào localStorage
+  try {
+    // Sử dụng hàm saveVideoData thay vì trực tiếp lưu vào localStorage
+    if (typeof saveVideoData === "function") {
+      saveVideoData();
+    } else {
+      localStorage.setItem("videoData", JSON.stringify(videoData));
+    }
+    console.log("Saved new episode order to localStorage");
+
+    // Hiển thị thông báo thành công
+    showSuccess("Đã lưu thứ tự tập phim thành công!");
+  } catch (e) {
+    console.error("Không thể lưu thứ tự mới vào localStorage:", e);
+    showError("Lỗi: " + e.message);
+  }
 }
 
 // Đặt hàm deleteEpisode trong window để có thể gọi từ inline onclick
@@ -760,6 +1007,9 @@ window.deleteEpisode = function (movieId, episodeKey) {
       `Bạn có chắc chắn muốn xóa tập "${videoData[movieId][episodeKey].title}" không?`
     )
   ) {
+    // Lưu tên tập phim trước khi xóa
+    const episodeTitle = videoData[movieId][episodeKey].title;
+
     // Xóa tập phim
     delete videoData[movieId][episodeKey];
 
@@ -768,19 +1018,25 @@ window.deleteEpisode = function (movieId, episodeKey) {
 
     // Lưu vào localStorage
     try {
-      localStorage.setItem("videoData", JSON.stringify(videoData));
-      localStorage.setItem("movieData", JSON.stringify(movieData));
+      // Sử dụng hàm saveVideoData thay vì trực tiếp lưu vào localStorage
+      if (typeof saveVideoData === "function") {
+        saveVideoData();
+      } else {
+        localStorage.setItem("videoData", JSON.stringify(videoData));
+      }
+
+      if (typeof saveMovieData === "function") {
+        saveMovieData();
+      } else {
+        localStorage.setItem("movieData", JSON.stringify(movieData));
+      }
       console.log("Deleted episode from localStorage:", movieId, episodeKey);
 
       // Cập nhật lại danh sách tập phim
       loadEpisodesList(movieId);
 
       // Hiển thị thông báo thành công
-      showSuccess(
-        null,
-        null,
-        `Đã xóa tập: ${videoData[movieId][episodeKey].title}`
-      );
+      showSuccess(null, null, `Đã xóa tập: ${episodeTitle}`);
     } catch (e) {
       console.error("Không thể lưu thay đổi vào localStorage:", e);
       showError("Lỗi: " + e.message);

@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang Quản Trị - HoatHinH3D</title>
+    <link rel="icon" href="images/favicon.ico" sizes="any" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/favicon.svg" />
+    <meta name="theme-color" content="#E50914" />
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -261,9 +265,9 @@
           <h1 class="admin-title">
             <i class="fas fa-cog"></i> Quản Trị HoatHinH3D
           </h1>
-          <a href="index.html" class="logout-btn">
-            <i class="fas fa-sign-out-alt"></i> Quay lại trang chủ
-          </a>
+          <button id="logout-btn" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Đăng xuất
+          </button>
         </div>
 
         <div class="tab-container">
@@ -272,6 +276,9 @@
           </button>
           <button class="tab" data-tab="add-movie">Thêm Phim Mới</button>
           <button class="tab" data-tab="manage-movies">Quản Lý Phim</button>
+          <button class="tab" data-tab="manage-users">
+            Quản Lý Người Dùng
+          </button>
         </div>
 
         <div id="success-message" class="success-message">
@@ -612,6 +619,190 @@
             </div>
           </div>
         </div>
+
+        <!-- Quản lý người dùng -->
+        <div id="manage-users" class="tab-content">
+          <div class="form-section">
+            <h2 class="form-title">Quản Lý Người Dùng</h2>
+
+            <!-- Danh sách người dùng -->
+            <div class="user-list-container" style="margin-bottom: 20px">
+              <h3 style="margin-bottom: 15px">Danh sách người dùng</h3>
+              <table
+                id="users-table"
+                style="width: 100%; border-collapse: collapse"
+              >
+                <thead>
+                  <tr style="background-color: #333">
+                    <th
+                      style="
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #444;
+                      "
+                    >
+                      Tên đăng nhập
+                    </th>
+                    <th
+                      style="
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #444;
+                      "
+                    >
+                      Tên hiển thị
+                    </th>
+                    <th
+                      style="
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #444;
+                      "
+                    >
+                      Email
+                    </th>
+                    <th
+                      style="
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #444;
+                      "
+                    >
+                      Vai trò
+                    </th>
+                    <th
+                      style="
+                        padding: 10px;
+                        text-align: center;
+                        border-bottom: 1px solid #444;
+                      "
+                    >
+                      Thao tác
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Danh sách người dùng sẽ được thêm bởi JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Thêm người dùng mới -->
+            <div
+              class="add-user-section"
+              style="
+                margin-top: 30px;
+                border-top: 1px solid #444;
+                padding-top: 20px;
+              "
+            >
+              <h3 style="margin-bottom: 15px">Thêm người dùng mới</h3>
+
+              <div class="form-group">
+                <label for="new-username">Tên đăng nhập:</label>
+                <input
+                  type="text"
+                  id="new-username"
+                  placeholder="Tên đăng nhập"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="new-password">Mật khẩu:</label>
+                <input
+                  type="password"
+                  id="new-password"
+                  placeholder="Mật khẩu"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="new-display-name">Tên hiển thị:</label>
+                <input
+                  type="text"
+                  id="new-display-name"
+                  placeholder="Tên hiển thị"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="new-email">Email:</label>
+                <input type="email" id="new-email" placeholder="Email" />
+              </div>
+
+              <div class="form-group">
+                <label for="new-role">Vai trò:</label>
+                <select id="new-role">
+                  <option value="user">Người dùng</option>
+                  <option value="admin">Quản trị viên</option>
+                </select>
+              </div>
+
+              <button id="add-user-btn" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Thêm người dùng
+              </button>
+            </div>
+
+            <!-- Form chỉnh sửa người dùng -->
+            <div
+              id="edit-user-form"
+              style="
+                display: none;
+                margin-top: 30px;
+                border-top: 1px solid #444;
+                padding-top: 20px;
+              "
+            >
+              <h3 style="margin-bottom: 15px">
+                Chỉnh sửa thông tin người dùng
+              </h3>
+
+              <input type="hidden" id="edit-user-username" />
+
+              <div class="form-group">
+                <label for="edit-display-name">Tên hiển thị:</label>
+                <input
+                  type="text"
+                  id="edit-display-name"
+                  placeholder="Tên hiển thị"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-email">Email:</label>
+                <input type="email" id="edit-email" placeholder="Email" />
+              </div>
+
+              <div class="form-group">
+                <label for="edit-role">Vai trò:</label>
+                <select id="edit-role">
+                  <option value="user">Người dùng</option>
+                  <option value="admin">Quản trị viên</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="edit-password"
+                  >Mật khẩu mới (để trống nếu không đổi):</label
+                >
+                <input
+                  type="password"
+                  id="edit-password"
+                  placeholder="Mật khẩu mới"
+                />
+              </div>
+
+              <button id="save-user-btn" class="btn-primary">
+                <i class="fas fa-save"></i> Lưu thay đổi
+              </button>
+              <button id="cancel-edit-user-btn" class="btn-secondary">
+                <i class="fas fa-times"></i> Hủy
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -641,6 +832,253 @@
 
     <script src="js/movies-data.js"></script>
     <script src="js/video-data.js"></script>
+    <script src="js/users.js"></script>
     <script src="js/admin.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Kiểm tra đăng nhập
+        if (!checkLoginSession()) {
+          // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Kiểm tra quyền admin
+        if (!isAdmin()) {
+          alert("Bạn không có quyền truy cập trang quản trị!");
+          window.location.href = "index.html";
+          return;
+        }
+
+        // Hiển thị tên người dùng đang đăng nhập
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+          const adminTitle = document.querySelector(".admin-title");
+          adminTitle.innerHTML = `<i class="fas fa-cog"></i> Quản Trị HoatHinH3D - ${currentUser.displayName}`;
+        }
+
+        // Xử lý sự kiện đăng xuất
+        document
+          .getElementById("logout-btn")
+          .addEventListener("click", function () {
+            logoutUser();
+          });
+
+        // Tải danh sách người dùng khi chọn tab quản lý người dùng
+        const userTab = document.querySelector('.tab[data-tab="manage-users"]');
+        userTab.addEventListener("click", loadUserList);
+
+        // Xử lý sự kiện thêm người dùng mới
+        document
+          .getElementById("add-user-btn")
+          .addEventListener("click", function () {
+            const username = document
+              .getElementById("new-username")
+              .value.trim();
+            const password = document
+              .getElementById("new-password")
+              .value.trim();
+            const displayName = document
+              .getElementById("new-display-name")
+              .value.trim();
+            const email = document.getElementById("new-email").value.trim();
+            const role = document.getElementById("new-role").value;
+
+            if (!username || !password) {
+              showError("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
+              return;
+            }
+
+            const newUser = {
+              username: username,
+              password: password,
+              displayName: displayName || username,
+              email: email || "",
+              role: role,
+            };
+
+            if (addUser(newUser)) {
+              showSuccess(null, null, `Đã thêm người dùng mới: ${username}`);
+
+              // Xóa form
+              document.getElementById("new-username").value = "";
+              document.getElementById("new-password").value = "";
+              document.getElementById("new-display-name").value = "";
+              document.getElementById("new-email").value = "";
+              document.getElementById("new-role").value = "user";
+
+              // Cập nhật lại danh sách người dùng
+              loadUserList();
+            } else {
+              showError(
+                "Không thể thêm người dùng. Tên đăng nhập có thể đã tồn tại!"
+              );
+            }
+          });
+
+        // Xử lý sự kiện lưu thông tin người dùng
+        document
+          .getElementById("save-user-btn")
+          .addEventListener("click", function () {
+            const username =
+              document.getElementById("edit-user-username").value;
+            const displayName = document
+              .getElementById("edit-display-name")
+              .value.trim();
+            const email = document.getElementById("edit-email").value.trim();
+            const role = document.getElementById("edit-role").value;
+            const password = document
+              .getElementById("edit-password")
+              .value.trim();
+
+            const userInfo = {
+              displayName: displayName,
+              email: email,
+              role: role,
+            };
+
+            // Chỉ cập nhật mật khẩu nếu đã nhập mật khẩu mới
+            if (password) {
+              userInfo.password = password;
+            }
+
+            if (updateUser(username, userInfo)) {
+              showSuccess(
+                null,
+                null,
+                `Đã cập nhật thông tin người dùng: ${username}`
+              );
+
+              // Ẩn form chỉnh sửa
+              document.getElementById("edit-user-form").style.display = "none";
+
+              // Cập nhật lại danh sách người dùng
+              loadUserList();
+            } else {
+              showError("Không thể cập nhật thông tin người dùng!");
+            }
+          });
+
+        // Xử lý sự kiện hủy chỉnh sửa người dùng
+        document
+          .getElementById("cancel-edit-user-btn")
+          .addEventListener("click", function () {
+            document.getElementById("edit-user-form").style.display = "none";
+          });
+      });
+
+      // Hàm tải danh sách người dùng
+      function loadUserList() {
+        const usersTable = document
+          .getElementById("users-table")
+          .getElementsByTagName("tbody")[0];
+        usersTable.innerHTML = "";
+
+        const users = getUsers();
+
+        users.forEach(function (user) {
+          const row = document.createElement("tr");
+
+          // Tạo các ô dữ liệu
+          const usernameCell = document.createElement("td");
+          usernameCell.style.padding = "10px";
+          usernameCell.style.borderBottom = "1px solid #444";
+          usernameCell.textContent = user.username;
+
+          const displayNameCell = document.createElement("td");
+          displayNameCell.style.padding = "10px";
+          displayNameCell.style.borderBottom = "1px solid #444";
+          displayNameCell.textContent = user.displayName || user.username;
+
+          const emailCell = document.createElement("td");
+          emailCell.style.padding = "10px";
+          emailCell.style.borderBottom = "1px solid #444";
+          emailCell.textContent = user.email || "";
+
+          const roleCell = document.createElement("td");
+          roleCell.style.padding = "10px";
+          roleCell.style.borderBottom = "1px solid #444";
+          roleCell.textContent =
+            user.role === "admin" ? "Quản trị viên" : "Người dùng";
+
+          const actionsCell = document.createElement("td");
+          actionsCell.style.padding = "10px";
+          actionsCell.style.borderBottom = "1px solid #444";
+          actionsCell.style.textAlign = "center";
+
+          // Tạo nút chỉnh sửa
+          const editBtn = document.createElement("button");
+          editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+          editBtn.style.marginRight = "10px";
+          editBtn.style.padding = "5px 10px";
+          editBtn.style.backgroundColor = "#3498db";
+          editBtn.style.border = "none";
+          editBtn.style.borderRadius = "3px";
+          editBtn.style.color = "white";
+          editBtn.style.cursor = "pointer";
+
+          editBtn.addEventListener("click", function () {
+            // Hiển thị form chỉnh sửa với thông tin người dùng
+            document.getElementById("edit-user-username").value = user.username;
+            document.getElementById("edit-display-name").value =
+              user.displayName || "";
+            document.getElementById("edit-email").value = user.email || "";
+            document.getElementById("edit-role").value = user.role;
+            document.getElementById("edit-password").value = "";
+
+            document.getElementById("edit-user-form").style.display = "block";
+          });
+
+          // Tạo nút xóa (không cho phép xóa tài khoản admin)
+          const deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+          deleteBtn.style.padding = "5px 10px";
+          deleteBtn.style.backgroundColor = "#e74c3c";
+          deleteBtn.style.border = "none";
+          deleteBtn.style.borderRadius = "3px";
+          deleteBtn.style.color = "white";
+          deleteBtn.style.cursor = "pointer";
+
+          // Vô hiệu hóa nút xóa đối với tài khoản admin
+          if (user.username === "admin") {
+            deleteBtn.disabled = true;
+            deleteBtn.style.backgroundColor = "#7f8c8d";
+            deleteBtn.style.cursor = "not-allowed";
+          } else {
+            deleteBtn.addEventListener("click", function () {
+              if (
+                confirm(
+                  `Bạn có chắc chắn muốn xóa người dùng "${user.username}" không?`
+                )
+              ) {
+                if (deleteUser(user.username)) {
+                  showSuccess(
+                    null,
+                    null,
+                    `Đã xóa người dùng: ${user.username}`
+                  );
+                  loadUserList();
+                } else {
+                  showError("Không thể xóa người dùng!");
+                }
+              }
+            });
+          }
+
+          actionsCell.appendChild(editBtn);
+          actionsCell.appendChild(deleteBtn);
+
+          // Thêm các ô vào hàng
+          row.appendChild(usernameCell);
+          row.appendChild(displayNameCell);
+          row.appendChild(emailCell);
+          row.appendChild(roleCell);
+          row.appendChild(actionsCell);
+
+          // Thêm hàng vào bảng
+          usersTable.appendChild(row);
+        });
+      }
+    </script>
   </body>
 </html>

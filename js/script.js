@@ -2,6 +2,9 @@
 
 // Function to load page-specific content
 function loadPageSpecificContent() {
+  // Khởi tạo giao diện người dùng (đăng nhập/đăng xuất)
+  initializeUserInterface();
+
   const pagePath = window.location.pathname;
 
   // Home page
@@ -11,6 +14,8 @@ function loadPageSpecificContent() {
     pagePath.endsWith("\\")
   ) {
     loadHomePage();
+    // Hiển thị lịch sử xem và phim yêu thích
+    loadHistoryAndFavorites();
   }
 
   // Movies page
@@ -29,6 +34,102 @@ function loadPageSpecificContent() {
   }
 }
 
+/**
+ * Khởi tạo giao diện người dùng dựa trên trạng thái đăng nhập
+ */
+function initializeUserInterface() {
+  const loginButton = document.getElementById("login-button");
+  const adminButtonContainer = document.getElementById(
+    "admin-button-container"
+  );
+
+  // Kiểm tra đăng nhập
+  const isLoggedIn = window.checkLoginSession && window.checkLoginSession();
+  const currentUser = isLoggedIn ? window.getCurrentUser() : null;
+
+  if (loginButton) {
+    if (isLoggedIn) {
+      // Người dùng đã đăng nhập
+      loginButton.innerHTML = `<i class="fas fa-user"></i> ${
+        currentUser.displayName || currentUser.username
+      }`;
+      loginButton.href = "profile.html";
+
+      // Thêm dropdown menu cho user
+      const headerRight = loginButton.parentElement;
+
+      // Kiểm tra xem đã có dropdown chưa
+      let userDropdown = document.getElementById("user-dropdown");
+      if (!userDropdown) {
+        // Tạo dropdown cho user
+        userDropdown = document.createElement("div");
+        userDropdown.id = "user-dropdown";
+        userDropdown.className = "dropdown-menu user-dropdown";
+        userDropdown.innerHTML = `
+          <a href="profile.html"><i class="fas fa-user-circle"></i> Trang cá nhân</a>
+          <a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        `;
+        headerRight.appendChild(userDropdown);
+
+        // Xử lý sự kiện đăng xuất
+        const logoutButton = document.getElementById("logout-button");
+        if (logoutButton) {
+          logoutButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (window.logoutUser) {
+              window.logoutUser();
+            }
+          });
+        }
+
+        // Thêm class để xử lý dropdown
+        loginButton.classList.add("dropdown-toggle");
+
+        // Xử lý hiển thị/ẩn dropdown
+        loginButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          userDropdown.classList.toggle("active");
+        });
+
+        // Đóng dropdown khi click ra ngoài
+        document.addEventListener("click", function (e) {
+          if (
+            !loginButton.contains(e.target) &&
+            !userDropdown.contains(e.target)
+          ) {
+            userDropdown.classList.remove("active");
+          }
+        });
+      }
+
+      // Hiển thị nút admin nếu người dùng có quyền admin
+      if (adminButtonContainer && window.isAdmin && window.isAdmin()) {
+        adminButtonContainer.style.display = "inline-block";
+      } else if (adminButtonContainer) {
+        adminButtonContainer.style.display = "none";
+      }
+    } else {
+      // Người dùng chưa đăng nhập
+      loginButton.innerHTML = "Đăng Nhập";
+      loginButton.href = "login.html";
+
+      // Xóa dropdown menu nếu có
+      const userDropdown = document.getElementById("user-dropdown");
+      if (userDropdown) {
+        userDropdown.parentElement.removeChild(userDropdown);
+      }
+
+      // Xóa class dropdown-toggle
+      loginButton.classList.remove("dropdown-toggle");
+
+      // Ẩn nút admin
+      if (adminButtonContainer) {
+        adminButtonContainer.style.display = "none";
+      }
+    }
+  }
+}
+
 // Function to load homepage content
 function loadHomePage() {
   // Kiểm tra xem có dữ liệu phim hay không
@@ -37,21 +138,54 @@ function loadHomePage() {
     return;
   }
 
-  // Load trending movies (đề xuất)
-  const trendingMoviesGrid = document.getElementById("trending-movies-grid");
-  if (trendingMoviesGrid) {
-    let trendingMoviesHTML = "";
-    // Lấy tối đa 6 phim để hiển thị
+  // Load trending movies (đang thịnh hành) dưới dạng băng chuyền
+  const trendingCarousel = document.getElementById("trending-movies-carousel");
+  const trendingEmptyMessage = document.getElementById(
+    "trending-empty-message"
+  );
+
+  if (trendingCarousel) {
+    // Lấy tối đa 10 phim để hiển thị trong băng chuyền
     const movies = Object.values(movieData);
     const trendingMovies = movies
       .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating))
-      .slice(0, 6);
+      .slice(0, 10);
 
     if (trendingMovies.length > 0) {
+      let trendingMoviesHTML = "";
       trendingMovies.forEach((movie) => {
         trendingMoviesHTML += createMovieCard(movie);
       });
-      trendingMoviesGrid.innerHTML = trendingMoviesHTML;
+
+      // Ẩn thông báo trống nếu có phim
+      if (trendingEmptyMessage) {
+        trendingEmptyMessage.style.display = "none";
+      }
+
+      // Thêm các thẻ movie-card vào băng chuyền
+      trendingCarousel.innerHTML = trendingMoviesHTML;
+
+      // Thiết lập các nút điều khiển băng chuyền
+      const prevBtn = document.getElementById("trending-prev");
+      const nextBtn = document.getElementById("trending-next");
+
+      if (prevBtn && nextBtn) {
+        // Xử lý nút prev
+        prevBtn.addEventListener("click", function () {
+          trendingCarousel.scrollBy({
+            left: -600,
+            behavior: "smooth",
+          });
+        });
+
+        // Xử lý nút next
+        nextBtn.addEventListener("click", function () {
+          trendingCarousel.scrollBy({
+            left: 600,
+            behavior: "smooth",
+          });
+        });
+      }
     }
   }
 
@@ -272,19 +406,13 @@ function createMovieCard(movie) {
       <a href="movie-detail.html?id=${movie.id}">
         <div class="movie-poster">
           <img src="${movie.poster}" alt="${movie.title}" loading="lazy" />
+          <div class="rating-badge">${movie.rating}</div>
           ${
             movie.type === "series"
               ? `<div class="episode-count">${movie.episodes} tập</div>`
               : ""
           }
           <div class="movie-overlay">
-            <span class="rating">
-              <i class="fas fa-star"></i> ${movie.rating}
-            </span>
-            <button class="play-btn">
-              <i class="fas fa-play"></i>
-            </button>
-            <span class="year">${movie.year}</span>
           </div>
         </div>
         <div class="movie-info">
@@ -457,3 +585,77 @@ const videoData = {
   }
 };
 */
+
+// Hàm hiển thị lịch sử xem và phim yêu thích
+function loadHistoryAndFavorites() {
+  console.log("Đang tải lịch sử xem và phim yêu thích...");
+
+  // Kiểm tra đăng nhập
+  if (!window.checkLoginSession || !window.checkLoginSession()) {
+    console.log(
+      "Người dùng chưa đăng nhập, không hiển thị lịch sử và yêu thích"
+    );
+    return; // Chỉ hiển thị cho người dùng đã đăng nhập
+  }
+
+  console.log("Người dùng đã đăng nhập, tiếp tục tải dữ liệu");
+  const currentUser = window.getCurrentUser();
+  const userId = currentUser.username;
+  console.log("User ID:", userId);
+
+  // Tạo hoặc lấy phần tử chứa lịch sử xem và phim yêu thích
+  let userSectionContainer = document.getElementById(
+    "user-preferences-container"
+  );
+
+  // Nếu chưa có, tạo mới và chèn vào trước footer
+  if (!userSectionContainer) {
+    console.log("Tạo container mới để hiển thị liên kết đến trang cá nhân");
+    userSectionContainer = document.createElement("div");
+    userSectionContainer.id = "user-preferences-container";
+    const footer = document.querySelector("footer");
+    if (footer) {
+      footer.parentNode.insertBefore(userSectionContainer, footer);
+    } else {
+      document.body.appendChild(userSectionContainer);
+    }
+  } else {
+    console.log("Đã tìm thấy container hiện có");
+  }
+
+  // Hiển thị liên kết đến trang cá nhân
+  userSectionContainer.style.display = "block";
+  let html = '<main class="user-preferences-main"><div class="container">';
+
+  html += `
+    <section class="user-section">
+      <div class="user-section-header">
+        <h2><i class="fas fa-user"></i> Quản lý tài khoản</h2>
+      </div>
+      <div class="account-links">
+        <a href="profile.html" class="account-link">
+          <i class="fas fa-user-circle"></i>
+          <span>Trang cá nhân</span>
+        </a>
+        <a href="profile.html#history" class="account-link">
+          <i class="fas fa-history"></i>
+          <span>Lịch sử xem</span>
+          <span class="badge">${
+            window.getHistory ? window.getHistory(userId).length : 0
+          }</span>
+        </a>
+        <a href="profile.html#favorites" class="account-link">
+          <i class="fas fa-heart"></i>
+          <span>Phim yêu thích</span>
+          <span class="badge">${
+            window.getFavorites ? window.getFavorites(userId).length : 0
+          }</span>
+        </a>
+      </div>
+    </section>
+  `;
+
+  html += "</div></main>";
+  userSectionContainer.innerHTML = html;
+  console.log("Đã tạo liên kết đến trang cá nhân");
+}

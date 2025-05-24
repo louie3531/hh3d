@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40" fill="none">
+  <path d="M10 8H20C26.6274 8 32 13.3726 32 20C32 26.6274 26.6274 32 20 32H10V8Z" fill="#E50914"/>
+  <path d="M16 14V26L26 20L16 14Z" fill="white"/>
+  <text x="40" y="25" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#E50914">HoatHinh3D</text>
+</svg> 

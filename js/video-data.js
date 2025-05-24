@@ -296,9 +296,36 @@ const videoData = {
   // Thêm dữ liệu video cho các phim khác ở đây
 };
 
+// Tải dữ liệu video từ localStorage nếu có
+try {
+  const savedVideoData = localStorage.getItem("videoData");
+  if (savedVideoData) {
+    // Ghi đè dữ liệu cứng bằng dữ liệu từ localStorage
+    Object.assign(videoData, JSON.parse(savedVideoData));
+    console.log("Đã tải dữ liệu video từ localStorage");
+  }
+} catch (e) {
+  console.error("Lỗi khi tải dữ liệu video từ localStorage:", e);
+}
+
 // Export videoData nếu đang trong môi trường Node.js
 if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
   module.exports = videoData;
+}
+
+/**
+ * Lưu dữ liệu video vào localStorage
+ * @returns {boolean} Kết quả lưu
+ */
+function saveVideoData() {
+  try {
+    localStorage.setItem("videoData", JSON.stringify(videoData));
+    console.log("Đã lưu dữ liệu video vào localStorage");
+    return true;
+  } catch (e) {
+    console.error("Lỗi khi lưu dữ liệu video:", e);
+    return false;
+  }
 }
 
 /**
@@ -308,8 +335,16 @@ if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
  * @param {string} title - Tiêu đề của tập phim
  * @param {string} videoUrl - URL của video
  * @param {string} embedCode - Mã nhúng video (nếu có)
+ * @param {number} order - Thứ tự hiển thị của tập phim (nếu có)
  */
-function updateVideoData(seriesId, episodeKey, title, videoUrl, embedCode) {
+function updateVideoData(
+  seriesId,
+  episodeKey,
+  title,
+  videoUrl,
+  embedCode,
+  order
+) {
   // Tạo series mới nếu chưa tồn tại
   if (!videoData[seriesId]) {
     videoData[seriesId] = {};
@@ -326,12 +361,17 @@ function updateVideoData(seriesId, episodeKey, title, videoUrl, embedCode) {
     videoData[seriesId][episodeKey].embedCode = embedCode;
   }
 
-  // Lưu vào localStorage
-  try {
-    localStorage.setItem("videoData", JSON.stringify(videoData));
-  } catch (e) {
-    console.error("Không thể lưu vào localStorage:", e);
+  // Thêm thứ tự hiển thị nếu có
+  if (order !== undefined) {
+    videoData[seriesId][episodeKey].order = order;
   }
 
-  console.log(`Đã cập nhật video: ${seriesId} - ${episodeKey}`);
+  // Lưu vào localStorage
+  saveVideoData();
+
+  console.log(
+    `Đã cập nhật video: ${seriesId} - ${episodeKey}${
+      order !== undefined ? ` (thứ tự: ${order})` : ""
+    }`
+  );
 }
