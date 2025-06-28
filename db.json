@@ -1,0 +1,555 @@
+{
+  "movies": [
+    {
+      "id": 1751091198318,
+      "title": " Tiên Nghịch",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/tien-nghich-1737888520.jpg",
+      "isFeatured": true,
+      "genre": "Huyền Huyễn",
+      "year": "2023",
+      "description": "Cải biên từ tiểu thuyết \"Tiên Nghịch\" của tác giả Nhĩ Căn, kể về thiếu niên bình phàm Vương Lâm xuất thân nông thôn, mang theo nhiệt huyết, tu luyện nghịch tiên, không chỉ cầu trường sinh, mà còn muốn thoát khỏi thân phận giun dế. Hắn tin rằng đạo do người quyết định, dùng tư chất bình phàm bước vào con đường tu chân, trải qua bao phong ba bão táp, dựa vào trí tuệ sáng suốt, từng bước một bước lên đỉnh cao, dựa vào sức một người, danh chấn Tu chân giới.",
+      "episodes": [
+        {
+          "number": 90,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9k56la",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9k56la"
+        },
+        {
+          "number": 91,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9klkja",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9klkja"
+        },
+        {
+          "number": 92,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l05ma",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l05ma"
+        },
+        {
+          "number": 93,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9leu38",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9leu38"
+        },
+        {
+          "number": 94,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lq3wc",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lq3wc"
+        }
+      ]
+    },
+    {
+      "id": 1751105425828,
+      "title": "Đấu Phá Thương Khung Phần 6",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/dau-pha-thuong-khung-phan-5-6-1737297719.jpg",
+      "isFeatured": true,
+      "genre": "Huyền Huyễn",
+      "year": "2022",
+      "description": "Xem theo thứ tự ==> Duyên Khởi ==> Phần 1 ==> Phần 2 (tập 1,2) ==> OVA 1 ==> Phần 2 (tập 3~12) ==> OVA 2 ==> Phần 3 ==> Phần 4 ==> Hẹn Ước 3N ==> Phần 5,6",
+      "episodes": [
+        {
+          "number": 150,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kzvhw",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kzvhw"
+        },
+        {
+          "number": 151,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ld0r6",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ld0r6"
+        },
+        {
+          "number": 152,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lopwe",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lopwe"
+        }
+      ]
+    },
+    {
+      "id": 1751105879902,
+      "title": "Phàm Nhân Tu Tiên",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/pham-nhan-tu-tien-full-1742880727.jpg",
+      "isFeatured": true,
+      "genre": "Huyền Huyễn",
+      "year": "2023",
+      "description": "Khúc Hồn thành công kết đan! hai người ở Loạn Tinh hải còn gặp được cơ duyên gì gì? “Tinh Hải Phi Trì” , xin đợi trở về\nĐồng thời Manhua cũng đang trong quá trình khẩn trương remake, ngày nào đó sẽ gặp lại",
+      "episodes": [
+        {
+          "number": 140,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9iiwwy",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9iiwwy"
+        },
+        {
+          "number": 141,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9iwms2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9iwms2"
+        },
+        {
+          "number": 142,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9j9dfi",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9j9dfi"
+        },
+        {
+          "number": 143,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jnsq2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jnsq2"
+        },
+        {
+          "number": 144,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9k2ebk",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9k2ebk"
+        },
+        {
+          "number": 145,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kjutk",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kjutk"
+        },
+        {
+          "number": 146,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kzux8",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kzux8"
+        },
+        {
+          "number": 147,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lch56",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lch56"
+        },
+        {
+          "number": 148,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lopuq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lopuq"
+        },
+        {
+          "number": 149,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9m0sws",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9m0sws"
+        }
+      ]
+    },
+    {
+      "id": 1751106054193,
+      "title": "Thế Giới Hoàn Mỹ",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/the-gioi-hoan-my-1743081184.jpg",
+      "isFeatured": true,
+      "genre": "Huyền Huyễn",
+      "year": "2021",
+      "description": "Thế Giới Hoàn Mỹ cải biên từ tiểu thuyết cùng tên. Hắn vì tu đạo mà sinh, vì ứng kiếp mà đến. Hắn hoá thân thành vô vàn mưa máu, vẩy rơi năm tháng vạn cổ, trải qua vô số tu luyện của thời không và thử thách của dòng chảy tháng năm. Hắn hoá thành vạn cổ, hoá thành tự tại. Xem nam chính Thạch Hạo làm thế nào đạt đến huy hoàng đỉnh cao một đời, tạo ra truyền thuyết vô tận",
+      "episodes": [
+        {
+          "number": 219,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l903e",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l903e"
+        },
+        {
+          "number": 220,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lln6g",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lln6g"
+        },
+        {
+          "number": 221,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lzgre",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lzgre"
+        }
+      ]
+    },
+    {
+      "id": 1751107315275,
+      "title": "Già Thiên",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/gia-thien-1750223657.jpg",
+      "isFeatured": true,
+      "genre": "Huyền Huyễn",
+      "year": "2023",
+      "description": "Một chàng trai thành đạt được bạn bè yêu quý. Trong một lần họp mặt cùng nhóm bạn, một sự cố huyền ảo đã xảy ra và đưa cả nhóm bạn quay trở về thời cổ đại, thời kỳ tồn tại của những vị thần. Nơi đó, mọi mâu thuẫn chỉ có thể giải quyết bằng sức mạnh…Có tồn tại thế giới thần tiên này ư? Có phải đây chỉ là những truyền thuyết hay sự tích ? Những gì nhìn thấy là sự thật hay là ảo mộng.",
+      "episodes": [
+        {
+          "number": 106,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ibhhy",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ibhhy"
+        },
+        {
+          "number": 107,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ipgka",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ipgka"
+        },
+        {
+          "number": 108,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9j2bmw",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9j2bmw"
+        },
+        {
+          "number": 109,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jfo5u",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jfo5u"
+        },
+        {
+          "number": 110,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ju8xe",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ju8xe"
+        },
+        {
+          "number": 111,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9katlo",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9katlo"
+        },
+        {
+          "number": 112,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kq2yw",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kq2yw"
+        },
+        {
+          "number": 113,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l4w48",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l4w48"
+        },
+        {
+          "number": 114,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9libz8",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9libz8"
+        },
+        {
+          "number": 115,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ltqd2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ltqd2"
+        }
+      ]
+    },
+    {
+      "id": 1751107416483,
+      "title": "Tru Tiên",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/tru-tien-1749695542.jpg",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2023",
+      "description": "Chính ma đại chiến đã qua mười năm, Trương Tiểu Phàm hóa thân thành quỷ lệ, chinh phạt tứ phương trong nội đấu ma giáo. Lúc này dị bảo đầm lầy tử vong xuất thế, dẫn tới các thế lực tranh đoạt, Quỷ Lệ cùng Lục Tuyết Kỳ gặp lại, hai người lâm vào gút mắc yêu hận càng sâu.Sau đó Quỷ Lệ bởi vì chuyện cấp dưới mất tích mà điều tra tới Phần Hương cốc, ngoài ý muốn cứu ra Cửu Vĩ Thiên Hồ Tiểu Bạch, đạt được manh mối của Cổ Vu tộc,Quỷ Lệ trải qua cửu tử nhất sinh, cuối cùng cầu được đại vu sư nắm giữ chiêu hồn kỳ thuật đáp ứng đi tới cứu chữa Bích Dao, tâm nguyện mười năm, đến tột cùng kết quả như thế nào",
+      "episodes": [
+        {
+          "number": 48,
+          "dailymotionLink": "https://www.dailymotion.com/video/x947yui",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x947yui"
+        },
+        {
+          "number": 49,
+          "dailymotionLink": "https://www.dailymotion.com/video/x96c3t0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x96c3t0"
+        },
+        {
+          "number": 50,
+          "dailymotionLink": "https://www.dailymotion.com/video/x96c4l0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x96c4l0"
+        },
+        {
+          "number": 51,
+          "dailymotionLink": "https://www.dailymotion.com/video/x96c4q2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x96c4q2"
+        },
+        {
+          "number": 52,
+          "dailymotionLink": "https://www.dailymotion.com/video/x96c4vy",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x96c4vy"
+        },
+        {
+          "number": 53,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l8d9m",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l8d9m"
+        },
+        {
+          "number": 54,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l8dbi",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l8dbi"
+        },
+        {
+          "number": 55,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l8ddq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l8ddq"
+        },
+        {
+          "number": 56,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lk79c",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lk79c"
+        },
+        {
+          "number": 57,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lvxxw",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lvxxw"
+        }
+      ]
+    },
+    {
+      "id": 1751107693510,
+      "title": "Đấu La Đại Lục 2 - Tuyệt Thế Đường Môn",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/dau-la-dai-luc-2-tuyet-the-duong-mon-1741955780.png",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2023",
+      "description": "Nơi này không có ma pháp, không có đấu khí, không có võ thuật, lại có võ hồn. Đường Môn sáng lập vạn năm trên Đấu La đại lục, Đường Môn suy thoái. Một đời Thiên Kiêu hoành không xuất thế, Sử Lai Khắc thất quái đời mới có thể hồi sinh được Đường Môn, viết một khúc nhạc về Tuyệt Thế Đường Môn..\nHồn Thú trăm vạn năm, Tử Linh Thánh Pháp Thần tay cầm nhật nguyệt trích tinh thần, dẫn đến hệ thống Hồn Đạo Khí hoàn toàn mới khiến Đường Môn suy sụp. Tất cả sự kỳ diệu sẽ được bật mí…",
+      "episodes": [
+        {
+          "number": 98,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ihjje",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ihjje"
+        },
+        {
+          "number": 99,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ivh5q",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ivh5q"
+        },
+        {
+          "number": 100,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9j820m",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9j820m"
+        },
+        {
+          "number": 101,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jm9f0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jm9f0"
+        },
+        {
+          "number": 102,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9k0qkq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9k0qkq"
+        },
+        {
+          "number": 103,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kibza",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kibza"
+        },
+        {
+          "number": 104,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kztyy",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kztyy"
+        },
+        {
+          "number": 105,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lax16",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lax16"
+        },
+        {
+          "number": 106,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lnj9u",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lnj9u"
+        },
+        {
+          "number": 107,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lzhk8",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lzhk8"
+        }
+      ]
+    },
+    {
+      "id": 1751108245267,
+      "title": "Thôn Phệ Tinh Không",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/thon-phe-tinh-khong-1737366995.jpg",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2020",
+      "description": "Một ngày nọ, thế giới xuất hiện loại virus RR không rõ lai lịch, cuốn thế giới vào thảm hoạ. Động vật bị truyền nhiễm đột biến thành quái thú đáng sợ, xâm lược với số lượng lớn. Trong lúc loài người đối mặt với diệt vong, họ đã xây lên bức tường bao vây, thành lập căn cứ làm pháo đài cuối cùng bảo vệ con người.",
+      "episodes": [
+        {
+          "number": 168,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9imv2e",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9imv2e"
+        },
+        {
+          "number": 169,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9j08cg",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9j08cg"
+        },
+        {
+          "number": 170,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jdzcq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jdzcq"
+        },
+        {
+          "number": 171,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jrwa6",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jrwa6"
+        },
+        {
+          "number": 172,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9k80t8",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9k80t8"
+        },
+        {
+          "number": 173,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9knq5o",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9knq5o"
+        },
+        {
+          "number": 174,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9l22pq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9l22pq"
+        },
+        {
+          "number": 175,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lgd50",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lgd50"
+        },
+        {
+          "number": 176,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lgr5g",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lgr5g"
+        },
+        {
+          "number": 177,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ls02m",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ls02m"
+        }
+      ]
+    },
+    {
+      "id": 1751108393032,
+      "title": "Mục Thần Ký",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/muc-than-ky-1750566620.jpg",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2024",
+      "description": "Tần Mục, với sức mạnh bất diệt cuối cùng trở thành giáo chủ Thiên Ma Giáo và được chọn là tiến sĩ thái học đầu tiên của Diên Khang quốc. Trong cuộc chiến phản loạn của Diên Khang quốc, Tần Mục dấn thân vào Hoàng kim Cung Lâu Lan cùng với Võ Khả Hãn, đánh bại các đối thủ, vô địch thủ trong thánh cung. Sau chiến thắng đầy ấn tượng, Tần Mục quay về Diên Khang, nỗ lực giúp quốc sư dẹp yên phản loạn đang nổi lên. Lập được công lao to lớn, Tần Mục được Nhân hoàng truyền thừa và trở thành một Nhân hoàng mới, đánh dấu sự lên ngôi của mình trong lịch sử vĩ đại của Diên Khang quốc.",
+      "episodes": [
+        {
+          "number": 27,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9i6x4c",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9i6x4c"
+        },
+        {
+          "number": 28,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ikmw0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ikmw0"
+        },
+        {
+          "number": 29,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9ixzq0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9ixzq0"
+        },
+        {
+          "number": 30,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jaz04",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jaz04"
+        },
+        {
+          "number": 31,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9jqju2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9jqju2"
+        },
+        {
+          "number": 32,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9k4h64",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9k4h64"
+        },
+        {
+          "number": 33,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kl2bi",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kl2bi"
+        },
+        {
+          "number": 34,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9kzvu0",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9kzvu0"
+        },
+        {
+          "number": 35,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9le3sa",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9le3sa"
+        },
+        {
+          "number": 36,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9lpjyk",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9lpjyk"
+        }
+      ]
+    },
+    {
+      "id": 1751109196812,
+      "title": "Thần Mộ",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/than-mo-full-1750917404.png",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2022",
+      "description": "Thần mộ kể về chàng thiếu niên tên Thần Nam được hồi sinh sau 1 vạn năm tại Thần Ma Lăng Viên. Thần Ma Lăng Viên nằm ở chính giữa Thiên Nguyên đại lục. Đây là nơi an táng những nhân vật mạnh nhất trong lịch sử xuyên suốt vũ trụ từ thời hồng hoang. Nơi này bền vững cùng thiên địa cao xanh. Khu mộ phần được phân loại theo cấp độ mạnh yếu, càng tiến vào sâu bên trong thì càng có nhiều mộ của những nhân vật cực mạnh. Mỗi ngôi mộ, nếu không phải của thần linh thì cũng là của yêu ma thượng cổ. Đây chính là nơi thần thánh và ma quỷ yên nghỉ ngàn thu.",
+      "episodes": [
+        {
+          "number": 34,
+          "dailymotionLink": "https://www.dailymotion.com/video/x99mxvq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x99mxvq"
+        },
+        {
+          "number": 35,
+          "dailymotionLink": "https://www.dailymotion.com/video/x99zrgi",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x99zrgi"
+        },
+        {
+          "number": 36,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9adjdg",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9adjdg"
+        },
+        {
+          "number": 37,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9artvk",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9artvk"
+        },
+        {
+          "number": 38,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9b53ay",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9b53ay"
+        },
+        {
+          "number": 39,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9bg6yq",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9bg6yq"
+        },
+        {
+          "number": 40,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9brr2w",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9brr2w"
+        },
+        {
+          "number": 41,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9c5r9y",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9c5r9y"
+        },
+        {
+          "number": 42,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9czkwi",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9czkwi"
+        },
+        {
+          "number": 43,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9de40w",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9de40w"
+        }
+      ]
+    },
+    {
+      "id": 1751109332894,
+      "title": "Kiếm Lai",
+      "imageUrl": "https://yanhh3d.vip/storage/movies/kiem-lai.webp",
+      "isFeatured": false,
+      "genre": "Huyền Huyễn",
+      "year": "2024",
+      "description": "Một Thanh niên bình thường cùng với thanh kiếm có sức mạnh vô biên, anh bước vào cuộc hành trình của mình. Trong thế giới đầy khó khăn và nguy hiểm, anh trở thành một kiếm khách mạnh mẽ , Anh trải qua những hành trình khám phá nơi núi rừng hoang dã và sông suối hùng vĩ, gặp gỡ với nhiều kiểu người khác nhau, từ những người bạn đồng hành đáng tin cậy đến những đối thủ thách thức.",
+      "episodes": [
+        {
+          "number": 1,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9b99cu",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9b99cu"
+        },
+        {
+          "number": 6,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9b9bv2",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9b9bv2"
+        },
+        {
+          "number": 11,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9b9hgk",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9b9hgk"
+        },
+        {
+          "number": 16,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9b9i0o",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9b9i0o"
+        },
+        {
+          "number": 21,
+          "dailymotionLink": "https://www.dailymotion.com/video/x9bb45k",
+          "embedUrl": "https://www.dailymotion.com/embed/video/x9bb45k"
+        }
+      ]
+    }
+  ]
+}

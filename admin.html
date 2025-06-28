@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Quản Trị</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="admin-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-header">ADMIN</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item active">
+            <a href="/admin.html"
+              ><i class="fa-solid fa-gauge-high"></i> Dashboard</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="/movies.html"
+              ><i class="fa-solid fa-film"></i> Quản lý Phim</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" style="color: #666"
+              ><i class="fa-solid fa-users"></i> User (sắp có)</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" style="color: #666"
+              ><i class="fa-solid fa-box-archive"></i> Đơn hàng (sắp có)</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="/" target="_blank"
+              ><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Trang
+              Web</a
+            >
+          </li>
+        </ul>
+      </aside>
+
+      <div class="main-content">
+        <header class="main-header">
+          <div>Admin</div>
+        </header>
+
+        <main class="content-wrapper">
+          <h2>Tổng quan</h2>
+          <div class="stats-grid">
+            <div class="stat-card red">
+              <div class="info">
+                <h4>Phim mới</h4>
+                <p id="total-movies">0</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-film"></i>
+              </div>
+            </div>
+            <div class="stat-card blue">
+              <div class="info">
+                <h4>Tổng số tập</h4>
+                <p id="total-episodes">0</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-list-ol"></i>
+              </div>
+            </div>
+            <div class="stat-card green">
+              <div class="info">
+                <h4>User mới/Tổng số</h4>
+                <p>0/0</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+            <div class="stat-card yellow">
+              <div class="info">
+                <h4>Đơn hàng mới</h4>
+                <p>0</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-box-archive"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 40px;
+              background: #fff;
+              padding: 20px;
+              border-radius: 8px;
+              box-shadow: var(--card-shadow);
+              text-align: center;
+              color: #777;
+            "
+          >
+            <h3>Biểu đồ Lượt xem và Doanh thu (Sắp có)</h3>
+            <p>
+              Tính năng này sẽ được phát triển trong tương lai khi có đủ dữ
+              liệu.
+            </p>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

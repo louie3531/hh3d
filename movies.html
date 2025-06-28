@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Phim - Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="admin-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-header">ADMIN</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item">
+            <a href="/admin.html"
+              ><i class="fa-solid fa-gauge-high"></i> Dashboard</a
+            >
+          </li>
+          <li class="sidebar-nav-item active">
+            <a href="/movies.html"
+              ><i class="fa-solid fa-film"></i> Quản lý Phim</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" style="color: #666"
+              ><i class="fa-solid fa-users"></i> User (sắp có)</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" style="color: #666"
+              ><i class="fa-solid fa-box-archive"></i> Đơn hàng (sắp có)</a
+            >
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="/" target="_blank"
+              ><i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Trang
+              Web</a
+            >
+          </li>
+        </ul>
+      </aside>
+
+      <div class="main-content">
+        <header class="main-header">
+          <div>Admin</div>
+        </header>
+
+        <main class="content-wrapper">
+          <div class="form-container">
+            <h2>Quản Trị Phim</h2>
+            <form id="movie-form">
+              <input type="hidden" id="movie-id" />
+              <div class="form-columns">
+                <!-- Left Column -->
+                <div class="form-column">
+                  <h3>Thông Tin Chính</h3>
+                  <div class="form-group">
+                    <label for="title">Tên Phim</label>
+                    <input type="text" id="title" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="image-url">Link Ảnh Bìa</label>
+                    <input
+                      type="url"
+                      id="image-url"
+                      placeholder="https://example.com/image.jpg"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Mô tả phim</label>
+                    <textarea id="description" rows="12"></textarea>
+                  </div>
+                </div>
+                <!-- Right Column -->
+                <div class="form-column">
+                  <h3>Thông Tin Phụ & Tập Phim</h3>
+                  <div class="form-group">
+                    <input
+                      type="checkbox"
+                      id="isFeatured"
+                      style="width: auto; margin-right: 10px"
+                    />
+                    <label for="isFeatured" style="display: inline"
+                      >Phim nổi bật</label
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label for="genre">Thể loại</label>
+                    <input
+                      type="text"
+                      id="genre"
+                      placeholder="Hành động, Phiêu lưu..."
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="year">Năm phát hành</label>
+                    <input type="number" id="year" placeholder="2024" />
+                  </div>
+                  <h3>Quản lý tập phim</h3>
+                  <div id="episodes-container"></div>
+                  <button
+                    type="button"
+                    id="add-episode-btn"
+                    class="btn"
+                    style="
+                      background-color: #333;
+                      margin-top: 0.5rem;
+                      width: 100%;
+                    "
+                  >
+                    Thêm Tập Phim
+                  </button>
+                </div>
+              </div>
+              <div class="save-button-container">
+                <button
+                  type="submit"
+                  class="btn"
+                  style="
+                    background-color: var(--sidebar-active-bg);
+                    padding: 1rem 2rem;
+                  "
+                >
+                  Lưu Thay Đổi
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="form-container" style="margin-top: 2rem">
+            <h2>Danh Sách Phim</h2>
+            <div id="movie-list"></div>
+          </div>
+
+          <div class="form-container" style="margin-top: 2rem">
+            <h2>Nhập Phim Từ Playlist Dailymotion</h2>
+            <div class="form-group">
+              <label for="playlist-url">Link Playlist Dailymotion</label>
+              <div style="display: flex; gap: 1rem">
+                <input
+                  type="url"
+                  id="playlist-url"
+                  placeholder="https://www.dailymotion.com/playlist/x7xx3j"
+                  style="flex: 1"
+                />
+              </div>
+              <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666">
+                Nhập link playlist Dailymotion để tự động thêm tất cả các tập
+                phim vào hệ thống.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="playlist-title">Tên Phim (Tùy chọn)</label>
+              <input
+                type="text"
+                id="playlist-title"
+                placeholder="Nếu để trống sẽ lấy tên từ playlist"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="playlist-image">Ảnh Bìa (Tùy chọn)</label>
+              <input
+                type="url"
+                id="playlist-image"
+                placeholder="URL ảnh bìa (nếu để trống sẽ lấy từ video đầu tiên)"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="playlist-genre">Thể Loại (Tùy chọn)</label>
+              <input
+                type="text"
+                id="playlist-genre"
+                placeholder="Hoạt hình, Phiêu lưu, v.v..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="playlist-year">Năm Phát Hành (Tùy chọn)</label>
+              <input
+                type="text"
+                id="playlist-year"
+                placeholder="Năm phát hành"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="playlist-description">Mô Tả (Tùy chọn)</label>
+              <textarea
+                id="playlist-description"
+                rows="3"
+                placeholder="Mô tả phim (nếu để trống sẽ lấy từ playlist)"
+              ></textarea>
+            </div>
+
+            <button
+              type="button"
+              id="import-playlist-btn"
+              class="btn"
+              style="
+                background-color: var(--sidebar-active-bg);
+                margin-top: 1rem;
+              "
+            >
+              Nhập Playlist
+            </button>
+
+            <div id="import-status" style="margin-top: 1rem"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

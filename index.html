@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoạt Hình 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="/" class="logo">TuTiên3D</a>
+        <nav>
+          <ul>
+            <li><a href="/">Trang Chủ</a></li>
+            <li><a href="#">Thể Loại</a></li>
+            <li><a href="#">Phim Mới</a></li>
+            <li><a href="/admin.html" target="_blank">Quản trị</a></li>
+          </ul>
+        </nav>
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm phim..." />
+          <button type="submit">Tìm</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="featured-movies">
+          <h2>Phim Nổi Bật</h2>
+          <div class="swiper featured-swiper">
+            <div class="swiper-wrapper">
+              <!-- Slides will be added dynamically by JavaScript -->
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </section>
+
+        <section class="latest-updates">
+          <h2>Mới cập nhật</h2>
+          <div class="movie-grid">
+            <!-- Movies will be loaded dynamically from the database -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Hoạt Hình 3D. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
